@@ -4,7 +4,7 @@ body {
 	color:white;
 }
 
-texteare, button {
+textarea, button {
 margin:auto;
 display:block;
 }
@@ -31,6 +31,6 @@ footer {
 	position:absolute;
 }
 
-buttons button {
+#buttons button {
 	display: inline-block;
 }
