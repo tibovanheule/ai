@@ -3,7 +3,7 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-
+<meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Hatespeech detection</title>
   <meta name="description" content="Hatespeech detector, an ai project">
   <meta name="author" content="Tibo Vanheule">
@@ -15,12 +15,12 @@
 <body>
   <script src="script.js" async></script>
   <noscript>Your browser does not support JavaScript! Please enable it!</noscript>
+  <h2>Welcome!</h2>
+  <p>This is our webinterface for our project "hatespeech detection".<br/><br/>Simply type a tweet in the textfield below and see the opnion of our AI </p>
   <section id="text_input">
-     <form action="/action_page.php">
-	<textarea name="message" rows="5" cols="50" max="150" placeholder="Type your possible hatespeech"></textarea>
+	<textarea id="tweet" rows="5" cols="50" maxlength="150" placeholder="Type your possible hatespeech"></textarea>
 	<br><br>
-	<input type="submit">
-     </form>
+	<button onclick="analyse()">Analyse</button>
   </section>
   <section id="validate" style="display:none;">
 	<button/>
