@@ -29,6 +29,8 @@ function fadeIn(element) {
 
 function analyse(){
 	if(document.getElementById("tweet").textLength){
+	fadeOut(document.getElementById("text_input"))
+	
 	fetch('https://ai.tibovanheule.space/api/analyse',{
     method: 'POST',
     mode: 'cors',
@@ -39,9 +41,12 @@ function analyse(){
     },
        body: JSON.stringify({message:document.getElementById("tweet").value}) // body data type must match "Content-Type" header
   })
-  .then(response => response.json())
-  .then(data => console.log(data));
-	fadeOut(document.getElementById("text_input"))
-	fadeIn(document.getElementById("validate"))
+  .then(data => {
+console.log(data);
+document.getElementById("response").value = data;
+fadeIn(document.getElementById("validate");)
+});
+	
+	
 	}
 }
