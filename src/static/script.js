@@ -30,6 +30,7 @@ function fadeIn(element) {
                 if (op > 0.95) {
                     clearInterval(timer);
                     element.style.opacity = 1;
+                    resolve();
                 } else {
                     element.style.opacity = op;
                     element.style.filter = 'alpha(opacity=' + op * 100 + ")";
@@ -45,6 +46,7 @@ function fadeIn(element) {
 const analyse = async () => {
     if (document.getElementById("tweet").textLength) {
         await fadeOut(document.getElementById("text_input"));
+        await fadeIn(document.getElementById("responseholder"))
         fetch('https://ai.tibovanheule.space/api/analyse', {
             method: 'POST',
             mode: 'cors',
