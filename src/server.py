@@ -8,7 +8,7 @@ def analyze():
     return ai.analyze_text()
 
 @app.route('/ai/validate')
-def analyze():
+def validate():
     return ai.validate()
 
 @app.errorhandler(404)

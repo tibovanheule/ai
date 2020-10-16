@@ -1,0 +1,17 @@
+body {
+	margin:0;
+	background-color:#ac3b61;
+	color:white;
+}
+
+texteare, input {
+margin:auto;
+display:block;
+}
+
+section {
+	top: 50%;
+	position: absolute;
+	transform: translate(-50%, -50%);
+	left: 50%;
+}
