@@ -3,14 +3,19 @@ import ai
 
 app = Flask(__name__)
 
-@app.route('/api/analyze')
+@app.route('/api/analyse', methods=['GET', 'POST'])
 def analyze():
-    return ai.analyze_text()
+    if request.method == 'POST':
+        #request.form['username']
+        return ai.analyse_text()
+    else:
+        return jsonify("Hello, this is the ai speaking. the ai hate you already and you are going to hate it :) ") 
 
-@app.route('/api/validate')
+
+@app.route('/api/validate', methods=['GET', 'POST'])
 def validate():
-    return ai.validate()
-
-@app.errorhandler(404)
-def page_not_found(e):
-    return '404.html'
+    if request.method == 'POST':
+        #request.form['username']
+        return ai.validate()
+    else:
+        return jsonify("Hello, the ai thanks you for the lesson!") 
