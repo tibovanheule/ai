@@ -24,8 +24,10 @@
   </section>
   <section id="validate" style="display:none;">
 	<p id="response">loading response</p>
-	<p>Do you agree with grumpy cat?</p>
-	<button>Yes</button><button>No</button>
+	<p id="validatingtext">Do you agree with grumpy cat?</p>
+	<div id="buttons">
+		<button onclick="validate(true)">Yes</button><button onclick="validate(false)">No</button>
+	</div>
   </section>	
 </body>
 </html>
