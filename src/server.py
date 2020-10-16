@@ -3,11 +3,11 @@ import ai
 
 app = Flask(__name__)
 
-@app.route('/ai/analyze')
+@app.route('/api/analyze')
 def analyze():
     return ai.analyze_text()
 
-@app.route('/ai/validate')
+@app.route('/api/validate')
 def validate():
     return ai.validate()
 
