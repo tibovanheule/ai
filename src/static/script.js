@@ -41,6 +41,7 @@ function analyse(){
     },
        body: JSON.stringify({message:document.getElementById("tweet").value}) // body data type must match "Content-Type" header
   })
+  .then(data=> data.text())
   .then(data => {
 console.log(data);
 document.getElementById("response").value = data;
