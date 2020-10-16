@@ -44,7 +44,7 @@ function analyse(){
   .then(data=> data.text())
   .then(data => {
 console.log(data);
-document.getElementById("response").value = data;
+document.getElementById("response").innerHTML = data;
 fadeIn(document.getElementById("validate"));
 });
 	
