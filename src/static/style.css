@@ -1,3 +1,21 @@
+@font-face {
+	font-family: 'Lato';
+	src: url('Lato-Black.woff2') format('woff2'),
+	url('Lato-Black.woff') format('woff');
+	font-weight: 900;
+	font-style: normal;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: 'LatoReg';
+	src: url('Lato-Regular.woff2') format('woff2'),
+	url('Lato-Regular.woff') format('woff');
+	font-weight: normal;
+	font-style: normal;
+	font-display: swap;
+}
+
 body {
     margin: 0;
     background-color: #F5F6FA;
@@ -12,9 +30,17 @@ textarea, button {
 }
 
 p, h2 {
+
     text-align: center;
 }
+h2{
+	font-family: 'Lato', serif;
+	text-transform: uppercase;
+}
 
+p{
+	font-family: 'LatoReg', serif;
+}
 
 
 textarea {
