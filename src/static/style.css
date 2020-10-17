@@ -54,9 +54,22 @@ button {
     padding: 1% 2%;
 }
 
-footer {
+#footer {
     bottom: 0;
     position: absolute;
+
+	background-color:white ;
+
+	width: 100%;
+}
+#footer ul {
+	list-style: none;
+	text-align: center;
+}
+
+#footer ul li {
+	font-size: 0.5em;
+	display: inline-block;
 }
 
 #buttons {
@@ -77,6 +90,11 @@ footer {
 	width: 40%;
 }
 
+a {
+	text-decoration: none;
+	color: #4257F1;
+}
+
 /* On screens that are 992px or less, set the background color to blue */
 @media screen and (max-width: 992px) {
 	#mainholder {
@@ -89,4 +107,10 @@ footer {
 	#mainholder {
 		width: 90%;
 	}
+}
+
+#cat {
+	width: 40%;
+	margin: auto;
+	display: block;
 }
