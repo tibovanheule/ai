@@ -1,0 +1,64 @@
+\begin{theindex}
+
+  \item {\_\_init\_\_}
+    \subitem {db.DB}, \hyperpage{11}
+
+  \indexspace
+
+  \item {ai}, \hyperpage{7}
+    \subitem {analyse\_text}, \hyperpage{7}
+    \subitem {validate}, \hyperpage{7}
+  \item {ai.py}, \hyperpage{13}
+  \item {analyse\_text}
+    \subitem {ai}, \hyperpage{7}
+  \item {analyze}
+    \subitem {server}, \hyperpage{8}
+  \item {app}
+    \subitem {server}, \hyperpage{9}
+
+  \indexspace
+
+  \item {conn\_lexicon}
+    \subitem {db.DB}, \hyperpage{11}
+  \item {conn\_trainings\_data}
+    \subitem {db.DB}, \hyperpage{11}
+
+  \indexspace
+
+  \item {db}, \hyperpage{8}
+  \item {db.DB}, \hyperpage{11}
+    \subitem {\_\_init\_\_}, \hyperpage{11}
+    \subitem {conn\_lexicon}, \hyperpage{11}
+    \subitem {conn\_trainings\_data}, \hyperpage{11}
+  \item {db.py}, \hyperpage{13}
+
+  \indexspace
+
+  \item {methods}
+    \subitem {server}, \hyperpage{9}
+
+  \indexspace
+
+  \item {requirements.txt}, \hyperpage{13}
+
+  \indexspace
+
+  \item {server}, \hyperpage{8}
+    \subitem {analyze}, \hyperpage{8}
+    \subitem {app}, \hyperpage{9}
+    \subitem {methods}, \hyperpage{9}
+    \subitem {validate}, \hyperpage{8}
+  \item {server.py}, \hyperpage{13}
+
+  \indexspace
+
+  \item {validate}
+    \subitem {ai}, \hyperpage{7}
+    \subitem {server}, \hyperpage{8}
+
+  \indexspace
+
+  \item {wsgi}, \hyperpage{9}
+  \item {wsgi.py}, \hyperpage{14}
+
+\end{theindex}
