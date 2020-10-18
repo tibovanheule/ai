@@ -4,3 +4,11 @@ src/venv/
 src/__pycache__/
 
 src/static/.idea/
+
+src/.idea/
+
+*.log
+
+*.out
+
+*.aux
