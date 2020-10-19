@@ -6,6 +6,7 @@ More details.
 
 import aiosqlite
 
+
 class DB:
     def __init__(self):
         self.conn_lexicon = await aiosqlite.connect('db/lexicon.db')
