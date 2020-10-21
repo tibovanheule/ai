@@ -1,2 +1,2 @@
-aiosqlite
 flask
+requests
