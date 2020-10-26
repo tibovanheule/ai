@@ -8,12 +8,12 @@ import sqlite3
 from datetime import datetime, timezone
 
 import requests
-
+import csv
 
 class DB:
     def __init__(self):
         self.conn_lexicon = sqlite3.connect('db/lexicon.db')
-        self.conn_trainings_data = sqlite3.connect('db/train_data.db')
+        self.conn_data = sqlite3.connect('db/train_data.db')
         self.token = None
         self.expires = None
 
@@ -64,5 +64,32 @@ class DB:
 
     def show_lexicon_db(self):
         c = self.conn_lexicon.execute("select * from lexicon")
+        for i in c:
+            print(i)
+
+    def create_data_db(self):
+        sql_file = open("./db/create_data_db.sql")
+        self.conn_data.executescript(sql_file.read())
+        self.conn_data.commit()
+
+        # create cursor
+        cursor = self.conn_data.cursor()
+
+        # Read csv
+        with open("../gekregen github repo/data/labeled_data.csv") as file:
+            reader = csv.reader(file,delimiter=',')
+            next(reader)
+            for row in reader:
+                self.insert_data(row,cursor)
+        self.conn_data.commit()
+        print("done")
+
+    @staticmethod
+    def insert_data(i, cursor):
+        total = int(i[1])/2
+        cursor.execute('insert or ignore into data values (?,?,?,?)', (int(i[0]), int(i[2])>=total,int(i[3])>=total,i[-1]))
+
+    def show_data_db(self):
+        c = self.conn_data.execute("select * from data")
         for i in c:
             print(i)
