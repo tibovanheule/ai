@@ -6,9 +6,11 @@ More details.
 
 from flask import Flask, jsonify, request
 import ai
-
+import nltk
 app = Flask(__name__)
 
+nltk.download('punkt')
+nltk.download('crubadan')
 
 @app.route('/api/analyse', methods=['GET', 'POST'])
 def analyze():
