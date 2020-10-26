@@ -3,7 +3,7 @@
 ## web interface:
 ai.tibovanheule.space
 
-## web interface:
+## nltk doc
 ai.tibovanheule.space/nltk
 
 ## documentatie van de python
