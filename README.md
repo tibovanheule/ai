@@ -3,6 +3,9 @@
 ## web interface:
 ai.tibovanheule.space
 
+## web interface:
+ai.tibovanheule.space/nltk
+
 ## documentatie van de python
 ai.tibovanheule.space/doc
 
