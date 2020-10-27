@@ -24,33 +24,31 @@
 
 <body>
 <script src="script.js" async></script>
-<noscript>Your browser does not support JavaScript! Please enable it!</noscript>
 <div id="mainholder">
-    <img src="cat.png" alt="cat" id="cat"/>
-    <section id="text_input">
-        <h2>Welcome!</h2>
-        <p>This is our webinterface for our project "hatespeech detection".<br/><br/>Simply type a tweet in the
-            textfield below
-            and see the opnion of our AI </p>
-        <textarea id="tweet" rows="5" cols="50" maxlength="150" placeholder="Type your possible hatespeech"></textarea>
-        <br><br>
-        <button id="anabutton" onclick="analyse()">Analyse</button>
-    </section>
-    <section id="responseholder" style="display:none;">
-        <p id="response">loading response</p>
-        <div id="validate" style="display: none;">
-            <p id="validatingtext">Do you agree with grumpy cat?</p>
-            <div id="buttons">
-                <button id="yes" onclick="validate(true)">Yes</button>
-                <button id="no" onclick="validate(false)">No</button>
-            </div>
-        </div>
-    </section>
+        <h2>NLTK</h2>
+    <h3>What is NLTK?</h3>
+    <p>The Natural Language Toolkit, or more commonly NLTK, is a suite of libraries and programs for symbolic and statistical natural language processing (NLP) for English written in the Python programming language. It was developed by Steven Bird and Edward Loper in the Department of Computer and Information Science at the University of Pennsylvania. NLTK includes graphical demonstrations and sample data. </p>
+
+<p> NLTK supports classification, tokenization, stemming, tagging, parsing, and semantic reasoning functionalities. </p>
+<h3>Why NLTK?</h3>
+    <p>When we searched for a library for preprocessing our data, we mainly focussed on some key feature requirements (tokenization, stemming, entity recognition,...). Also on the popularity and developer activity of the library, because these result in a higher support (documentation, examples, books).  </p>
+    <p>In the case of NLTK, 2 published books where available. Luckily, the library of university of ghent had them.</p>
+    <img src="libnlppop.png" alt="nlp libs popularity" style="width: 90%;display: block;margin: auto;"/>
+    <h2>Bibliography</h2>
+      <ol>
+         <li>
+            <p>E.Balagurusamy, <cite>Programming with JAVA: A Primer</cite>, 3rd edition, (2007)</p>
+         </li>
+         <li>
+            <p>Reto Meier, <cite>Professional Android 4 Application Development</cite>, 3rd edition, (2012)</p>
+         </li>
+      </ol>
 </div>
 <div id="footer">
 
     <ul>
         <li>Copyright Gertjan De Smet & Tibo Vanheule,</li>
+        <li><a href="/">Home (interface)</a></li>
         <li><a href="/tottallynota404">Our cool 404 page</a></li>
         <li><a href="/doc">Documentation</a></li>
     </ul>
