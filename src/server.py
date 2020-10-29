@@ -10,7 +10,6 @@ import nltk
 app = Flask(__name__)
 
 nltk.download('wordnet')
-nltk.download('crubadan')
 
 
 @app.route('/api/analyse', methods=['GET', 'POST'])

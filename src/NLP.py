@@ -9,10 +9,8 @@ import nltk
 from nltk.stem import WordNetLemmatizer
 from nltk.classify import TextCat
 from nltk.tokenize import TweetTokenizer
-import pycountry
 from spellchecker import SpellChecker
 
-nltk.download('crubadan')
 nltk.download('wordnet')
 
 """
@@ -24,13 +22,7 @@ Main entry for natural language processing (text preprocessing).
 
 def text_precessing(text):
     text = text.lower()
-
-    language = detect_language(text)
-    print(language)
-    if language == "english":
-        lem = WordNetLemmatizer()
-    else:
-        return "Language not supported by nltk"
+    lem = WordNetLemmatizer()
     """Tokenize the string"""
     tokens = tokenize(text)
 
@@ -52,12 +44,6 @@ def remove_repeats(word):
 def spell_checker(word):
     checker = SpellChecker()
     return checker.correction(word)
-
-
-def detect_language(text):
-    tc = TextCat()
-    lan = tc.guess_language(text)
-    return str(pycountry.languages.get(alpha_3=lan).name).lower()
 
 
 def tokenize(text):
