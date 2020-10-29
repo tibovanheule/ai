@@ -9,14 +9,15 @@ import ai
 import nltk
 app = Flask(__name__)
 
-nltk.download('punkt')
+nltk.download('wordnet')
 nltk.download('crubadan')
+
 
 @app.route('/api/analyse', methods=['GET', 'POST'])
 def analyze():
     if request.method == 'POST':
-        # request.form['username']
-        return ai.analyse_text()
+        text = request.json
+        return ai.analyse_text(text["message"])
     else:
         return jsonify("Hello, this is the ai speaking. the ai hate you already and you are going to hate it :) ")
 
