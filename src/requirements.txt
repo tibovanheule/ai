@@ -1,5 +1,6 @@
 flask
 requests
 nltk
-pycountry
 pyspellchecker
+demoji
+scikit-learn

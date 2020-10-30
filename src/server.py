@@ -7,9 +7,12 @@ More details.
 from flask import Flask, jsonify, request
 import ai
 import nltk
+import demoji
 app = Flask(__name__)
 
 nltk.download('wordnet')
+nltk.download('stopwords')
+demoji.download_codes()
 
 
 @app.route('/api/analyse', methods=['GET', 'POST'])

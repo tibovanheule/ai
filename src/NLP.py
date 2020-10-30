@@ -7,11 +7,9 @@ import re
 
 import nltk
 from nltk.stem import WordNetLemmatizer
-from nltk.classify import TextCat
+import demoji
 from nltk.tokenize import TweetTokenizer
 from spellchecker import SpellChecker
-
-nltk.download('wordnet')
 
 """
 Natural language processing
@@ -22,18 +20,17 @@ Main entry for natural language processing (text preprocessing).
 
 def text_precessing(text):
     text = text.lower()
-    lem = WordNetLemmatizer()
+    text = demoji.replace_with_desc(text,sep="")
     """Tokenize the string"""
     tokens = tokenize(text)
 
     """Remove Repeating characters like `oooooooooooooooooomygod """
     tokens = [remove_repeats(token) for token in tokens]
-
+    """Spelling check"""
     tokens = [spell_checker(token) for token in tokens]
-
-
     """ Lemmanize text, ALWAYS LAST to avoid inconsistencies with incorrectly spelled words"""
-    tokens = lemmanize_text(tokens, lem)
+
+    tokens = lemmanize_text(tokens)
     return tokens
 
 
@@ -65,19 +62,8 @@ def remove_punctuation(text):
     return text
 
 
-"""
-Term frequency - invers document frequency 
-
-will run tf-idf on a given text input. for more information on this technique see the report.
-"""
-
-
-def tf_idf(text):
-    processed = text
-    return processed
-
-
-def lemmanize_text(tokens, lem):
+def lemmanize_text(tokens):
+    lem = WordNetLemmatizer()
     tokens = [lem.lemmatize(token, pos='n') for token in tokens]
     tokens = [lem.lemmatize(token, pos='v') for token in tokens]
     return tokens
