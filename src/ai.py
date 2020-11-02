@@ -19,6 +19,10 @@ def analyse_text(text):
     return str(vectorizer)
 
 
+def process_text(text):
+    return NLP.text_precessing(text)
+
+
 def return_token(text):
     return text
 
