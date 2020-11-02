@@ -27,21 +27,23 @@ def text_precessing(text):
     """ remove , . ! ?"""
     tokens = filter(remove_punctuation,tokens)
     """Remove Repeating characters like `oooooooooooooooooomygod """
-    tokens = [remove_repeats(token) for token in tokens]
+    reg = re.compile(r'(.)\1{2,}')
+    tokens = (remove_repeats(token, reg) for token in tokens)
     """Spelling check"""
-    tokens = [spell_checker(token) for token in tokens]
+    checker = SpellChecker()
+    """Use list now, wait for generator"""
+    tokens = [spell_checker(token, checker) for token in tokens]
     """ Lemmanize text, ALWAYS LAST to avoid inconsistencies with incorrectly spelled words"""
 
     tokens = lemmanize_text(tokens)
-    return tokens
+    return list(tokens)
 
 
-def remove_repeats(word):
-    return re.sub(r'(.)\1{2,}', r'\1\1', word)
+def remove_repeats(word, reg):
+    return reg.sub(r'\1\1', word)
 
 
-def spell_checker(word):
-    checker = SpellChecker()
+def spell_checker(word,checker):
     return checker.correction(word)
 
 
@@ -78,5 +80,5 @@ def lemmanize_text(tokens):
     lem = WordNetLemmatizer()
     # Catogorize the tokens first
     tokens = nltk.pos_tag(tokens)
-    tokens = [lem.lemmatize(tupl[0], pos=get_wordnet_pos(tupl[1])) for tupl in tokens]
-    return tokens
+    tokens = (lem.lemmatize(tupl[0], pos=get_wordnet_pos(tupl[1])) for tupl in tokens)
+    yield from tokens
