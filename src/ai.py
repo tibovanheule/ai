@@ -20,7 +20,7 @@ def analyse_text(text):
 
 
 def process_text(text):
-    return NLP.text_precessing(text)
+    return str(NLP.text_precessing(text))
 
 
 def return_token(text):
