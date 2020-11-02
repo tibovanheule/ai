@@ -61,8 +61,7 @@ def remove_punctuation(text):
     return text not in ['.', ',', '?', '!']
 
 
-def get_wordnet_pos(word):
-    treebank_tag = nltk.pos_tag(word)
+def get_wordnet_pos(treebank_tag):
     if treebank_tag.startswith('J'):
         return wordnet.ADJ
     elif treebank_tag.startswith('V'):
@@ -72,10 +71,12 @@ def get_wordnet_pos(word):
     elif treebank_tag.startswith('R'):
         return wordnet.ADV
     else:
-        return ''
+        return wordnet.NOUN
 
 
 def lemmanize_text(tokens):
     lem = WordNetLemmatizer()
-    tokens = [lem.lemmatize(token, pos=get_wordnet_pos(token)) for token in tokens]
+    # Catogorize the tokens first
+    tokens = nltk.pos_tag(tokens)
+    tokens = [lem.lemmatize(tupl[0], pos=get_wordnet_pos(tupl[1])) for tupl in tokens]
     return tokens
