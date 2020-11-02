@@ -21,10 +21,11 @@ Main entry for natural language processing (text preprocessing).
 
 def text_precessing(text):
     text = text.lower()
-    text = demoji.replace_with_desc(text,sep="")
+    text = demoji.replace_with_desc(text, sep="")
     """Tokenize the string"""
     tokens = tokenize(text)
-
+    """ remove , . ! ?"""
+    tokens = filter(remove_punctuation,tokens)
     """Remove Repeating characters like `oooooooooooooooooomygod """
     tokens = [remove_repeats(token) for token in tokens]
     """Spelling check"""
@@ -57,10 +58,7 @@ Main entry for natural language processing (text preprocessing).
 
 
 def remove_punctuation(text):
-    print(text)
-    text = re.sub(".,!?", "", text.lower())
-    print(text)
-    return text
+    return text not in ['.', ',', '?', '!']
 
 
 def get_wordnet_pos(word):
