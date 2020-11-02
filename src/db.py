@@ -12,8 +12,8 @@ import csv
 
 class DB:
     def __init__(self):
-        self.conn_lexicon = sqlite3.connect('db/lexicon.db')
-        self.conn_data = sqlite3.connect('db/train_data.db')
+        self.conn_lexicon = sqlite3.connect('db/lexicon.db', isolation_level=None)
+        self.conn_data = sqlite3.connect('db/train_data.db', isolation_level=None)
         self.token = None
         self.expires = None
 
