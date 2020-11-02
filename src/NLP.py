@@ -10,6 +10,7 @@ from nltk.stem import WordNetLemmatizer
 import demoji
 from nltk.tokenize import TweetTokenizer
 from spellchecker import SpellChecker
+from nltk.corpus import wordnet
 
 """
 Natural language processing
@@ -62,8 +63,21 @@ def remove_punctuation(text):
     return text
 
 
+def get_wordnet_pos(word):
+    treebank_tag = nltk.pos_tag(word)
+    if treebank_tag.startswith('J'):
+        return wordnet.ADJ
+    elif treebank_tag.startswith('V'):
+        return wordnet.VERB
+    elif treebank_tag.startswith('N'):
+        return wordnet.NOUN
+    elif treebank_tag.startswith('R'):
+        return wordnet.ADV
+    else:
+        return ''
+
+
 def lemmanize_text(tokens):
     lem = WordNetLemmatizer()
-    tokens = [lem.lemmatize(token, pos='n') for token in tokens]
-    tokens = [lem.lemmatize(token, pos='v') for token in tokens]
+    tokens = [lem.lemmatize(token, pos=get_wordnet_pos(token)) for token in tokens]
     return tokens
