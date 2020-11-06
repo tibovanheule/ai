@@ -25,10 +25,9 @@ def text_precessing(text):
     """Tokenize the string"""
     tokens = tokenize(text)
     """ remove , . ! ?"""
-    tokens = filter(remove_punctuation,tokens)
     """Remove Repeating characters like `oooooooooooooooooomygod """
     reg = re.compile(r'(.)\1{2,}')
-    tokens = (remove_repeats(token, reg) for token in tokens)
+    tokens = (remove_repeats(token, reg) for token in tokens if token not in ['.', ',', '?', '!'])
     """Spelling check"""
     checker = SpellChecker()
     """Use list now, wait for generator"""
@@ -43,7 +42,7 @@ def remove_repeats(word, reg):
     return reg.sub(r'\1\1', word)
 
 
-def spell_checker(word,checker):
+def spell_checker(word, checker):
     return checker.correction(word)
 
 
@@ -57,10 +56,6 @@ removal of punctuation
 
 Main entry for natural language processing (text preprocessing).
 """
-
-
-def remove_punctuation(text):
-    return text not in ['.', ',', '?', '!']
 
 
 def get_wordnet_pos(treebank_tag):
@@ -80,5 +75,5 @@ def lemmanize_text(tokens):
     lem = WordNetLemmatizer()
     # Catogorize the tokens first
     tokens = nltk.pos_tag(tokens)
-    tokens = (lem.lemmatize(tupl[0], pos=get_wordnet_pos(tupl[1])) for tupl in tokens)
+    tokens = (lem.lemmatize(token, pos=get_wordnet_pos(pos)) for (token, pos) in tokens)
     yield from tokens
