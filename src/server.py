@@ -13,13 +13,14 @@ from db import DB
 
 app = Flask(__name__)
 database = DB()
-data = database.db_load()
+tweets = [i[0] for i in database.db_load_tweet()]
+hate = [i[0] for i in database.db_load_hate()]
 
 
 @app.route('/api/analyse', methods=['GET', 'POST'])
 def analyze():
     if request.method == 'POST':
-        return ai.analyse_text(request.json["message"],data)
+        return ai.analyse_text(request.json["message"], tweets, hate)
     else:
         return jsonify("Hello, this is the ai speaking. the ai hate you already and you are going to hate it :) ")
 
@@ -50,6 +51,10 @@ def init():
     return str("inited")
 
 
-@app.route('/api/data', methods=['GET'])
+@app.route('/api/data/tweets', methods=['GET'])
 def showdata():
-    return str(data)
+    return str(tweets)
+
+@app.route('/api/data/hate', methods=['GET'])
+def showhate():
+    return str(hate)

@@ -96,6 +96,10 @@ class DB:
         for i in c:
             print(i)
 
-    def db_load(self):
-        c = self.conn_data.execute("select * from data")
+    def db_load_tweet(self):
+        c = self.conn_data.execute("select tweet from data order by id asc")
+        return c.fetchall()
+
+    def db_load_hate(self):
+        c = self.conn_data.execute("select hate_speech from data order by id asc")
         return c.fetchall()
