@@ -103,3 +103,6 @@ class DB:
     def db_load_hate(self):
         c = self.conn_data.execute("select hate_speech from data order by id asc")
         return c.fetchall()
+
+    def model_in_db(self, name):
+        return False

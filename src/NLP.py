@@ -5,13 +5,13 @@ More details....
 """
 import re
 
-import nltk
-from nltk.stem import WordNetLemmatizer
 import demoji
-from nltk.tokenize import TweetTokenizer
-from spellchecker import SpellChecker
+import nltk
 from nltk.corpus import wordnet
-from nltk.tokenize.casual import _replace_html_entities,  HANG_RE, WORD_RE
+from nltk.stem import WordNetLemmatizer
+from nltk.tokenize import TweetTokenizer
+from nltk.tokenize.casual import _replace_html_entities, HANG_RE, WORD_RE
+from spellchecker import SpellChecker
 
 """
 Natural language processing
@@ -25,7 +25,8 @@ def text_precessing(text):
     """Tokenize the string"""
     tokens = tokenize(text)
     """ remove , . ! ?"""
-    tokens = (token for token in tokens if token not in ['.', ',', '?', '!'])
+    reg = re.compile(r'(.)\1{2,}')
+    tokens = (remove_repeats(token, reg) for token in tokens if token not in ['.', ',', '?', '!'])
     """Spelling check"""
     checker = SpellChecker()
     """Use list now, wait for generator"""
@@ -36,8 +37,7 @@ def text_precessing(text):
     return list(tokens)
 
 
-def remove_repeats(word):
-    reg = re.compile(r'(.)\1{2,}')
+def remove_repeats(word, reg):
     return reg.sub(r'\1\1', word)
 
 
@@ -59,18 +59,6 @@ class CustomTweetTokenizer(TweetTokenizer):
 def tokenize(text):
     tokenizer = CustomTweetTokenizer()
     return tokenizer.tokenize(text)
-
-
-def BadEnglish(word):
-    isreg = re.compile(r"'s")
-    string = isreg.sub(" is", word)
-    string = re.sub(r"'ve", " have", string)
-    string = re.sub(r"n't", " not", string)
-    string = re.sub(r"'re", " are", string)
-    string = re.sub(r"'d", " would", string)
-    string = re.sub(r"'ll", " will", string)
-    return string
-
 
 
 def get_wordnet_pos(treebank_tag):
