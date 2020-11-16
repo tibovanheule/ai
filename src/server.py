@@ -7,6 +7,7 @@ More details.
 from demoji import download_codes
 from flask import Flask, jsonify, request
 from nltk import download
+import timeit
 
 import ai
 from db import DB
@@ -37,6 +38,8 @@ def validate():
 @app.route('/api/preprocess', methods=['GET', 'POST'])
 def process():
     if request.method == 'POST':
+        print(timeit.timeit(ai.process_text(request.json["message"]), number=1000))
+
         return ai.process_text(request.json["message"])
     else:
         return jsonify("Hello, the ai thanks you for the lesson!")

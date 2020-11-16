@@ -7,6 +7,7 @@ import re
 
 import demoji
 import nltk
+from functools import lru_cache
 from nltk.corpus import wordnet
 from nltk.stem import WordNetLemmatizer
 from nltk.tokenize import TweetTokenizer
@@ -19,30 +20,12 @@ Natural language processing
 Main entry for natural language processing (text preprocessing).
 """
 
-
-def text_precessing(text):
-    text = demoji.replace_with_desc(text, sep="")
-    """Tokenize the string"""
-    tokens = tokenize(text)
-    """ remove , . ! ?"""
-    reg = re.compile(r'(.)\1{2,}')
-    tokens = (remove_repeats(token, reg) for token in tokens if token not in ['.', ',', '?', '!'])
-    """Spelling check"""
-    checker = SpellChecker()
-    """Use list now, wait for generator"""
-    tokens = [spell_checker(token, checker) for token in tokens]
-    """ Lemmanize text, ALWAYS LAST to avoid inconsistencies with incorrectly spelled words"""
-    # remove_handles(text)
-    tokens = lemmanize_text(tokens)
-    return list(tokens)
-
-
-def remove_repeats(word, reg):
-    return reg.sub(r'\1\1', word)
-
-
-def spell_checker(word, checker):
-    return checker.correction(word)
+"GLOBAL module variabeles"
+reg = re.compile(r'(.)\1{2,}')
+checker = SpellChecker()
+wnl = WordNetLemmatizer()
+lemmatize = lru_cache(wnl.lemmatize)
+tag = lru_cache(nltk.pos_tag)
 
 
 class CustomTweetTokenizer(TweetTokenizer):
@@ -52,13 +35,31 @@ class CustomTweetTokenizer(TweetTokenizer):
         # Shorten problematic sequences of characters
         safe_text = HANG_RE.sub(r"\1\1\1", text)
         # Tokenize:
-        words = WORD_RE.findall(safe_text)
-        return words
+        return WORD_RE.findall(safe_text)
 
 
-def tokenize(text):
-    tokenizer = CustomTweetTokenizer()
-    return tokenizer.tokenize(text)
+tokenizer = CustomTweetTokenizer()
+
+
+def text_precessing(text):
+    print(text)
+    text = demoji.replace_with_desc(text, sep="")
+    """Tokenize the string"""
+    tokens = tokenizer.tokenize(text)
+    """ remove , . ! ? AND remove repeats"""
+    """Spelling check"""
+    tokens = (spell_checker(remove_repeats(token)) for token in tokens if
+              token not in ['.', ',', '?', '!'])
+    """ Lemmanize text, ALWAYS LAST to avoid inconsistencies with incorrectly spelled words"""
+    return list(lemmanize_text(tokens))
+
+
+def remove_repeats(word):
+    return reg.sub(r'\1\1', word)
+
+
+def spell_checker(word):
+    return checker.correction(word)
 
 
 def get_wordnet_pos(treebank_tag):
@@ -75,8 +76,7 @@ def get_wordnet_pos(treebank_tag):
 
 
 def lemmanize_text(tokens):
-    lem = WordNetLemmatizer()
     # Catogorize the tokens first
-    tokens = nltk.pos_tag(tokens)
-    tokens = (lem.lemmatize(token, pos=get_wordnet_pos(pos)) for (token, pos) in tokens)
+    tokens = tag(tokens)
+    tokens = (lemmatize(token, pos=get_wordnet_pos(pos)) for (token, pos) in tokens)
     yield from tokens
