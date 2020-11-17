@@ -16,3 +16,5 @@ src/.idea/
 presentation (webslides)/presentation 1/.idea/
 
 speed comparisions/
+
+*.whl
