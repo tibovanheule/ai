@@ -22,16 +22,21 @@ Main entry for natural language processing (text preprocessing).
 
 "GLOBAL module variabeles"
 reg = re.compile(r'(.)\1{2,}')
+mention_hashtag_regex = re.compile(r'^@[\w\-]+|^[\s]#([^\s])+')
+replacement_regex = re.compile(r'([^\s])@') # this WILL have to be changed rn serves as boilerplate for later
+
 checker = SpellChecker()
 wnl = WordNetLemmatizer()
 lemmatize = lru_cache(wnl.lemmatize)
-tag = lru_cache(nltk.pos_tag)
+tag = nltk.pos_tag
 
 
 class CustomTweetTokenizer(TweetTokenizer):
     def tokenize(self, text):
         # Fix HTML character entities:
         text = _replace_html_entities(text)
+        # Substitute non-alpha characters in the middle of a word
+        text = substitute_letters(text)
         # Shorten problematic sequences of characters
         safe_text = HANG_RE.sub(r"\1\1\1", text)
         # Tokenize:
@@ -48,14 +53,20 @@ def text_precessing(text):
     tokens = tokenizer.tokenize(text)
     """ remove , . ! ? AND remove repeats"""
     """Spelling check"""
-    tokens = (spell_checker(remove_repeats(token)) for token in tokens if
-              token not in ['.', ',', '?', '!'])
+    tokens = [spell_checker(remove_repeats(token)) for token in tokens if
+              token not in ['.', ',', '?', '!']]
     """ Lemmanize text, ALWAYS LAST to avoid inconsistencies with incorrectly spelled words"""
     return list(lemmanize_text(tokens))
 
 
+def substitute_letters(word):
+    word = replacement_regex.sub(r'\1a', word)
+    return word
+
+
 def remove_repeats(word):
-    return reg.sub(r'\1\1', word)
+    unMention = mention_hashtag_regex.sub("entity", word)
+    return reg.sub(r'\1\1', unMention)
 
 
 def spell_checker(word):

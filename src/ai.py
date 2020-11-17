@@ -20,7 +20,7 @@ def analyse_text(text, modelname="logistic_regression"):
 
 
 def process_text(text):
-    return str(text_precessing(text))
+    return str(text_precessing(text.lower()))
 
 
 def return_token(text):
