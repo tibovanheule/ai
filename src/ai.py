@@ -7,14 +7,14 @@ from nltk.corpus import stopwords
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.linear_model import LogisticRegression
 from sklearn.model_selection import train_test_split
-
+import pickle
 import db
 from NLP import text_precessing
 
 
 def analyse_text(text, data, hate, modelname="logistic_regression"):
     stopwords_set = stopwords.words("english")
-    vectorizer = TfidfVectorizer(preprocessor=text_precessing, tokenizer=return_token, stop_words=stopwords_set,
+    vectorizer = TfidfVectorizer(preprocessor=text_precessing, tokenizer=return_token,
                                  max_df=0.75, min_df=5, use_idf=True, smooth_idf=False, ngram_range=(1, 3), norm=None,
                                  decode_error="replace")
     dbobj = db.DB()
@@ -24,6 +24,8 @@ def analyse_text(text, data, hate, modelname="logistic_regression"):
 
         X_train, X_test, y_train, y_test = train_test_split(data, hate)
         vect = vectorizer.fit(X_train)
+        with open('vectorizer.pk', 'wb') as fin:
+            pickle.dump(vectorizer, fin)
         X_train_vectorized = vect.transform(X_train)
 
         model = LogisticRegression(verbose=True, n_jobs=-1)
