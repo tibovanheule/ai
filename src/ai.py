@@ -22,16 +22,17 @@ def analyse_text(text, data, hate, modelname="logistic_regression"):
         return "lol"
     else:
 
-        X_train, X_test, y_train, y_test = train_test_split(data, hate)
-        vect = vectorizer.fit(X_train)
+        x_train, x_test, y_train, y_test = train_test_split(data, hate)
+        vect = vectorizer.fit(x_train)
         with open('vectorizer.pk', 'wb') as fin:
             pickle.dump(vectorizer, fin)
-        X_train_vectorized = vect.transform(X_train)
+        x_train_vectorized = vect.transform(x_train)
 
         model = LogisticRegression(verbose=True, n_jobs=-1)
-        model.fit(X_train_vectorized, y_train)
+        model.fit(x_train_vectorized, y_train)
 
-        predictions = model.predict(vect.transform(X_test))
+        predictions = model.predict(vect.transform(x_test))
+        print(predictions)
         return str(predictions)
 
 
