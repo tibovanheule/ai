@@ -20,3 +20,9 @@ speed comparisions/
 *.whl
 
 .idea/
+
+src/.DS_Store
+
+gekregen github repo/.DS_Store
+
+.DS_Store

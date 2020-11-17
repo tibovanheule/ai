@@ -1,6 +1,6 @@
 <!doctype html>
 <html lang="en" prefix="og: http://ogp.me/ns#">
-  <head>
+<head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -9,13 +9,11 @@
     <meta name="description" content="How to detect hatespeech with artificial intelligence.">
 
     <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,700,700i%7CMaitree:200,300,400,600,700&amp;subset=latin-ext" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,700,700i%7CMaitree:200,300,400,600,700&amp;subset=latin-ext"
+          rel="stylesheet">
 
     <!-- CSS Base -->
     <link rel="stylesheet" type='text/css' media='all' href="../static/css/webslides.css">
-
-    <!-- Optional - CSS SVG Icons (Font Awesome) -->
-    <link rel="stylesheet" type="text/css" media="all" href="../static/css/svg-icons.css">
 
     <!-- SOCIAL CARDS (ADD YOUR INFO) -->
 
@@ -31,34 +29,12 @@
     <!-- Android -->
     <meta name="mobile-web-app-capable" content="yes">
     <meta name="theme-color" content="#333333">
-  </head>
-  <body>
-
-
-<!-- HEADER NAV VAN BOVEN-->
-
-    <header role="banner">
-      <nav role="navigation">
-        <p class="logo"><img src="/cat.png" alt="logo" /></p>
-        <ul>
-          <li class="github">
-            <a rel="external" href="https://github.com/webslides/webslides" title="Github">
-              <svg class="fa-github">
-                <use xlink:href="#fa-github"></use>
-              </svg>
-              <em>WebSlides</em>
-            </a>
-          </li>
-        </ul>
-      </nav>
-    </header>
-
+</head>
+<body>
 
 <!-- DE EFFECTIEVE SLIDES -->
-
-
-    <main role="main">
-      <article id="webslides">
+<main role="main">
+    <article id="webslides">
 
         <!-- Quick Guide
           - Each parent <section> in the <article id="webslides"> element is an individual slide.
@@ -69,349 +45,276 @@
 
         <!--- SLIDE ONE -->
         <section class="bg-purple aligncenter">
-         <span class="background dark" style="background-image:url('https://source.unsplash.com/mHK4yW2exrI/')"></span>
-          <!--.wrap = container (width: 90%) -->
-          <div class="wrap">
-	    <img src="/cat.png" alt="cat" />
-            <h1 class="text-landing">Grumpy cat</h1>
-            <p class="text-symbols">An hatespeech detection AI</p>
-            <p>A project by Gertjan De Smet and Tibo Vanheule</p>
-          </div>
-          <!-- .end .wrap -->
+            <span class="background dark"
+                  style="background-image:url('https://source.unsplash.com/mHK4yW2exrI/')"></span>
+            <!--.wrap = container (width: 90%) -->
+            <div class="wrap">
+                <img src="/cat.png" alt="cat"/>
+                <h1 class="text-landing">Grumpy cat</h1>
+                <p class="text-symbols">An hatespeech detection AI</p>
+                <p>A project by Gertjan De Smet and Tibo Vanheule</p>
+            </div>
+            <!-- .end .wrap -->
         </section>
 
 
-<!-- DATA SLIDE -->
+        <!-- DATA SLIDE -->
         <section>
-          <!--.wrap = container (width: 90%) -->
-          <div class="wrap aligncenter">
-            <p class="text-subtitle">data we use</p>
-            <h2>Lexicon & tweets</h2>
-          </div>
-          <!-- .end .wrap -->
+            <!--.wrap = container (width: 90%) -->
+            <div class="wrap aligncenter">
+                <p class="text-subtitle">data we use</p>
+                <h2>Lexicon & tweets</h2>
+            </div>
+            <!-- .end .wrap -->
         </section>
 
         <!--- SLIDE SQL ---->
 
         <section>
-          <!--.wrap = container (width: 90%) -->
-          <div class="wrap">
-            <div class="cta-cover">
-              <h1><strong>SQLITE</strong>Not just csv</h1>
+            <!--.wrap = container (width: 90%) -->
+            <div class="wrap">
+                <div class="cta-cover">
+                    <h1><strong>SQLITE </strong>Not just csv</h1>
+                </div>
+                <ul class="flexblock features">
+                    <li>
+                        <div>
+                            <h2><span>100<sup>%</sup></span>customizable</h2>
+                            One format for all.
+                        </div>
+                    </li>
+                    <li>
+                        <div>
+                            <h2>
+                                <span><i class="fas fa-heart">  </i></span>
+                                Maintainable
+                            </h2>
+                            Lexicon updates with Hatebase.
+                        </div>
+                    </li>
+                    <li>
+                        <div>
+                            <h2>
+                                <span><i class="fas fa-code">                               </i></span>
+                                faster
+                            </h2>
+                            Easy search, doesn't load all data at once.
+                        </div>
+                    </li>
+                </ul>
             </div>
-            <ul class="flexblock features">
-              <li>
-                <div>
-                  <h2><span>100<sup>%</sup></span>customizable</h2>
-                  One format for all.
-                </div>
-              </li>
-              <li>
-                <div>
-                  <h2>
-                    <svg class="fa-heart-o">
-                      <use xlink:href="#fa-heart-o"></use>
-                    </svg>
-                    Maintainable
-                  </h2>
-                  Lexicon updates with Hatebase
-                </div>
-              </li>
-              <li>
-                <div>
-                  <h2>
-                    <svg class="fa-code">
-                      <use xlink:href="#fa-code"></use>
-                    </svg>
-                    faster
-                  </h2>
-                  Easy search, doesn't load all data at once
-                </div>
-              </li>
-            </ul>
-          </div>
-          <!-- .end .wrap -->
+            <!-- .end .wrap -->
         </section>
 
         <!--- METHODIEK ---->
         <section>
-          <!--.wrap = container (width: 90%) -->
-          <div class="wrap aligncenter">
-            <p class="text-subtitle">how?</p>
-            <h2>Workflow</h2>
-          </div>
-          <!-- .end .wrap -->
+            <!--.wrap = container (width: 90%) -->
+            <div class="wrap aligncenter">
+                <p class="text-subtitle">how?</p>
+                <h2>Workflow</h2>
+            </div>
+            <!-- .end .wrap -->
         </section>
-        <section>
-          <div class="wrap">
-            <h3>Text preprocessing</h3>
-            <ul class="flexblock steps">
-              <!-- li>a? Add blink = <ul class="flexblock steps blink">-->
 
-              <li>
-                <div class="process step-1"></div>
-                <span>
-                  <svg class="fa-cog">
-                    <use xlink:href="#fa-laugh-beam"></use>
-                  </svg>
+        <!--- flowchart ---->
+        <section>
+            <div class="wrap">
+                <h3>Text preprocessing</h3>
+                <ul class="flexblock steps">
+                    <!-- li>a? Add blink = <ul class="flexblock steps blink">-->
+
+                    <li>
+                        <div class="process step-1"></div>
+                        <span>
+                  <i class="fas fa-laugh-beam">                  </i>
                 </span>
-                <h2>01. smiley</h2>
-                <p>Translate to a descriptive text for the AI.</p>
-              </li>
-              <li>
-                <div class="process step-2"></div>
-                <span>
-                  <svg class="fa-cog">
-                    <use xlink:href="#fa-redo"></use>
-                  </svg>
+                        <h2>01. Smiley</h2>
+                        <p>Translate to a descriptive text for the AI.</p>
+                    </li>
+                    <li>
+                        <div class="process step-1"></div>
+                        <span>
+                  <i class="fas fa-redo">                  </i>
                 </span>
-                <h2>02. Repeats</h2>
-                <p>Oooooooooooh wow, that's long. (we should remove some o's)</p>
-              </li>
-              <li>
-                <div class="process step-3"></div>
-                <span>
-                  <svg class="fa-cog">
-                    <use xlink:href="#fa-spell-check"></use>
-                  </svg>
+                        <h2>02. Remove punctuation</h2>
+                        <p>!!!!</p>
+                    </li>
+                    <li>
+                        <div class="process step-1"></div>
+                        <span>
+                  <i class="fas fa-spell-check">                  </i>
                 </span>
-                <h2>03. Spellchecker</h2>
-                <p>Remove small typoo's</p>
-              </li>
-              <li>
-                <div class="process step-4"></div>
-                <span>
-                  <svg class="fa-cog">
-                    <use xlink:href="#fa-font"></use>
-                  </svg>
+                        <h2>03. Repeats & Spellchecker</h2>
+                        <p>Oooooooooooh wow, that's long.</p>
+                    </li>
+                    <li>
+                        <div class="process step-1"></div>
+                        <span>
+                  <i class="fas fa-font">                  </i>
                 </span>
-                <h2>04. lemmanize</h2>
-                <p>Convert to root word</p>
-              </li>
-            </ul>
-          </div>
-          <!-- .end .wrap -->
+                        <h2>04. lemmanize</h2>
+                        <p>Convert to root word.</p>
+                    </li>
+                </ul>
+            </div>
+            <!-- .end .wrap -->
         </section>
+
+
+        <!--- examples --->
 
         <section class="bg-secondary">
-          <!--.wrap = container (width: 90%) -->
-          <div class="wrap size-50 frame">
-            <h2 class="text-serif aligncenter">(D)emoji Replacement</h2>
-            <p class="text-symbols">* * *</p>
-            <p class="aligncenter">I bet you didn't know that 🙋, 🙋‍♂️, and 🙋‍♀️ are three different emojis.</p>
-
-            <p class="aligncenter">I bet you didn't know that person raising hand, man raising hand️, and woman raising hand️ are three different emojis.</p>
-          </div>
-        </section>
-
-
-        <section>
-          <!--.wrap = container (width: 90%) -->
-          <div class="wrap size-60">
-            <h3><strong>Why WebSlides?</strong> Good karma and productivity.</h3>
-            <hr>
-            <div class="bg-white shadow">
-              <ul class="flexblock reasons">
-                <li>
-                  <h2>We're web people.</h2>
-                  <p>There're excellent presentation tools out there. WebSlides is about telling the story, and sharing it in a beautiful way. Hypertext and clean code as narrative elements.</p>
-                </li>
-                <li>
-                  <h2>Work better, faster.</h2>
-                  <p>Designers, marketers, and journalists can now focus on the content. Simply <a href="https://webslides.tv/demos" title="WebSlides Demos">choose a demo</a> and customize it in minutes.</p>
-                </li>
-              </ul>
-            </div> <!-- .end .bg-white shadow -->
-          </div>
-          <!-- .end .wrap -->
-        </section>
-
-
-
-        <section class="bg-primary">
-          <div class="wrap">
-            <div class="content-left">
-              <h2>WebSlides help you build a culture of excellence.</h2>
-            </div>
-            <!-- end .content-left -->
-            <div class="content-left">
-              <p>WebSlides is the easiest HTML presentation framework. All content is for demo purposes only. All images are the copyright of their respective owners.</p>
-            </div>
-            <!-- end .content-left -->
-            <ul class="flexblock">
-              <li>
-                <div>
-                  <img class="whitelogo" src="../static/images/logos/google.svg" alt="Google">
-                </div>
-              </li>
-              <li>
-                <div>
-                  <img class="whitelogo" src="../static/images/logos/netflix.svg" alt="Netflix">
-                </div>
-              </li>
-              <li>
-                <div>
-                  <img class="whitelogo" src="../static/images/logos/microsoft.svg" alt="Microsoft">
-                </div>
-              </li>
-            </ul>
-          </div>
-          <!-- .end .wrap -->
-        </section>
-
-        <section>
-          <!--.wrap = container (width: 90%) -->
-          <div class="wrap">
-            <div class="grid">
-              <div class="column">
-                <h3 class="text-context">
-                FAQs</h3>
-                <p>WebSlides is an open source solution by <a href="https://twitter.com/jlantunez">@jlantunez</a>. If you have additional questions, <a href="https://twitter.com/webslides" title="@WebSlides">get in touch!</a></p>
-              </div>
-              <!-- end .column -->
-              <div class="column">
-                <h6>Why WebSlides?</h6>
-                <p>There are excellent presentation tools out there. WebSlides is about good karma and sharing content. Hypertext, clean code, and beauty as narrative elements.</p>
+            <!--.wrap = container (width: 90%) -->
+            <div class="wrap size-50 frame">
+                <h2 class="text-serif aligncenter">(D)emoji Replacement</h2>
                 <p class="text-symbols">* * *</p>
-                <h6>Is WebSlides a framework?</h6>
-                <p>We're all tired of heavy CSS frameworks. WebSlides is a starting point that provides basic <a href="../demos/components.html" title="WebSlides Components">structural components</a> and a scalable <a href="../demos/classes.html" title="WebSlides Classes">CSS architecture</a>.</p>
-              </div>
-              <!-- end .column -->
-              <div class="column">
-                <h6>What can I do with WebSlides?</h6>
-                <p>WebSlides is a cute solution for making HTML presentations, landings, and portfolios. <a href="../demos/components.html#slide=15">Put content wherever you want</a>, add <a href="../demos/components.html#slide=98">background images</a>, <a href="../demos/components.html#slide=101">videos</a>...
-                </p>
-                <p class="text-symbols">* * *</p>
-                <h6>How easy is WebSlides?</h6>
-                <p>You can create your own presentation instantly. Just a basic knowledge of HTML and CSS is required. Simply choose a demo and customize it.</p>
-              </div>
-              <!-- end .column -->
+                <p class="aligncenter">I bet you didn't know that 🙋, 🙋‍♂️ and 🙋‍♀️ are three different emojis.</p>
+
+                <p class="aligncenter">I bet you didn't know that person raising hand, man raising hand️ and woman
+                    raising hand️ are three different emojis.</p>
             </div>
-            <!-- end .grid -->
-          </div>
-          <!-- end .wrap -->
         </section>
 
-        <section>
-          <div class="wrap">
-            <h2>Features</h2>
-            <ul class="flexblock features">
-              <li>
-                <div>
-                  <h2>
-                    <span>&rarr;</span>
-                    Simple Navigation
-                  </h2>
-                  with arrow keys and swipe.
-                </div>
-              </li>
-              <li>
-                <div>
-                  <h2>
-                    <svg class="fa-link">
-                      <use xlink:href="#fa-link"></use>
-                    </svg>
-                    Permalinks
-                  </h2>
-                  Go to a specific slide.
-                </div>
-              </li>
-              <li>
-                <div>
-                  <h2>
-                    <svg class="fa-clock-o">
-                      <use xlink:href="#fa-clock-o"></use>
-                    </svg>
-                    Slide Counter
-                  </h2>
-                  Current/Total number
-                </div>
-              </li>
-              <li>
-                <div>
-                  <h2>
-                    <span>40<sup>+</sup></span>
-                    Beautiful Components
-                  </h2>
-                  Covers, cards, quotes...
-                </div>
-              </li>
-              <li>
-                <div>
-                  <h2>
-                    <svg class="fa-text-height">
-                      <use xlink:href="#fa-text-height"></use>
-                    </svg>
-                    Vertical Rhythm
-                  </h2>
-                  Use multiples of 8.
-                </div>
-              </li>
-              <li>
-                <div>
-                  <h2>
-                    <span>500<sup>+</sup></span>
-                    SVG Icons
-                  </h2>
-                  Font Awesome Kit.
-                </div>
-              </li>
-            </ul>
-          </div>
+        <section class="bg-trans-dark">
+            <!--.wrap = container (width: 90%) -->
+            <div class="wrap size-50 frame">
+                <h2 class="text-serif aligncenter">Repeats, spellchecking and lemmanizing</h2>
+                <p class="text-symbols">* * *</p>
+                <p class="aligncenter">Woords having power, use them wisely!!!!</p>
+
+                <p class="aligncenter">['word', 'have', 'power', 'use', 'them', 'wisely']</p>
+            </div>
         </section>
 
-
+        <!-- TF-idf --->
         <section>
-          <div class="wrap">
-            <div class="card-50 bg-white">
-              <figure>
-                <img src="https://source.unsplash.com/wvVX5xcAYhU/800x600" alt="webinterface">
-                <figcaption>
-                  <a href="https://unsplash.com/@hollowaykryan" title="Victoriano Izquierdo">
-                    <svg class="fa-camera">
-                      <use xlink:href="#fa-camera"></use>
-                    </svg>
-                    Ryan Holloway (Unsplash)
-                  </a>
-                </figcaption>
-              </figure>
-              <!-- end figure-->
-              <div class="flex-content">
-                <h2>
-                  Cards
-                </h2>
-                <p>Price: $64 &mdash; <strong>.card-50</strong></p>
-                <ul class="description">
-                  <li>
-                    <strong class="text-label">Size:</strong> 24/32.
-                  </li>
-                  <li><strong class="text-label">Color:</strong> Black.</li>
-                  <li><strong class="text-label">Composition:</strong> Cotton 99%; Elastane 1%.</li>
+            <!--.wrap = container (width: 90%) -->
+            <div class="wrap">
+                <div class="grid">
+                    <div class="column">
+                        <h3 class="text-context"> TF-IDF + LOGISTIC REGRESSION</h3>
+                    </div>
+                    <!-- end .column -->
+                    <div class="column">
+                        <h6>Scikit-learn module</h6>
+                        <p>Used for main training</p>
+                        <h6>Reusing models</h6>
+                        <p>Saved using the pickle module.</p>
+                    </div>
+                </div>
+                <!-- end .grid -->
+            </div>
+            <!-- end .wrap -->
+        </section>
+
+        <!--- STATUS ---->
+        <section>
+            <div class="wrap">
+                <h2>Status</h2>
+                <ul class="flexblock features">
+                    <li>
+                        <div>
+                            <h2>
+                                <span><i class="fas fa-broadcast-tower">                                </i></span>
+                                API
+                            </h2>
+                            Done
+                        </div>
+                    </li>
+                    <li>
+                        <div>
+                            <h2>
+                                <span><i class="fas fa-laptop-code">                                </i></span>
+                                Web interface
+                            </h2>
+                            Done
+                        </div>
+                    </li>
+                    <li>
+                        <div>
+                            <h2>
+                                <span><i class="fas fa-text-height">                                </i></span>
+
+                                NLP
+                            </h2>
+                            Done
+                        </div>
+                    </li>
+                    <li>
+                        <div>
+                            <h2>
+                                <span>&rarr;</span>
+                                Adversarial examples
+                            </h2>
+                            Added a few countermeasures already
+                        </div>
+                    </li>
+
+                    <li>
+                        <div>
+                            <h2>
+                                <span><i class="fas fa-book">                                </i></span>
+                                doxygen
+                            </h2>
+                            Documentation server done
+                        </div>
+                    </li>
+                    <li>
+                        <div>
+                            <h2>
+                                <span><i class="fas fa-link">                                </i></span>
+                                Hate(Base)
+                            </h2>
+                            Scraper Done + API-access application approved
+                        </div>
+                    </li>
                 </ul>
-                <p>
-                  5-pocket low-rise jeans in washed stretch denim with a button fly and slim legs. The jeans are made partly from recycled cotton.
-                </p>
-              </div>
-              <!-- end .flex-content-->
             </div>
-            <!-- .end .card50 -->
-          </div>
-          <!-- .end .wrap -->
         </section>
 
-      </article>
-    </main>
-    <!--main-->
+        <!-- INFO SLIDE -->
+        <section>
+            <div class="wrap" style="height: 70vh">
+                <div class="card-50 bg-white" style="height: 100%">
+                    <figure>
+                        <img src="interface.png" alt="webinterface">
+                    </figure>
+                    <!-- end figure-->
+                    <div class="flex-content">
+                        <h2>
+                            Relevant info
+                        </h2>
+                        <ul class="description">
+                            <li>
+                                <strong class="text-label">The slides:</strong><a
+                                    href="https://www.ai.tibovanheule.space/slides/">www.ai.tibovanheule.space/slides/</a>
+                            </li>
+                            <li><strong class="text-label">Docs:</strong><a
+                                    href="https://www.ai.tibovanheule.space/doc/">www.ai.tibovanheule.space/doc/</a>
+                            </li>
+                            <li><strong class="text-label">Web interface:</strong><a
+                                    href="https://www.ai.tibovanheule.space/">www.ai.tibovanheule.space/</a></li>
+                        </ul>
+                    </div>
+                    <!-- end .flex-content-->
+                </div>
+                <!-- .end .card50 -->
+            </div>
+            <!-- .end .wrap -->
+        </section>
 
-    <!-- Required -->
-    <script src="../static/js/webslides.js"></script>
+    </article>
+</main>
+<!--main-->
 
-    <script>
-      window.ws = new WebSlides();
-    </script>
+<!-- Required -->
+<script src="../static/js/webslides.js"></script>
 
-    <!-- OPTIONAL - svg-icons.js (fontastic.me - Font Awesome as svg icons) -->
-    <script defer src="../static/js/svg-icons.js"></script>
+<script>
+    window.ws = new WebSlides();
+</script>
 
-  </body>
+<script src="https://kit.fontawesome.com/09f8dc2764.js" crossorigin="anonymous"></script>
+
+</body>
 </html>

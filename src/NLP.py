@@ -5,12 +5,14 @@ More details....
 """
 import re
 
-import nltk
-from nltk.stem import WordNetLemmatizer
 import demoji
-from nltk.tokenize import TweetTokenizer
-from spellchecker import SpellChecker
+import nltk
+from functools import lru_cache
 from nltk.corpus import wordnet
+from nltk.stem import WordNetLemmatizer
+from nltk.tokenize import TweetTokenizer
+from nltk.tokenize.casual import _replace_html_entities, HANG_RE, WORD_RE
+from spellchecker import SpellChecker
 
 """
 Natural language processing
@@ -18,49 +20,46 @@ Natural language processing
 Main entry for natural language processing (text preprocessing).
 """
 
+"GLOBAL module variabeles"
+reg = re.compile(r'(.)\1{2,}')
+checker = SpellChecker()
+wnl = WordNetLemmatizer()
+lemmatize = lru_cache(wnl.lemmatize)
+tag = lru_cache(nltk.pos_tag)
+
+
+class CustomTweetTokenizer(TweetTokenizer):
+    def tokenize(self, text):
+        # Fix HTML character entities:
+        text = _replace_html_entities(text)
+        # Shorten problematic sequences of characters
+        safe_text = HANG_RE.sub(r"\1\1\1", text)
+        # Tokenize:
+        return WORD_RE.findall(safe_text)
+
+
+tokenizer = CustomTweetTokenizer()
+
 
 def text_precessing(text):
-    text = text.lower()
+    print(text)
     text = demoji.replace_with_desc(text, sep="")
     """Tokenize the string"""
-    tokens = tokenize(text)
-    """ remove , . ! ?"""
-    tokens = filter(remove_punctuation,tokens)
-    """Remove Repeating characters like `oooooooooooooooooomygod """
-    reg = re.compile(r'(.)\1{2,}')
-    tokens = (remove_repeats(token, reg) for token in tokens)
+    tokens = tokenizer.tokenize(text)
+    """ remove , . ! ? AND remove repeats"""
     """Spelling check"""
-    checker = SpellChecker()
-    """Use list now, wait for generator"""
-    tokens = [spell_checker(token, checker) for token in tokens]
+    tokens = (spell_checker(remove_repeats(token)) for token in tokens if
+              token not in ['.', ',', '?', '!'])
     """ Lemmanize text, ALWAYS LAST to avoid inconsistencies with incorrectly spelled words"""
-
-    tokens = lemmanize_text(tokens)
-    return list(tokens)
+    return list(lemmanize_text(tokens))
 
 
-def remove_repeats(word, reg):
+def remove_repeats(word):
     return reg.sub(r'\1\1', word)
 
 
-def spell_checker(word,checker):
+def spell_checker(word):
     return checker.correction(word)
-
-
-def tokenize(text):
-    tokenizer = TweetTokenizer()
-    return tokenizer.tokenize(text)
-
-
-"""
-removal of punctuation
-
-Main entry for natural language processing (text preprocessing).
-"""
-
-
-def remove_punctuation(text):
-    return text not in ['.', ',', '?', '!']
 
 
 def get_wordnet_pos(treebank_tag):
@@ -77,8 +76,7 @@ def get_wordnet_pos(treebank_tag):
 
 
 def lemmanize_text(tokens):
-    lem = WordNetLemmatizer()
     # Catogorize the tokens first
-    tokens = nltk.pos_tag(tokens)
-    tokens = (lem.lemmatize(tupl[0], pos=get_wordnet_pos(tupl[1])) for tupl in tokens)
+    tokens = tag(tokens)
+    tokens = (lemmatize(token, pos=get_wordnet_pos(pos)) for (token, pos) in tokens)
     yield from tokens
