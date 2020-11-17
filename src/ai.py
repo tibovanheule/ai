@@ -49,11 +49,16 @@ def construct_model(data, hate, modelname="logistic_regression"):
             pickle.dump(vect, fin)
         with open('vectorizer.pk', 'wb') as fin:
             pickle.dump(vectorizer, fin)
-        dbobj.insert_vect_in_db("tfidfvectorizer", pickle.dumps(vect))
+
         x_train_vectorized = vect.transform(x_train)
+        with open('x-train-vectorizer.pk', 'wb') as fin:
+            pickle.dump(x_train_vectorized, fin)
 
         model = LogisticRegression(verbose=True, n_jobs=-1)
         model.fit(x_train_vectorized, y_train)
         dbobj.insert_model_in_db(modelname, pickle.dumps(model))
         predictions = model.predict(vect.transform(x_test))
         print(predictions)
+        with open('model.pk', 'wb') as fin:
+            pickle.dump(model, fin)
+        dbobj.insert_model_in_db("tfidfvectorizer", pickle.dumps(model))
