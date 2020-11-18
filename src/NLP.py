@@ -47,7 +47,6 @@ tokenizer = CustomTweetTokenizer()
 
 
 def text_precessing(text):
-    print(text)
     text = demoji.replace_with_desc(text, sep="")
     """Tokenize the string"""
     tokens = tokenizer.tokenize(text)

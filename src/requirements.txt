@@ -4,3 +4,6 @@ nltk
 pyspellchecker
 demoji
 scikit-learn
+pandas
+multiprocessing
+numpy
