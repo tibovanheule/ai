@@ -8,7 +8,7 @@ from functools import lru_cache
 
 import demoji
 import nltk
-from nltk.corpus import wordnet
+from nltk.corpus import wordnet, stopwords
 from nltk.stem import WordNetLemmatizer
 from nltk.tokenize import TweetTokenizer
 from nltk.tokenize.casual import _replace_html_entities, HANG_RE, WORD_RE
@@ -22,10 +22,11 @@ Main entry for natural language processing (text preprocessing).
 
 "GLOBAL module variabeles"
 reg = re.compile(r'(.)\1{2,}')
-mention_hashtag_regex = re.compile(r'^@[\w\-]+|^[\s]#([^\s])+')
+mention_hashtag_regex = re.compile(r'([^\w]|^)@[\w\-]+|^[\s]#([^\s])+')
 replacement_regex = re.compile(r'([^\s])@')  # this WILL have to be changed rn serves as boilerplate for later
 url_remove = re.compile(
-    r'(h(\s)*t(\s)*t(\s)*p(\s)*s?:\/\/)(\s)*(www\.)?(\s)*((\w|\s)+\.)*([\w\-\s]+\/)*([\w\-]+)((\?)?[\w\s]*=\s*[\w\%&]*)*')
+    r'(h(\s)*t(\s)*t(\s)*p(\s)*s?://)(\s)*(www\.)?(\s)*((\w|\s)+\.)*([\w\-\s]+/)*([\w\-]+)((\?)?[\w\s]*=\s*['
+    r'\w%&]*)*')
 contarction_not = re.compile(r'n\'t')
 contarction_am = re.compile(r'\'m')
 contarction_have = re.compile(r'\'ve')
@@ -35,6 +36,8 @@ checker = SpellChecker()
 wnl = WordNetLemmatizer()
 lemmatize = lru_cache(wnl.lemmatize)
 tag = nltk.pos_tag
+stopwords_set = stopwords.words("english")
+punctuation_set = ['.', ',', '?', '!', '\'', '$', '&', '"', ':', '-', '/', '<', '>']
 
 
 class CustomTweetTokenizer(TweetTokenizer):
@@ -54,19 +57,23 @@ tokenizer = CustomTweetTokenizer()
 
 def text_precessing(text):
     text = demoji.replace_with_desc(text, sep="")
-    text = url_remove.sub("site", text)
+    text = url_remove.sub(" site", text)
     text = contarction_not.sub(" not", text)
     text = contarction_am.sub(" am", text)
     text = contarction_have.sub(" have", text)
     text = contarction_will.sub(" will", text)
+
+    text = mention_hashtag_regex.sub(" entity", text)
     """Tokenize the string"""
     tokens = tokenizer.tokenize(text)
     """ remove , . ! ? AND remove repeats"""
     """Spelling check"""
     tokens = [spell_checker(remove_repeats(token)) for token in tokens if
-              token not in ['.', ',', '?', '!']]
+              token not in punctuation_set and token not in stopwords_set]
     """ Lemmanize text, ALWAYS LAST to avoid inconsistencies with incorrectly spelled words"""
-    return list(lemmanize_text(tokens))
+    retval = list(lemmanize_text(tokens))
+    print(retval)
+    return retval
 
 
 def substitute_letters(word):
@@ -75,8 +82,7 @@ def substitute_letters(word):
 
 
 def remove_repeats(word):
-    unMention = mention_hashtag_regex.sub("entity", word)
-    return reg.sub(r'\1\1', unMention)
+    return reg.sub(r'\1\1', word)
 
 
 def spell_checker(word):

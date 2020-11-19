@@ -3,30 +3,26 @@ The Ai module implements the core ai functions
 
 More details....
 """
+import multiprocessing
 import pickle
-import numpy as np
 
-from nltk.corpus import stopwords
+import numpy as np
+import scipy.sparse as sp
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.linear_model import LogisticRegression
-from sklearn.model_selection import train_test_split
 from sklearn.metrics import accuracy_score
-
-import multiprocessing
-import scipy.sparse as sp
+from sklearn.model_selection import train_test_split
 
 import db
 from NLP import text_precessing
 
 
 def analyse_text(text, modelname="logistic_regression"):
-    stopwords_set = stopwords.words("english")
     with open('mini_model.pk', 'rb') as file:
         model = pickle.load(file)
     with open('mini_vectorizer.pk', 'rb') as file:
         vectorizer = pickle.load(file)
     test = vectorizer.transform([text])
-
     return str(model.predict(test))
 
 
@@ -56,13 +52,6 @@ def construct_model(data, hate, modelname="logistic_regression"):
     else:
         print("Splitting data into train & test")
         x_train, x_test, y_train, y_test = train_test_split(data[:100], hate[:100], train_size=0.7, random_state=4262)
-        print("done")
-        #    y_pred = [0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
-        # para_pred = [0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
-        #y_true = y_test
-        #score = accuracy_score(y_true, y_pred, normalize=True)
-        #print(score)
-        #return
         print("fitting training")
         vect = vectorizer.fit(x_train)
         with open('para_mini_vect.pk', 'wb') as fin:
@@ -71,8 +60,8 @@ def construct_model(data, hate, modelname="logistic_regression"):
             pickle.dump(vectorizer, fin)
 
         print("transforming training")
+        # x_train_vectorized = vect.transform(x_train)
         x_train_vectorized = parallel_construct(x_train, vect.transform)
-            #vect.transform(x_train)
         with open('para_mini_x-train-vectorizer.pk', 'wb') as fin:
             pickle.dump(x_train_vectorized, fin)
         print("initing model")
@@ -84,7 +73,6 @@ def construct_model(data, hate, modelname="logistic_regression"):
         with open('para_mini_model.pk', 'wb') as fin:
             pickle.dump(model, fin)
         dbobj.insert_model_in_db("para_f_tfidfvectorizer", pickle.dumps(model))
-        #score = accuracy_score(y_true, y_pred, normalize=True)
         with open('score.txt', 'w') as file:
             score = accuracy_score(y_test, predictions, normalize=True)
             file.write(str(score))
@@ -92,7 +80,7 @@ def construct_model(data, hate, modelname="logistic_regression"):
 
 
 def parallel_construct(data, func):
-    core_count = multiprocessing.cpu_count()-1
+    core_count = multiprocessing.cpu_count() - 1
     print(f"working on {core_count} threads")
 
     data_split = np.array_split(data, core_count)
