@@ -4,10 +4,10 @@ Natural language processing
 More details....
 """
 import re
+from functools import lru_cache
 
 import demoji
 import nltk
-from functools import lru_cache
 from nltk.corpus import wordnet
 from nltk.stem import WordNetLemmatizer
 from nltk.tokenize import TweetTokenizer
@@ -23,7 +23,13 @@ Main entry for natural language processing (text preprocessing).
 "GLOBAL module variabeles"
 reg = re.compile(r'(.)\1{2,}')
 mention_hashtag_regex = re.compile(r'^@[\w\-]+|^[\s]#([^\s])+')
-replacement_regex = re.compile(r'([^\s])@') # this WILL have to be changed rn serves as boilerplate for later
+replacement_regex = re.compile(r'([^\s])@')  # this WILL have to be changed rn serves as boilerplate for later
+url_remove = re.compile(
+    r'(h(\s)*t(\s)*t(\s)*p(\s)*s?:\/\/)(\s)*(www\.)?(\s)*((\w|\s)+\.)*([\w\-\s]+\/)*([\w\-]+)((\?)?[\w\s]*=\s*[\w\%&]*)*')
+contarction_not = re.compile(r'n\'t')
+contarction_am = re.compile(r'\'m')
+contarction_have = re.compile(r'\'ve')
+contarction_will = re.compile(r'\'ll')
 
 checker = SpellChecker()
 wnl = WordNetLemmatizer()
@@ -48,6 +54,11 @@ tokenizer = CustomTweetTokenizer()
 
 def text_precessing(text):
     text = demoji.replace_with_desc(text, sep="")
+    text = url_remove.sub("site", text)
+    text = contarction_not.sub(" not", text)
+    text = contarction_am.sub(" am", text)
+    text = contarction_have.sub(" have", text)
+    text = contarction_will.sub(" will", text)
     """Tokenize the string"""
     tokens = tokenizer.tokenize(text)
     """ remove , . ! ? AND remove repeats"""
