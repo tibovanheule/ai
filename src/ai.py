@@ -51,7 +51,7 @@ def construct_model(data, hate, modelname="logistic_regression"):
         print("lol")
     else:
         print("Splitting data into train & test")
-        x_train, x_test, y_train, y_test = train_test_split(data[:100], hate[:100], train_size=0.7, random_state=4262)
+        x_train, x_test, y_train, y_test = train_test_split(data, hate, train_size=0.7, random_state=4262)
         print("fitting training")
         vect = vectorizer.fit(x_train)
         with open('para_mini_vect.pk', 'wb') as fin:
