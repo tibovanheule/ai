@@ -13,6 +13,7 @@ from nltk.stem import WordNetLemmatizer
 from nltk.tokenize import TweetTokenizer
 from nltk.tokenize.casual import _replace_html_entities, HANG_RE, WORD_RE
 from spellchecker import SpellChecker
+import wordsegment as ws
 
 """
 Natural language processing
@@ -35,6 +36,7 @@ contarction_will = re.compile(r'\'ll')
 checker = SpellChecker()
 wnl = WordNetLemmatizer()
 lemmatize = lru_cache(wnl.lemmatize)
+wordsegment = lru_cache(ws.segment)
 tag = nltk.pos_tag
 stopwords_set = stopwords.words("english")
 punctuation_set = ['.', ',', '?', '!', '\'', '$', '&', '"', ':', '-', '/', '<', '>']
@@ -71,8 +73,11 @@ def text_precessing(text):
     tokens = [spell_checker(remove_repeats(token)) for token in tokens if
               token not in punctuation_set and token not in stopwords_set]
     """ Lemmanize text, ALWAYS LAST to avoid inconsistencies with incorrectly spelled words"""
-    retval = list(lemmanize_text(tokens))
-    print(retval)
+    words = (lemmanize_text(wordsegment(word)) for word in tokens)
+    retval = [token for sublist in words for token in sublist if
+              token not in punctuation_set and token not in stopwords_set]
+
+
     return retval
 
 
