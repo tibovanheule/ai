@@ -14,6 +14,8 @@ from nltk import download
 from ai import construct_model, process_text, analyse_text, validate
 from db import DB
 
+import wordsegment as ws
+
 app = Flask(__name__)
 database = DB()
 tweets = [i[0] for i in database.db_load_tweet()]
@@ -40,7 +42,7 @@ def validate():
 @app.route('/api/preprocess', methods=['GET', 'POST'])
 def process():
     if request.method == 'POST':
-        print(timeit.timeit(process_text(request.json["message"]), number=1000))
+        #print(timeit.timeit(process_text(request.json["message"]), number=1000))
 
         return process_text(request.json["message"])
     else:
@@ -53,6 +55,7 @@ def init():
     download('stopwords')
     download('averaged_perceptron_tagger')
     download_codes()
+    ws.load()
     return str("inited")
 
 
