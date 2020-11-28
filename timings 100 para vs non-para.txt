@@ -1,3 +1,3 @@
 OP DE EERSTE HONDERD
-met parallel, 2.14
-zonder parallel, 
+met parallel, 2.14, 0.46, 0.33
+zonder parallel, 2.38, 1.09, 0.38
