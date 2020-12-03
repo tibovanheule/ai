@@ -8,12 +8,12 @@ from functools import lru_cache
 
 import demoji
 import nltk
+import wordsegment as ws
 from nltk.corpus import wordnet, stopwords
 from nltk.stem import WordNetLemmatizer
 from nltk.tokenize import TweetTokenizer
 from nltk.tokenize.casual import _replace_html_entities, HANG_RE, WORD_RE
 from spellchecker import SpellChecker
-import wordsegment as ws
 
 """
 Natural language processing
@@ -37,9 +37,11 @@ checker = SpellChecker()
 wnl = WordNetLemmatizer()
 lemmatize = lru_cache(wnl.lemmatize)
 wordsegment = lru_cache(ws.segment)
+spell_checker = lru_cache(checker.correction)
 tag = nltk.pos_tag
 stopwords_set = stopwords.words("english")
-punctuation_set = ['.', ',', '?', '!', '\'', '$', '&', '"', ':', '-', '/', '<', '>']
+stopwords_set.extend(['.', ',', '?', '!', '\'', '$', '&', '"', ':', '-', '/', '<', '>'])
+stopwords_set = set(stopwords_set)
 
 
 class CustomTweetTokenizer(TweetTokenizer):
@@ -54,7 +56,7 @@ class CustomTweetTokenizer(TweetTokenizer):
         return WORD_RE.findall(safe_text)
 
 
-tokenizer = CustomTweetTokenizer()
+tokenize = CustomTweetTokenizer().tokenize
 
 
 def text_precessing(text):
@@ -67,18 +69,13 @@ def text_precessing(text):
 
     text = mention_hashtag_regex.sub(" entity", text)
     """Tokenize the string"""
-    tokens = tokenizer.tokenize(text)
+    tokens = tokenize(text)
     """ remove , . ! ? AND remove repeats"""
     """Spelling check"""
-    tokens = [spell_checker(remove_repeats(token)) for token in tokens if
-              token not in punctuation_set and token not in stopwords_set]
+    tokens = [spell_checker(remove_repeats(token)) for token in tokens if token not in stopwords_set]
     """ Lemmanize text, ALWAYS LAST to avoid inconsistencies with incorrectly spelled words"""
     words = (lemmanize_text(wordsegment(word)) for word in tokens)
-    retval = [token for sublist in words for token in sublist if
-              token not in punctuation_set and token not in stopwords_set]
-
-
-    return retval
+    return [token for sublist in words for token in sublist if token not in stopwords_set]
 
 
 def substitute_letters(word):
@@ -88,10 +85,6 @@ def substitute_letters(word):
 
 def remove_repeats(word):
     return reg.sub(r'\1\1', word)
-
-
-def spell_checker(word):
-    return checker.correction(word)
 
 
 def get_wordnet_pos(treebank_tag):
