@@ -47,6 +47,7 @@ stopwords_set.extend(['.', ',', '?', '!', '\'', '$', '&', '"', ':', '-', '/', '<
 stopwords_set = set(stopwords_set)
 known_words = set(words.words())
 database = DB()
+hate = set(i[0] for i in database.db_load_lexicon())
 known_words.update(("fuck",))
 
 
@@ -114,9 +115,7 @@ def get_wordnet_pos(treebank_tag):
 def has_word(word):
     fragments = set(word[i:j] for i in range(len(word)) for j in range(i + 3, len(word) + 1))
     sub_words = fragments.intersection(hate)
-    print(hate.pop())
     if len(sub_words) > 0:
-        print("hate")
         return word, sub_words
     sub_words = fragments.intersection(known_words)
     return None if len(sub_words) == 0 else (word, sub_words)
