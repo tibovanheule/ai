@@ -9,9 +9,11 @@ import pickle
 import numpy as np
 import scipy.sparse as sp
 from sklearn.feature_extraction.text import TfidfVectorizer
+from sklearn.feature_selection import SelectFromModel
 from sklearn.linear_model import LogisticRegression
 from sklearn.metrics import accuracy_score
-from sklearn.model_selection import train_test_split
+from sklearn.model_selection import train_test_split, GridSearchCV, StratifiedKFold
+from sklearn.pipeline import Pipeline
 
 import db
 from NLP import text_precessing
@@ -39,44 +41,31 @@ def validate():
 
 
 def construct_model(data, hate, modelname="logistic_regression"):
+    dbobj = db.DB()
+
     vectorizer = TfidfVectorizer(preprocessor=text_precessing, tokenizer=return_token,
                                  max_df=0.75, min_df=5, use_idf=True, smooth_idf=False, ngram_range=(1, 3), norm=None,
                                  decode_error="replace")
-    dbobj = db.DB()
-    print(modelname)
+
     """Construct a db entry. Avoid using old model for requests made before ending of model construction"""
     dbobj.constructing_model_in_db(modelname)
-    print(dbobj.get_model_in_db(modelname))
-    if dbobj.model_in_db(modelname):
-        print("lol")
-    else:
-        print("Splitting data into train & test")
-        x_train, x_test, y_train, y_test = train_test_split(data, hate, train_size=0.7, random_state=4262)
-        print("fitting training")
-        vect = vectorizer.fit(x_train)
-        with open('para_mini_vect.pk', 'wb') as fin:
-            pickle.dump(vect, fin)
-        with open('para_mini_vectorizer.pk', 'wb') as fin:
-            pickle.dump(vectorizer, fin)
-
-        print("transforming training")
-        # x_train_vectorized = vect.transform(x_train)
-        x_train_vectorized = parallel_construct(x_train, vect.transform)
-        with open('para_mini_x-train-vectorizer.pk', 'wb') as fin:
-            pickle.dump(x_train_vectorized, fin)
-        print("initing model")
-        model = LogisticRegression(verbose=True, n_jobs=-1)
-        model.fit(x_train_vectorized, y_train)
-        dbobj.insert_model_in_db(modelname, pickle.dumps(model))
-        predictions = model.predict(vect.transform(x_test))
-        print(f"Model made, predictions on the test are {predictions}")
-        with open('para_mini_model.pk', 'wb') as fin:
-            pickle.dump(model, fin)
-        dbobj.insert_model_in_db("para_f_tfidfvectorizer", pickle.dumps(model))
-        with open('score.txt', 'w') as file:
-            score = accuracy_score(y_test, predictions, normalize=True)
-            file.write(str(score))
-        print("safed files")
+    print("Splitting data into train & test")
+    x_train, x_test, y_train, y_test = train_test_split(data, hate, train_size=0.7, random_state=4262)
+    print("fitting training")
+    vect = vectorizer.fit(x_train)
+    print("transforming training")
+    # x_train_vectorized = vect.transform(x_train)
+    x_train_vectorized = parallel_construct(x_train, vect.transform)
+    params = [{}]
+    pipe = Pipeline([('select', SelectFromModel(LogisticRegression(n_jobs=-1))),
+                     ('model', LogisticRegression(n_jobs=-1))])
+    model = GridSearchCV(pipe, params, cv=StratifiedKFold(n_splits=5, random_state=42).split(x_train, y_train))
+    print("initing model")
+    model.fit(x_train_vectorized, y_train)
+    dbobj.insert_model_in_db(modelname, pickle.dumps(model))
+    predictions = model.predict(vect.transform(x_test))
+    print(f"Model made, predictions on the test are {predictions}")
+    dbobj.insert_model_in_db(modelname, pickle.dumps(model))
 
 
 def parallel_construct(data, func):
