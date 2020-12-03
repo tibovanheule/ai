@@ -97,6 +97,10 @@ class DB:
         for i in c:
             print(i)
 
+    def db_load_lexicon(self):
+        c = self.conn_data.execute("select tweet from lexicon order by id asc")
+        return c.fetchall()
+
     def db_load_tweet(self):
         c = self.conn_data.execute("select tweet from data order by id asc")
         return c.fetchall()

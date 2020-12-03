@@ -9,11 +9,13 @@ from functools import lru_cache
 import demoji
 import nltk
 import wordsegment as ws
-from nltk.corpus import wordnet, stopwords
+from nltk.corpus import wordnet, stopwords, words
 from nltk.stem import WordNetLemmatizer
 from nltk.tokenize import TweetTokenizer
 from nltk.tokenize.casual import _replace_html_entities, HANG_RE, WORD_RE
 from spellchecker import SpellChecker
+
+from db import DB
 
 """
 Natural language processing
@@ -33,6 +35,7 @@ contarction_am = re.compile(r'\'m')
 contarction_have = re.compile(r'\'ve')
 contarction_will = re.compile(r'\'ll')
 
+ws.load()
 checker = SpellChecker()
 wnl = WordNetLemmatizer()
 lemmatize = lru_cache(wnl.lemmatize)
@@ -42,6 +45,9 @@ tag = nltk.pos_tag
 stopwords_set = stopwords.words("english")
 stopwords_set.extend(['.', ',', '?', '!', '\'', '$', '&', '"', ':', '-', '/', '<', '>'])
 stopwords_set = set(stopwords_set)
+known_words = set(words.words())
+database = DB()
+known_words.update(("fuck",))
 
 
 class CustomTweetTokenizer(TweetTokenizer):
@@ -74,8 +80,13 @@ def text_precessing(text):
     """Spelling check"""
     tokens = [spell_checker(remove_repeats(token)) for token in tokens if token not in stopwords_set]
     """ Lemmanize text, ALWAYS LAST to avoid inconsistencies with incorrectly spelled words"""
-    words = (lemmanize_text(wordsegment(word)) for word in tokens)
-    return [token for sublist in words for token in sublist if token not in stopwords_set]
+    worden = (lemmanize_text(wordsegment(word)) for word in tokens)
+    tokens = [token for sublist in worden for token in sublist if token not in stopwords_set]
+    not_known = [token for token in tokens if token not in known_words]
+    print(not_known)
+    tokenkl = [has_word(token) for token in not_known if len(token) > 3]
+    print(tokenkl)
+    return tokens
 
 
 def substitute_letters(word):
@@ -98,6 +109,17 @@ def get_wordnet_pos(treebank_tag):
         return wordnet.ADV
     else:
         return wordnet.NOUN
+
+
+def has_word(word):
+    fragments = set(word[i:j] for i in range(len(word)) for j in range(i + 3, len(word) + 1))
+    sub_words = fragments.intersection(hate)
+    print(hate.pop())
+    if len(sub_words) > 0:
+        print("hate")
+        return word, sub_words
+    sub_words = fragments.intersection(known_words)
+    return None if len(sub_words) == 0 else (word, sub_words)
 
 
 def lemmanize_text(tokens):

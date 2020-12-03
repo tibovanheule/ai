@@ -6,7 +6,6 @@ More details.
 
 from threading import Thread
 
-import wordsegment as ws
 from demoji import download_codes
 from flask import Flask, jsonify, request
 from nltk import download
@@ -41,10 +40,10 @@ def process():
 @app.route('/api/init', methods=['GET'])
 def init():
     download('wordnet')
+    download('words')
     download('stopwords')
     download('averaged_perceptron_tagger')
     download_codes()
-    ws.load()
     return str("inited")
 
 
