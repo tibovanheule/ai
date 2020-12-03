@@ -4,17 +4,15 @@ Provides the api routes and calls ai functions. With this we can implement an we
 More details.
 """
 
-import timeit
 from threading import Thread
 
+import wordsegment as ws
 from demoji import download_codes
 from flask import Flask, jsonify, request
 from nltk import download
 
 from ai import construct_model, process_text, analyse_text, validate
 from db import DB
-
-import wordsegment as ws
 
 app = Flask(__name__)
 database = DB()
@@ -30,23 +28,14 @@ def analyze():
         return jsonify("Hello, this is the ai speaking. the ai hate you already and you are going to hate it :) ")
 
 
-@app.route('/api/validate', methods=['GET', 'POST'])
+@app.route('/api/validate', methods=['POST'])
 def validate():
-    if request.method == 'POST':
-        # request.form['username']
-        return validate()
-    else:
-        return jsonify("Hello, the ai thanks you for the lesson!")
+    return validate()
 
 
-@app.route('/api/preprocess', methods=['GET', 'POST'])
+@app.route('/api/preprocess', methods=['POST'])
 def process():
-    if request.method == 'POST':
-        #print(timeit.timeit(process_text(request.json["message"]), number=1000))
-
-        return process_text(request.json["message"])
-    else:
-        return jsonify("Hello, the ai thanks you for the lesson!")
+    return process_text(request.json["message"])
 
 
 @app.route('/api/init', methods=['GET'])

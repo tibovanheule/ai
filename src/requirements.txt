@@ -5,6 +5,5 @@ pyspellchecker
 demoji
 scikit-learn
 pandas
-multiprocessing
 numpy
 wordsegment
