@@ -62,8 +62,8 @@ hate = set(i[0] for i in database.db_load_lexicon())
 
 
 @lru_cache(maxsize=5000)
-def lemmatize(token):
-    return wnl.lemmatize(token)
+def lemmatize(token, pos):
+    return wnl.lemmatize(token, pos=pos)
 
 
 @lru_cache(maxsize=5000)
