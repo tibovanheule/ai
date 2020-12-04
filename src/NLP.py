@@ -39,10 +39,23 @@ ws.load()
 checker = SpellChecker()
 wnl = WordNetLemmatizer()
 tag = nltk.pos_tag
-stopwords_set = stopwords.words("english")
-stopwords_set.extend(['.', ',', '?', '!', '\'', '$', '&', '"', ':', '-', '/', '<', '>'])
-stopwords_set = set(stopwords_set)
-known_words = set(words.words())
+try:
+    nltk.data.find('corpora/stopwords')
+    stopwords_set = stopwords.words("english")
+    stopwords_set.extend(['.', ',', '?', '!', '\'', '$', '&', '"', ':', '-', '/', '<', '>'])
+    stopwords_set = set(stopwords_set)
+except LookupError:
+    stopwords_set = set()
+    print("PLEASE INIT, AND RESTART SERVER")
+
+
+try:
+    nltk.data.find('corpora/words')
+    known_words = set(words.words())
+except LookupError:
+    known_words = set()
+    print("PLEASE INIT, AND RESTART SERVER")
+
 database = DB()
 hate = set(i[0] for i in database.db_load_lexicon())
 
