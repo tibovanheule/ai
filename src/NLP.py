@@ -68,13 +68,16 @@ tokenize = CustomTweetTokenizer().tokenize
 
 def text_precessing(text):
     text = demoji.replace_with_desc(text, sep="")
-    text = url_remove.sub(" site", text)
+
     text = contarction_not.sub(" not", text)
     text = contarction_am.sub(" am", text)
     text = contarction_have.sub(" have", text)
     text = contarction_will.sub(" will", text)
 
+    text = url_remove.sub(" site", text)
+
     text = mention_hashtag_regex.sub(" entity", text)
+
     """Tokenize the string"""
     tokens = tokenize(text)
     """ remove , . ! ? AND remove repeats"""
@@ -83,8 +86,7 @@ def text_precessing(text):
     """ Lemmanize text, ALWAYS LAST to avoid inconsistencies with incorrectly spelled words"""
     worden = (lemmanize_text(wordsegment(word)) for word in tokens)
     tokens = [token for sublist in worden for token in sublist if token not in stopwords_set]
-    not_known = [token for token in tokens if token not in known_words]
-    print(not_known)
+    not_known = (token for token in tokens if token not in known_words)
     tokenkl = [has_word(token) for token in not_known if len(token) > 3]
     print(tokenkl)
     return tokens
