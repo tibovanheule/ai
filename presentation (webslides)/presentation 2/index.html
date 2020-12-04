@@ -195,7 +195,7 @@
 
         <!--- examples --->
         <script>
-            const post = (url, data, id) => fetch(url, data).then((text) => document.getElementById(id).innerHTML = text);
+            const post = (url, data, id) => fetch(url, data).then((text) => document.getElementById(id).innerHTML = text.toString());
         </script>
 
         <section class="bg-secondary">
@@ -215,7 +215,7 @@
     },
     redirect: 'follow', // manual, *follow, error
     referrerPolicy: 'no-referrer', // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
-    body: JSON.stringify({'message':'I bet you didn\'t know that 🙋, 🙋‍♂️ and 🙋‍♀️ are three different emojis. More info on h t tp:/ / ai . tibovanheule. space?var=test'})                },'#resultone')">
+    body: JSON.stringify({'message':'I bet you didn\'t know that 🙋, 🙋‍♂️ and 🙋‍♀️ are three different emojis. More info on h t tp:/ / ai . tibovanheule. space?var=test'})                },'resultone')">
                     PreProcess
                 </button>
                 <p class="aligncenter" id="resultone"></p>
