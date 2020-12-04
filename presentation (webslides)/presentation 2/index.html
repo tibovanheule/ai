@@ -195,7 +195,7 @@
 
         <!--- examples --->
         <script>
-            const post = (url, data, id) => fetch(url, data).then((text) => document.getElementById(id).innerHTML = text.toString());
+            const post = (url, data, id) => fetch(url, data).then((text) => document.getElementById(id).innerHTML = JSON.stringify(text));
         </script>
 
         <section class="bg-secondary">
