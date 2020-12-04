@@ -38,9 +38,6 @@ contarction_will = re.compile(r'\'ll')
 ws.load()
 checker = SpellChecker()
 wnl = WordNetLemmatizer()
-lemmatize = lru_cache(wnl.lemmatize)
-wordsegment = lru_cache(ws.segment)
-spell_checker = lru_cache(checker.correction)
 tag = nltk.pos_tag
 stopwords_set = stopwords.words("english")
 stopwords_set.extend(['.', ',', '?', '!', '\'', '$', '&', '"', ':', '-', '/', '<', '>'])
@@ -48,7 +45,22 @@ stopwords_set = set(stopwords_set)
 known_words = set(words.words())
 database = DB()
 hate = set(i[0] for i in database.db_load_lexicon())
-known_words.update(("fuck",))
+
+
+
+@lru_cache(maxsize=5000)
+def lemmatize(token):
+    return wnl.lemmatize(token)
+
+
+@lru_cache(maxsize=5000)
+def wordsegment(token):
+    return ws.segment(token)
+
+
+@lru_cache(maxsize=5000)
+def spell_checker(token):
+    return checker.correction(token)
 
 
 class CustomTweetTokenizer(TweetTokenizer):
