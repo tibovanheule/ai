@@ -14,6 +14,7 @@ from keras.models import Sequential
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.feature_selection import SelectFromModel
 from sklearn.linear_model import LogisticRegression
+from sklearn.metrics import confusion_matrix
 from sklearn.model_selection import train_test_split, GridSearchCV, StratifiedKFold
 from sklearn.pipeline import Pipeline
 
@@ -62,7 +63,6 @@ def construct_model(data, hate, modelname="logistic_regression"):
 
 def logistic(vectorizer, data, hate, modelname):
     dbobj = db.DB()
-
     """Construct a db entry. Avoid using old model for requests made before ending of model construction"""
     dbobj.constructing_model_in_db(modelname)
     print("Splitting data into train & test")
@@ -72,6 +72,8 @@ def logistic(vectorizer, data, hate, modelname):
     print("transforming training")
     # x_train_vectorized = vect.transform(x_train)
     x_train_vectorized = parallel_construct(x_train, vect.transform)
+
+    dbobj.insert_vect_in_db(modelname, x_train_vectorized)
     params = [{}]
     pipe = Pipeline(
         [('select', SelectFromModel(LogisticRegression(n_jobs=-1))), ('model', LogisticRegression(n_jobs=-1))])
@@ -79,9 +81,17 @@ def logistic(vectorizer, data, hate, modelname):
     print("initing model")
     model.fit(x_train_vectorized, y_train)
     dbobj.insert_model_in_db(modelname, pickle.dumps(model))
+    print(f"Model made")
     predictions = model.predict(vect.transform(x_test))
-    print(f"Model made, predictions on the test are {predictions}")
-    dbobj.insert_model_in_db(modelname, pickle.dumps(model))
+    with open(modelname, 'r') as f:
+        f.write(predictions)
+        f.close()
+    matrix = confusion_matrix(predictions, y_test)
+    name = modelname + "_confusion_matrix"
+    with open(name, 'r') as f:
+        f.write(matrix)
+        f.close()
+
 
 
 def parallel_construct(data, func):

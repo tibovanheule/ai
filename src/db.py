@@ -127,6 +127,7 @@ class DB:
                                        (name, model, 0, 0,))
 
     def insert_vect_in_db(self, name, vect):
+        name = name + "_vect"
         return self.conn_model.execute("INSERT OR REPLACE into model (name,model,cat,status) values (?,?,?,?)",
                                        (name, vect, 1, 0,))
 
