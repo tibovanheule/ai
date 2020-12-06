@@ -51,11 +51,9 @@ def construct_model(data, hate, modelname="logistic_regression"):
                                      decode_error="replace")
         logistic(vectorizer, data, hate, modelname)
     elif modelname == "logistic_regression_char":
-
         vectorizer = TfidfVectorizer(preprocessor=text_precessing, tokenizer=return_token,
                                      max_df=0.75, min_df=5, use_idf=True, smooth_idf=False, ngram_range=(1, 3),
-                                     norm=None,
-                                     decode_error="replace")
+                                     norm=None, decode_error="replace", analyzer="char")
         logistic(vectorizer, data, hate, modelname)
     else:
         construct_lstm(data, hate)
@@ -83,7 +81,8 @@ def logistic(vectorizer, data, hate, modelname):
     dbobj.insert_model_in_db(modelname, pickle.dumps(model))
     print(f"Model made")
     predictions = model.predict(vect.transform(x_test))
-    with open(modelname, 'r') as f:
+    name_one = modelname + "_predictions"
+    with open(name_one, 'r') as f:
         f.write(predictions)
         f.close()
     matrix = confusion_matrix(predictions, y_test)
@@ -91,7 +90,6 @@ def logistic(vectorizer, data, hate, modelname):
     with open(name, 'r') as f:
         f.write(matrix)
         f.close()
-
 
 
 def parallel_construct(data, func):
