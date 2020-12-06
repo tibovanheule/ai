@@ -34,7 +34,38 @@ contarction_not = re.compile(r'n\'t')
 contarction_am = re.compile(r'\'m')
 contarction_have = re.compile(r'\'ve')
 contarction_will = re.compile(r'\'ll')
+
+# NOTE: zal niet perfect alles aanpassen doordat chars verschillende letters kunnen voorstellen
+# maar spellchecker zal dit opmerken
+
+# @Tibo waarschijnlijk moeten 'gee' voor g en 'oh' voor o er niet bij, maar atm heb ik ze er in gestoken
+# T is makkelijker om ze gwn weg te doen
 a = re.compile(r'(?:(?:\b(?:@|/-\\|\^|/\\))|(?:([a-zA-Z])3))')
+b = re.compile(r'(?:(?:\b(?:\|:|P>|ß))|(?:([a-zA-Z])3))')
+c = re.compile(r'(?:(?:\b[©¢<\[({])|(?:([a-zA-Z])3))')
+d = re.compile(r'(?:(?:\b(?:\)|\|\)|\[\)|\?|\|>\|o))|(?:([a-zA-Z])3))')
+e = re.compile(r'(?:(?:\b(?:&|€|\[-|ë))|(?:([a-zA-Z])3))')
+f = re.compile(r'(?:(?:\b(?:\|=|/=|ph|ƒ|\|#))|(?:([a-zA-Z])3))')
+g = re.compile(r'(?:(?:\b(?:&|C-|\(_\+|gee))|(?:([a-zA-Z])3))')
+h = re.compile(r'(?:(?:\b(?:#|}{|\|-\||\]-\[\|\[-\]|\(-\)|\)-\(|/-/))|(?:([a-zA-Z])3))')
+i = re.compile(r'(?:(?:\b(?:!|\||\]|eye|¡))|(?:([a-zA-Z])3))')
+j = re.compile(r'(?:(?:\b(?:¿|_\||_/|</|\(/))|(?:([a-zA-Z])3))')
+k = re.compile(r'(?:(?:\b(?:\|<|\|\{|\|\())|(?:([a-zA-Z])3))')
+letter_l = re.compile(r'(?:(?:\b(?:\||£|\|_|1_|¬))|(?:([a-zA-Z])3))')
+m = re.compile(r'(?:(?:\b(?:\|v\||\|\\/\||/\\/\\|\(v\)|/\|\\|//\.|\^\^|em))|(?:([a-zA-Z])3))')
+n = re.compile(r'(?:(?:\b(?:\|\\\||/\\/|\[\\\]|<\\>|/V|\^/))|(?:([a-zA-Z])3))')
+o = re.compile(r'(?:(?:\b(?:\(\)|\[\]|°|oh))|(?:([a-zA-Z])3))')
+p = re.compile(r'(?:(?:\b(?:\|\*|¶|\|o|\|°|\|\"|\|>|\|\^\(o\)|\|\^\(\)))|(?:([a-zA-Z])3))')
+q = re.compile(r'(?:(?:\b(?:\(\)_|\(_,\)|<\|))|(?:([a-zA-Z])3))')
+r = re.compile(r'(?:(?:\b(?:\|\^|lz|\|\?|®))|(?:([a-zA-Z])3))')
+s = re.compile(r'(?:(?:\b(?:\$|§|es))|(?:([a-zA-Z])3))')
+t = re.compile(r'(?:(?:\b(?:\+|-\|-|†|\'\[\]\'))|(?:([a-zA-Z])3))')
+u = re.compile(r'(?:(?:\b(?:µ|\|_\||\(_\)))|(?:([a-zA-Z])3))')
+v = re.compile(r'(?:(?:\b(?:\\/|\^))|(?:([a-zA-Z])3))')
+w = re.compile(r'(?:(?:\b(?:VV|\\/\\/|\\\\\'|\'//|\\\|/|\\\^/))|(?:([a-zA-Z])3))') # have fun checking these slashes...
+x = re.compile(r'(?:(?:\b(?:><|\)\(|%|ecks))|(?:([a-zA-Z])3))')
+y = re.compile(r'(?:(?:\b(?:¥|\'/))|(?:([a-zA-Z])3))')
+z = re.compile(r'(?:(?:\b(?:~/_|-/_|>_))|(?:([a-zA-Z])3))')
 
 ws.load()
 checker = SpellChecker()
