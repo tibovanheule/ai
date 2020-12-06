@@ -9,8 +9,8 @@ import pickle
 import numpy as np
 import scipy.sparse as sp
 from gensim.models import Word2Vec
-from keras.layers import Embedding, LSTM
-from keras.models import Sequential
+#from keras.layers import Embedding, LSTM
+#from keras.models import Sequential
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.feature_selection import SelectFromModel
 from sklearn.linear_model import LogisticRegression
@@ -112,12 +112,12 @@ def construct_lstm(data, hate, max_features=100000, maxlen=500):
 def make_lstm_model(sequence_length, embedding_dim):
     model_variaton = "LSTM"
     model = Sequential()
-    embed_layer = Embedding(input_dimm=weights.shape[0],
-                            output_dim=weights.shape[1],
-                            weights=[weights])
-    model.add(embed_layer)
+    #embed_layer = Embedding(input_dimm=weights.shape[0],
+     #                       output_dim=weights.shape[1],
+      #                      weights=[weights])
+    #model.add(embed_layer)
     # add other layers
-    model.add(Dropout(0.25))  # (not sure if needed)
+    #model.add(Dropout(0.25))  # (not sure if needed)
     model.add(LSTM(50))
 
     model.compile(optimizer='adam', loss='binary_crossentropy', metrics=['accuracy'])
@@ -128,7 +128,7 @@ def make_lstm_model(sequence_length, embedding_dim):
 def create_embeddings(data, embeddings_path, vocab_path):
     model = Word2Vec(data, min_count=5,
                      window=5, sg=1, iter=25)
-    weights = model.syn0
+    #weights = model.syn0
     # Save weights into embeddings_path
-    vocab = dict([(k, v.index) for k, v in model.vocav.items()])
+    #vocab = dict([(k, v.index) for k, v in model.vocav.items()])
     # Save vocab into vocab_path
