@@ -15,6 +15,13 @@ from sklearn.metrics import accuracy_score
 from sklearn.model_selection import train_test_split, GridSearchCV, StratifiedKFold
 from sklearn.pipeline import Pipeline
 
+from keras.models import Sequential, Model
+from keras.layers import Embedding, LSTM, Dense, Flatten, Convolution1D
+from keras.utils import np_utils
+from keras.engine import Input
+from gensim.models import Word2Vec
+
+
 import db
 from NLP import text_precessing
 
@@ -79,3 +86,34 @@ def parallel_construct(data, func):
     pool.close()
     pool.join()
     return df
+
+
+def construct_lstm(data, hate, max_features = 100000, maxlen=500):
+    return 0
+
+
+
+
+def make_lstm_model(sequence_length, embedding_dim):
+    model_variaton = "LSTM"
+    model = Sequential()
+    embed_layer = Embedding(input_dimm=weights.shape[0],
+                            output_dim=weights.shape[1],
+                            weights=[weights])
+    model.add(embed_layer)
+    # add other layers
+    model.add(Dropout(0.25)) #(not sure if needed)
+    model.add(LSTM(50))
+
+    model.compile(optimizer='adam', loss='binary_crossentropy', metrics=['accuracy'])
+    print(model.summary())
+    return model
+
+def create_embeddings(data, embeddings_path, vocab_path):
+    model = Word2Vec(data, min_count=5,
+                      window=5, sg=1, iter=25)
+    weights = model.syn0
+    #Save weights into embeddings_path
+    vocab = dict([(k,v.index) for k, v in model.vocav.items()])
+    # Save vocab into vocab_path
+
