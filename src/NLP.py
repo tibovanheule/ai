@@ -157,24 +157,15 @@ def text_precessing(text):
     text = y.sub("y", text)
     text = z.sub("z", text)
 
-
-
     """Tokenize the string"""
     tokens = tokenize(text)
-
-    dict = {}
-    for token in tokens:
-        if token not in known_words and token not in hate and len(token) > 3:
-            has_word(token, dict)
-    tokens = [x if x not in dict else max(dict[x], key=len) for x in tokens]
-    permute_spaces([token for token in tokens if token not in known_words and token not in hate and len(token) > 3])
+    tokens = char_boundary(tokens)
     """ remove , . ! ? AND remove repeats"""
     """Spelling check"""
     tokens = [spell_checker(remove_repeats(token)) for token in tokens if token not in stopwords_set]
     """ Lemmanize text, ALWAYS LAST to avoid inconsistencies with incorrectly spelled words"""
     worden = (lemmanize_text(wordsegment(word)) for word in tokens)
     tokens = [token for sublist in worden for token in sublist if token not in stopwords_set]
-
     return tokens
 
 
@@ -195,6 +186,17 @@ def get_wordnet_pos(treebank_tag):
         return wordnet.NOUN
 
 
+def char_boundary(tokens):
+    dict = {}
+    for token in tokens:
+        if token not in known_words and token not in hate and len(token) > 3:
+            has_word(token, dict)
+    return [k if k not in dict else max(dict[k], key=len) for k in tokens]
+
+
+"""
+Checks if some giberrisch word conceals a hatefull word, character bounding 
+"""
 def has_word(word, dict):
     fragments = set(word[i:j] for i in range(len(word)) for j in range(i + 3, len(word) + 1))
     sub_words = fragments.intersection(hate)
@@ -205,25 +207,6 @@ def has_word(word, dict):
     if len(sub_words) > 0:
         dict[word] = sub_words
     return dict
-
-
-def permute_spaces(str):
-    n = len(str)
-    opsize = int(pow(2, n - 1))
-    pos = list()
-    for counter in range(opsize):
-        new_pos_elem = list()
-        string = ""
-        for j in range(n):
-            if j != 0 and not (counter & (1 << j)):
-                new_pos_elem.append(string)
-                string = ""
-            string = string + str[j]
-            if counter & (1 << j):
-                string = string + " "
-
-        pos.append(new_pos_elem)
-    print(pos)
 
 
 def lemmanize_text(tokens):
