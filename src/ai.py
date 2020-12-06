@@ -8,19 +8,14 @@ import pickle
 
 import numpy as np
 import scipy.sparse as sp
+from gensim.models import Word2Vec
+from keras.layers import Embedding, LSTM
+from keras.models import Sequential
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.feature_selection import SelectFromModel
 from sklearn.linear_model import LogisticRegression
-from sklearn.metrics import accuracy_score
 from sklearn.model_selection import train_test_split, GridSearchCV, StratifiedKFold
 from sklearn.pipeline import Pipeline
-
-from keras.models import Sequential, Model
-from keras.layers import Embedding, LSTM, Dense, Flatten, Convolution1D
-from keras.utils import np_utils
-from keras.engine import Input
-from gensim.models import Word2Vec
-
 
 import db
 from NLP import text_precessing
@@ -48,11 +43,25 @@ def validate():
 
 
 def construct_model(data, hate, modelname="logistic_regression"):
-    dbobj = db.DB()
+    if modelname == "logistic_regression":
+        vectorizer = TfidfVectorizer(preprocessor=text_precessing, tokenizer=return_token,
+                                     max_df=0.75, min_df=5, use_idf=True, smooth_idf=False, ngram_range=(1, 3),
+                                     norm=None,
+                                     decode_error="replace")
+        logistic(vectorizer, data, hate, modelname)
+    elif modelname == "logistic_regression_char":
 
-    vectorizer = TfidfVectorizer(preprocessor=text_precessing, tokenizer=return_token,
-                                 max_df=0.75, min_df=5, use_idf=True, smooth_idf=False, ngram_range=(1, 3), norm=None,
-                                 decode_error="replace")
+        vectorizer = TfidfVectorizer(preprocessor=text_precessing, tokenizer=return_token,
+                                     max_df=0.75, min_df=5, use_idf=True, smooth_idf=False, ngram_range=(1, 3),
+                                     norm=None,
+                                     decode_error="replace")
+        logistic(vectorizer, data, hate, modelname)
+    else:
+        construct_lstm(data, hate)
+
+
+def logistic(vectorizer, data, hate, modelname):
+    dbobj = db.DB()
 
     """Construct a db entry. Avoid using old model for requests made before ending of model construction"""
     dbobj.constructing_model_in_db(modelname)
@@ -64,8 +73,8 @@ def construct_model(data, hate, modelname="logistic_regression"):
     # x_train_vectorized = vect.transform(x_train)
     x_train_vectorized = parallel_construct(x_train, vect.transform)
     params = [{}]
-    pipe = Pipeline([('select', SelectFromModel(LogisticRegression(n_jobs=-1))),
-                     ('model', LogisticRegression(n_jobs=-1))])
+    pipe = Pipeline(
+        [('select', SelectFromModel(LogisticRegression(n_jobs=-1))), ('model', LogisticRegression(n_jobs=-1))])
     model = GridSearchCV(pipe, params, cv=StratifiedKFold(n_splits=5, random_state=42).split(x_train, y_train))
     print("initing model")
     model.fit(x_train_vectorized, y_train)
@@ -88,10 +97,8 @@ def parallel_construct(data, func):
     return df
 
 
-def construct_lstm(data, hate, max_features = 100000, maxlen=500):
+def construct_lstm(data, hate, max_features=100000, maxlen=500):
     return 0
-
-
 
 
 def make_lstm_model(sequence_length, embedding_dim):
@@ -102,18 +109,18 @@ def make_lstm_model(sequence_length, embedding_dim):
                             weights=[weights])
     model.add(embed_layer)
     # add other layers
-    model.add(Dropout(0.25)) #(not sure if needed)
+    model.add(Dropout(0.25))  # (not sure if needed)
     model.add(LSTM(50))
 
     model.compile(optimizer='adam', loss='binary_crossentropy', metrics=['accuracy'])
     print(model.summary())
     return model
 
+
 def create_embeddings(data, embeddings_path, vocab_path):
     model = Word2Vec(data, min_count=5,
-                      window=5, sg=1, iter=25)
+                     window=5, sg=1, iter=25)
     weights = model.syn0
-    #Save weights into embeddings_path
-    vocab = dict([(k,v.index) for k, v in model.vocav.items()])
+    # Save weights into embeddings_path
+    vocab = dict([(k, v.index) for k, v in model.vocav.items()])
     # Save vocab into vocab_path
-
