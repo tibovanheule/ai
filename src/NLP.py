@@ -14,6 +14,7 @@ from nltk.stem import WordNetLemmatizer
 from nltk.tokenize import TweetTokenizer
 from nltk.tokenize.casual import _replace_html_entities, HANG_RE, WORD_RE
 from spellchecker import SpellChecker
+from math import pow
 
 from db import DB
 
@@ -26,7 +27,6 @@ Main entry for natural language processing (text preprocessing).
 "GLOBAL module variabeles"
 reg = re.compile(r'(.)\1{2,}')
 mention_hashtag_regex = re.compile(r'([^\w]|^)@[\w\-]+|^[\s]#([^\s])+')
-replacement_regex = re.compile(r'([^\s])@')  # this WILL have to be changed rn serves as boilerplate for later
 url_remove = re.compile(
     r'(h(\s)*t(\s)*t(\s)*p(\s)*s?://)(\s)*(www\.)?(\s)*((\w|\s)+\.)*([\w\-\s]+/)*([\w\-]+)((\?)?[\w\s]*=\s*['
     r'\w%&]*)*')
@@ -34,6 +34,7 @@ contarction_not = re.compile(r'n\'t')
 contarction_am = re.compile(r'\'m')
 contarction_have = re.compile(r'\'ve')
 contarction_will = re.compile(r'\'ll')
+a = re.compile(r'(?:(?:\b(?:@|/-\\|\^|/\\))|(?:([a-zA-Z])3))')
 
 ws.load()
 checker = SpellChecker()
@@ -80,8 +81,6 @@ class CustomTweetTokenizer(TweetTokenizer):
     def tokenize(self, text):
         # Fix HTML character entities:
         text = _replace_html_entities(text)
-        # Substitute non-alpha characters in the middle of a word
-        text = substitute_letters(text)
         # Shorten problematic sequences of characters
         safe_text = HANG_RE.sub(r"\1\1\1", text)
         # Tokenize:
@@ -102,6 +101,7 @@ def text_precessing(text):
     text = url_remove.sub(" site", text)
 
     text = mention_hashtag_regex.sub(" entity", text)
+    text = a.sub("\1a", text)
 
     """Tokenize the string"""
     tokens = tokenize(text)
@@ -111,16 +111,12 @@ def text_precessing(text):
     """ Lemmanize text, ALWAYS LAST to avoid inconsistencies with incorrectly spelled words"""
     worden = (lemmanize_text(wordsegment(word)) for word in tokens)
     tokens = [token for sublist in worden for token in sublist if token not in stopwords_set]
-    not_known = (token for token in tokens if token not in known_words)
+    not_known = (token for token in tokens if token not in known_words and token not in hate)
     tokenkl = [has_word(token) for token in not_known if len(token) > 3]
     print(tokenkl)
+    #map(lambda x: x if x tokenkl else 'sss', a)
+    permute_spaces([token for token in tokens if token not in known_words])
     return tokens
-
-
-def substitute_letters(word):
-    word = replacement_regex.sub(r'\1a', word)
-    return word
-
 
 def remove_repeats(word):
     return reg.sub(r'\1\1', word)
@@ -146,6 +142,25 @@ def has_word(word):
         return word, sub_words
     sub_words = fragments.intersection(known_words)
     return None if len(sub_words) == 0 else (word, sub_words)
+
+
+def permute_spaces(str):
+    n = len(str)
+    opsize = int(pow(2, n - 1))
+    pos = list()
+    for counter in range(opsize):
+        new_pos_elem = list()
+        string = ""
+        for j in range(n):
+            if j != 0 and not (counter & (1 << j)):
+                new_pos_elem.append(string)
+                string = ""
+            string = string + str[j]
+            if counter & (1 << j):
+                string = string + " "
+
+        pos.append(new_pos_elem)
+    print(pos)
 
 
 def lemmanize_text(tokens):
