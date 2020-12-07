@@ -136,4 +136,4 @@ class DB:
                                        (name, "", 0, 1,))
 
     def get_model_in_db(self, name):
-        return self.conn_model.execute("select * from model where name=?", (name,)).fetchall()
+        return self.conn_model.execute("select model from model where name=?", (name,)).fetchall()

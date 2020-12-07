@@ -9,13 +9,13 @@ import pickle
 import numpy as np
 import scipy.sparse as sp
 from gensim.models import Word2Vec
-#from keras.layers import Embedding, LSTM
-#from keras.models import Sequential
+# from keras.layers import Embedding, LSTM
+# from keras.models import Sequential
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.feature_selection import SelectFromModel
 from sklearn.linear_model import LogisticRegression
-from sklearn.metrics import confusion_matrix
-from sklearn.model_selection import train_test_split, GridSearchCV, StratifiedKFold
+from sklearn.metrics import confusion_matrix, accuracy_score
+from sklearn.model_selection import train_test_split, GridSearchCV, StratifiedKFold, KFold
 from sklearn.pipeline import Pipeline
 
 import db
@@ -23,12 +23,11 @@ from NLP import text_precessing
 
 
 def analyse_text(text, modelname="logistic_regression"):
-    with open('mini_model.pk', 'rb') as file:
-        model = pickle.load(file)
-    with open('mini_vectorizer.pk', 'rb') as file:
-        vectorizer = pickle.load(file)
-    test = vectorizer.transform([text])
-    return str(model.predict(test))
+    dbobj = db.DB()
+    model = pickle.loads(dbobj.get_model_in_db(modelname)[0][0])
+    name = modelname + "_vect"
+    vectorizer = pickle.loads(dbobj.get_model_in_db(name)[0][0])
+    return str(model.predict(vectorizer.transform([text])))
 
 
 def process_text(text):
@@ -64,31 +63,33 @@ def logistic(vectorizer, data, hate, modelname):
     """Construct a db entry. Avoid using old model for requests made before ending of model construction"""
     dbobj.constructing_model_in_db(modelname)
     print("Splitting data into train & test")
-    x_train, x_test, y_train, y_test = train_test_split(data, hate, train_size=0.7, random_state=4262)
+    x_train, x_test, y_train, y_test = train_test_split(data, hate, train_size=0.7, random_state=42)
     print("fitting training")
     vect = vectorizer.fit(x_train)
     print("transforming training")
     # x_train_vectorized = vect.transform(x_train)
     x_train_vectorized = parallel_construct(x_train, vect.transform)
 
-    dbobj.insert_vect_in_db(modelname, x_train_vectorized)
+    dbobj.insert_vect_in_db(modelname, pickle.dumps(vect))
     params = [{}]
-    pipe = Pipeline(
-        [('select', SelectFromModel(LogisticRegression(n_jobs=-1))), ('model', LogisticRegression(n_jobs=-1))])
-    model = GridSearchCV(pipe, params, cv=StratifiedKFold(n_splits=5, random_state=42).split(x_train, y_train))
+    pipe = Pipeline([('select', SelectFromModel(LogisticRegression(n_jobs=-1))), ('model', LogisticRegression(n_jobs=-1))])
+    model = GridSearchCV(pipe, params, cv=KFold(n_splits=5).split(x_train, y_train))
+
     print("initing model")
-    model.fit(x_train_vectorized, y_train)
-    dbobj.insert_model_in_db(modelname, pickle.dumps(model))
+    model = model.fit(x_train_vectorized, y_train)
+
     print(f"Model made")
     predictions = model.predict(vect.transform(x_test))
     name_one = modelname + "_predictions"
-    with open(name_one, 'r') as f:
-        f.write(predictions)
+    with open(name_one, 'w') as f:
+        f.write(str(predictions))
         f.close()
+    dbobj.insert_model_in_db(modelname, pickle.dumps(model.best_estimator_))
     matrix = confusion_matrix(predictions, y_test)
     name = modelname + "_confusion_matrix"
-    with open(name, 'r') as f:
-        f.write(matrix)
+    print(accuracy_score(predictions, y_test, normalize=True))
+    with open(name, 'w') as f:
+        f.write(str(matrix))
         f.close()
 
 
@@ -112,12 +113,12 @@ def construct_lstm(data, hate, max_features=100000, maxlen=500):
 def make_lstm_model(sequence_length, embedding_dim):
     model_variaton = "LSTM"
     model = Sequential()
-    #embed_layer = Embedding(input_dimm=weights.shape[0],
-     #                       output_dim=weights.shape[1],
-      #                      weights=[weights])
-    #model.add(embed_layer)
+    # embed_layer = Embedding(input_dimm=weights.shape[0],
+    #                       output_dim=weights.shape[1],
+    #                      weights=[weights])
+    # model.add(embed_layer)
     # add other layers
-    #model.add(Dropout(0.25))  # (not sure if needed)
+    # model.add(Dropout(0.25))  # (not sure if needed)
     model.add(LSTM(50))
 
     model.compile(optimizer='adam', loss='binary_crossentropy', metrics=['accuracy'])
@@ -128,7 +129,7 @@ def make_lstm_model(sequence_length, embedding_dim):
 def create_embeddings(data, embeddings_path, vocab_path):
     model = Word2Vec(data, min_count=5,
                      window=5, sg=1, iter=25)
-    #weights = model.syn0
+    # weights = model.syn0
     # Save weights into embeddings_path
-    #vocab = dict([(k, v.index) for k, v in model.vocav.items()])
+    # vocab = dict([(k, v.index) for k, v in model.vocav.items()])
     # Save vocab into vocab_path
