@@ -43,6 +43,7 @@ def validate():
 
 
 def construct_model(data, hate, modelname="logistic_regression"):
+    print(modelname)
     if modelname == "logistic_regression":
         vectorizer = TfidfVectorizer(preprocessor=text_precessing, tokenizer=return_token,
                                      max_df=0.75, min_df=5, use_idf=True, smooth_idf=False, ngram_range=(1, 3),
