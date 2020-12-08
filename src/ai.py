@@ -83,7 +83,7 @@ def logistic(vectorizer, data, hate, modelname):
     name_one = modelname + "_predictions"
     with open(name_one, 'w') as f:
         for i in predictions:
-            f.write(i)
+            f.write(str(i))
     dbobj.insert_model_in_db(modelname, pickle.dumps(model.best_estimator_))
     matrix = confusion_matrix(predictions, y_test)
     name = modelname + "_confusion_matrix"
