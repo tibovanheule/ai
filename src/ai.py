@@ -15,7 +15,7 @@ from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.feature_selection import SelectFromModel
 from sklearn.linear_model import LogisticRegression
 from sklearn.metrics import confusion_matrix, accuracy_score
-from sklearn.model_selection import train_test_split, GridSearchCV, StratifiedKFold, KFold
+from sklearn.model_selection import train_test_split, GridSearchCV, StratifiedKFold
 from sklearn.pipeline import Pipeline
 
 import db
@@ -72,8 +72,9 @@ def logistic(vectorizer, data, hate, modelname):
 
     dbobj.insert_vect_in_db(modelname, pickle.dumps(vect))
     params = [{}]
-    pipe = Pipeline([('select', SelectFromModel(LogisticRegression(n_jobs=-1))), ('model', LogisticRegression(n_jobs=-1))])
-    model = GridSearchCV(pipe, params, cv=KFold(n_splits=5).split(x_train, y_train))
+    pipe = Pipeline([('select', SelectFromModel(LogisticRegression(n_jobs=-1, max_iter=1e5))),
+                     ('model', LogisticRegression(n_jobs=-1, max_iter=1e5))])
+    model = GridSearchCV(pipe, params, cv=StratifiedKFold(n_splits=5).split(x_train, y_train))
 
     print("initing model")
     model = model.fit(x_train_vectorized, y_train)
