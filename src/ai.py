@@ -75,23 +75,20 @@ def logistic(vectorizer, data, hate, modelname):
     pipe = Pipeline([('select', SelectFromModel(LogisticRegression(n_jobs=-1, max_iter=1e5))),
                      ('model', LogisticRegression(n_jobs=-1, max_iter=1e5))])
     model = GridSearchCV(pipe, params, cv=StratifiedKFold(n_splits=5).split(x_train, y_train))
-
     print("initing model")
     model = model.fit(x_train_vectorized, y_train)
-
     print(f"Model made")
     predictions = model.predict(vect.transform(x_test))
     name_one = modelname + "_predictions"
     with open(name_one, 'w') as f:
-        f.write(str(predictions))
-        f.close()
+        for i in predictions:
+            f.write(i)
     dbobj.insert_model_in_db(modelname, pickle.dumps(model.best_estimator_))
     matrix = confusion_matrix(predictions, y_test)
     name = modelname + "_confusion_matrix"
     print(accuracy_score(predictions, y_test, normalize=True))
     with open(name, 'w') as f:
         f.write(str(matrix))
-        f.close()
 
 
 def parallel_construct(data, func):
