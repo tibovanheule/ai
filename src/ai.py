@@ -47,13 +47,12 @@ def construct_model(data, hate, modelname="logistic_regression"):
     if modelname == "logistic_regression":
         vectorizer = TfidfVectorizer(preprocessor=text_precessing, tokenizer=return_token,
                                      max_df=0.75, min_df=5, use_idf=True, smooth_idf=False, ngram_range=(1, 3),
-                                     norm=None,
-                                     decode_error="replace")
+                                     norm=None, decode_error="replace")
         logistic(vectorizer, data, hate, modelname)
     elif modelname == "logistic_regression_char":
-        vectorizer = TfidfVectorizer(preprocessor=text_precessing_char, tokenizer=return_token,
-                                     max_df=0.75, min_df=5, use_idf=True, smooth_idf=False, ngram_range=(1, 3),
-                                     norm=None, decode_error="replace", analyzer="char")
+        vectorizer = TfidfVectorizer(preprocessor=text_precessing_char, max_df=0.75, min_df=5, use_idf=True,
+                                     smooth_idf=False, ngram_range=(1, 3), norm=None, decode_error="replace",
+                                     analyzer="char")
         logistic(vectorizer, data, hate, modelname)
     else:
         construct_lstm(data, hate)
