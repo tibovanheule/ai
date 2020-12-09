@@ -3,7 +3,8 @@ This module manages access to the sqllite databases, these provide better perfor
 
 More details.
 """
-
+import random
+import string
 from csv import reader
 from datetime import datetime, timezone
 from sqlite3 import connect
@@ -16,6 +17,7 @@ class DB:
         self.conn_lexicon = connect('db/lexicon.db', isolation_level=None)
         self.conn_data = connect('db/train_data.db', isolation_level=None)
         self.conn_model = connect('db/model_data.db', isolation_level=None)
+        self.conn_ad = connect('db/ad_data.db', isolation_level=None)
         self.token = None
         self.expires = None
 
@@ -85,6 +87,59 @@ class DB:
                 self.insert_data(row, cursor)
         self.conn_data.commit()
         print("done")
+
+    def create_adversarial_db(self):
+        sql_file = open("./db/create_adversarial_db.sql")
+        self.conn_ad.executescript(sql_file.read())
+        self.conn_ad.commit()
+
+        # create cursor
+        cursor = self.conn_ad.cursor()
+        l = [i[0] for i in self.db_load_lexicon()]
+        # Read csv
+        with open("../gekregen github repo/data/labeled_data.csv") as file:
+            read = reader(file, delimiter=',')
+            next(read)
+            for i in read:
+                total = int(i[1]) / 2
+                # don't wont every non-hate, but some to test
+                if int(i[2]) < total and random.random() < 0.25:
+                    print("insert")
+                    self.insert_ad(i, cursor)
+                # hate speech do something
+                else:
+                    tweet = i[-1]
+                    print(tweet)
+                    hate_in_tweet = [word for word in l if word in tweet.split()]
+                    if len(hate_in_tweet) > 0:
+                        print("HATEBASE")
+                        print(hate_in_tweet)
+                        for k in hate_in_tweet:
+                            if random.random() < 0.25:
+                                print("CHAR BOUNDARY")
+                                left = ''.join(random.choice(string.ascii_lowercase + string.ascii_uppercase) for _ in
+                                               range(random.randint(2, (len(tweet) % 4) + 2)))
+                                right = ''.join(random.choice(string.ascii_lowercase + string.ascii_uppercase) for _ in
+                                                range(random.randint(2, (len(tweet) % 4) + 2)))
+                                new = left + k + right
+                                tweet = tweet.replace(k, new, 1)
+                    if random.random() < 0.5:
+                        r = random.randint(1, len(tweet) // 2)
+                        tweet = tweet[:r] + tweet[r:].replace(' ', "", 1)
+                    if random.random() > 0.5:
+                        r = random.randint(1, len(tweet) - 1)
+                        tweet = tweet[:r] + ' ' + tweet[r:]
+                    i[-1] = tweet
+                    print(i[-1])
+                    self.insert_ad(i, cursor)
+        self.conn_ad.commit()
+        print("done")
+
+    @staticmethod
+    def insert_ad(i, cursor):
+        total = int(i[1]) / 2
+        cursor.execute('insert or ignore into adversarial values (?,?,?,?)',
+                       (int(i[0]), int(i[2]) >= total, int(i[3]) >= total, i[-1]))
 
     @staticmethod
     def insert_data(i, cursor):
