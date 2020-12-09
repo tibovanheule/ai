@@ -105,22 +105,50 @@ def parallel_construct(data, func):
 
 
 def construct_lstm(data, hate, max_features=100000, maxlen=500):
+    # Preprocess text (& join on space again :§
+    # max features: top most frequently used words.
+    # maxlen, how long can an inputtext be (will be truncated if longer)
+
+
+    # KERAS tokenizer (SETS INTO INTEGERS/ VECTORS INSTEAD OF WORDS)
+    # @Tibo is dus NIET hetzelfde als onze tokenizer van hiervoor, moet de builtin one zijn
+    # tokenizer = Tokenizer(num_words=max_features, lower=True) # Filters not needed cuz of preprocessing
+    # tokenizer.fit_on_texts(preprocessedData)
+    # ? word_index = tokenizer.word_index # len(word_index) == aantal tokens als we dat willen zien
+    # X = tokenizer.texts_to_sequences(preprocessedData)
+    # X = pad_sequences(X, maxlen=maxlen)
+    # print(f"Shape of tensor is: {X.shape}"
+    # Y = ? pd.get_dummies(data) #(getten labels -> numbers (dus bij ons 0 en 1?))
+    # shape van Y zou dan (X.shape[0], (1 of 2) moeten zijn
+
+    # train test split
+    # model : make_lstm_model()
+    # model.compile(optimizer='adam', loss='binary_crossentropy', metrics=['accuracy'])
+    # print(model.summary())
+
+    # epochs = 5 # Zal waarschijnlijk hoger moeten, is het aantal keren dat het traint kinda
+    # batch_size = 64
+
+    # history = model.fit(X_train, Y_train, epochs=epochs, batch_size=batch_size, validation_split=0.1, callbacks=[
+    # EarlyStopping(monitor='val_loss', patience=3, min_delta=0.0001)])
+
+    # accuracy = model.evaluate(x_test, y_test)
+    # (Geeft eerst loss en dan accuracy terug in lijst)
+
     return 0
 
 
 def make_lstm_model(sequence_length, embedding_dim):
     model_variaton = "LSTM"
     model = Sequential()
-    # embed_layer = Embedding(input_dimm=weights.shape[0],
-    #                       output_dim=weights.shape[1],
-    #                      weights=[weights])
+    # embed_layer = Embedding(max_nb_words, embedding_dim, input_length= X.shape[1]])
     # model.add(embed_layer)
     # add other layers
-    # model.add(Dropout(0.25))  # (not sure if needed)
-    model.add(LSTM(50))
+    # model.add(SpatialDropout1D(0.2))  # (not sure if needed)
+    # model.add(LSTM(100, dropout=0.2, recurrent_dropout=0.2))
+    # model.add(Dense(2, activation='softmax')) # Dit zorgt voor output in het juiste format van ons NN
 
-    model.compile(optimizer='adam', loss='binary_crossentropy', metrics=['accuracy'])
-    print(model.summary())
+
     return model
 
 
@@ -131,3 +159,15 @@ def create_embeddings(data, embeddings_path, vocab_path):
     # Save weights into embeddings_path
     # vocab = dict([(k, v.index) for k, v in model.vocav.items()])
     # Save vocab into vocab_path
+
+
+#### Nieuwe testen op lstm:
+## Hebben oude tokenizer EN model nodig...
+"""
+
+new_tekst = ['Hier komt een lange testzin. Mag zelfs meerdere zinnen zijn']
+seq = tokenizer.texts_to_sequences(new_complaint)
+padded = pad_sequences(seq, maxlen=MAX_SEQUENCE_LENGTH)
+pred = model.predict(padded)
+labels = ['hate','not_hate'] # Volgorde kan mis zijn...
+print(pred, labels[np.argmax(pred)])"""
