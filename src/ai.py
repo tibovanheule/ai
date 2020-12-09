@@ -19,7 +19,7 @@ from sklearn.model_selection import train_test_split, GridSearchCV, StratifiedKF
 from sklearn.pipeline import Pipeline
 
 import db
-from NLP import text_precessing
+from NLP import text_precessing, text_precessing_char
 
 
 def analyse_text(text, modelname="logistic_regression"):
@@ -51,7 +51,7 @@ def construct_model(data, hate, modelname="logistic_regression"):
                                      decode_error="replace")
         logistic(vectorizer, data, hate, modelname)
     elif modelname == "logistic_regression_char":
-        vectorizer = TfidfVectorizer(preprocessor=text_precessing, tokenizer=return_token,
+        vectorizer = TfidfVectorizer(preprocessor=text_precessing_char, tokenizer=return_token,
                                      max_df=0.75, min_df=5, use_idf=True, smooth_idf=False, ngram_range=(1, 3),
                                      norm=None, decode_error="replace", analyzer="char")
         logistic(vectorizer, data, hate, modelname)

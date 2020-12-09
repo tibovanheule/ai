@@ -169,6 +169,10 @@ def text_precessing(text):
     return tokens
 
 
+def text_precessing_char(text):
+    return ' '.join(text_precessing(text))
+
+
 def remove_repeats(word):
     return reg.sub(r'\1\1', word)
 
