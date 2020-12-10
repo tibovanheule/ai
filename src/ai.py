@@ -9,14 +9,17 @@ import pickle
 import numpy as np
 import scipy.sparse as sp
 from gensim.models import Word2Vec
-# from keras.layers import Embedding, LSTM
-# from keras.models import Sequential
+from keras.models import Sequential
+from keras.preprocessing.text import Tokenizer
+from keras_preprocessing.sequence import pad_sequences
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.feature_selection import SelectFromModel
 from sklearn.linear_model import LogisticRegression
 from sklearn.metrics import confusion_matrix, accuracy_score
 from sklearn.model_selection import train_test_split, GridSearchCV, StratifiedKFold
 from sklearn.pipeline import Pipeline
+from keras.layers import Dense, Embedding, LSTM, SpatialDropout1D
+from keras.callbacks import EarlyStopping
 
 import db
 from NLP import text_precessing, text_precessing_char
@@ -54,7 +57,7 @@ def construct_model(data, hate, modelname="logistic_regression"):
                                      smooth_idf=False, ngram_range=(1, 3), norm=None, decode_error="replace",
                                      analyzer="char")
         logistic(vectorizer, data, hate, modelname)
-    else:
+    elif modelname == "lstm":
         construct_lstm(data, hate)
 
 
@@ -109,46 +112,42 @@ def construct_lstm(data, hate, max_features=100000, maxlen=500):
     # max features: top most frequently used words.
     # maxlen, how long can an inputtext be (will be truncated if longer)
 
-
+    hate = np.array([float(h) for h in hate])
     # KERAS tokenizer (SETS INTO INTEGERS/ VECTORS INSTEAD OF WORDS)
-    # @Tibo is dus NIET hetzelfde als onze tokenizer van hiervoor, moet de builtin one zijn
-    # tokenizer = Tokenizer(num_words=max_features, lower=True) # Filters not needed cuz of preprocessing
-    # tokenizer.fit_on_texts(preprocessedData)
-    # ? word_index = tokenizer.word_index # len(word_index) == aantal tokens als we dat willen zien
-    # X = tokenizer.texts_to_sequences(preprocessedData)
-    # X = pad_sequences(X, maxlen=maxlen)
-    # print(f"Shape of tensor is: {X.shape}"
+    preprocessedData = np.array([text_precessing_char(text) for text in data])
+    tokenizer = Tokenizer(num_words=max_features, lower=True, filters="")
+    tokenizer.fit_on_texts(preprocessedData)
+    word_index = tokenizer.word_index  # len(word_index) == aantal tokens als we dat willen zien
+    print('Found %s unique tokens.' % len(word_index))
+    x = tokenizer.texts_to_sequences(preprocessedData)
+    x = pad_sequences(x, maxlen=maxlen)
+    print(f"Shape of tensor is: {x.shape}")
     # Y = ? pd.get_dummies(data) #(getten labels -> numbers (dus bij ons 0 en 1?))
     # shape van Y zou dan (X.shape[0], (1 of 2) moeten zijn
 
     # train test split
-    # model : make_lstm_model()
-    # model.compile(optimizer='adam', loss='binary_crossentropy', metrics=['accuracy'])
-    # print(model.summary())
+    model = make_lstm_model(x.shape[1])
+    model.compile(optimizer='adam', loss='binary_crossentropy', metrics=['accuracy'])
+    print(model.summary())
 
-    # epochs = 5 # Zal waarschijnlijk hoger moeten, is het aantal keren dat het traint kinda
-    # batch_size = 64
-
-    # history = model.fit(X_train, Y_train, epochs=epochs, batch_size=batch_size, validation_split=0.1, callbacks=[
-    # EarlyStopping(monitor='val_loss', patience=3, min_delta=0.0001)])
-
-    # accuracy = model.evaluate(x_test, y_test)
+    epochs = 10  # Zal waarschijnlijk hoger moeten, is het aantal keren dat het traint kinda
+    batch_size = 64
+    x_train, x_test, y_train, y_test = train_test_split(x, hate, train_size=0.7, random_state=42)
+    history = model.fit(x_train, y_train, epochs=epochs, batch_size=batch_size, validation_split=0.1)
+# callbacks=[        EarlyStopping(monitor='val_loss', patience=3, min_delta=0.0001)]
+    accuracy = model.evaluate(x_test, y_test)
+    print(accuracy)
     # (Geeft eerst loss en dan accuracy terug in lijst)
 
-    return 0
 
-
-def make_lstm_model(sequence_length, embedding_dim):
-    model_variaton = "LSTM"
+def make_lstm_model(x):
     model = Sequential()
-    # embed_layer = Embedding(max_nb_words, embedding_dim, input_length= X.shape[1]])
-    # model.add(embed_layer)
+    embed_layer = Embedding(50000, 100, input_length=x)
+    model.add(embed_layer)
     # add other layers
-    # model.add(SpatialDropout1D(0.2))  # (not sure if needed)
-    # model.add(LSTM(100, dropout=0.2, recurrent_dropout=0.2))
-    # model.add(Dense(2, activation='softmax')) # Dit zorgt voor output in het juiste format van ons NN
-
-
+    model.add(SpatialDropout1D(0.2))  # (not sure if needed)
+    model.add(LSTM(100, dropout=0.2, recurrent_dropout=0.2))
+    model.add(Dense(2, activation='softmax'))  # Dit zorgt voor output in het juiste format van ons NN
     return model
 
 
