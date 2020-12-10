@@ -146,7 +146,7 @@ def make_lstm_model(x):
     model.add(embed_layer)
     # add other layers
     model.add(SpatialDropout1D(0.2))  # (not sure if needed)
-    model.add(LSTM(100, dropout=0.2, recurrent_dropout=0.2))
+    model.add(LSTM(250, dropout=0.2, recurrent_dropout=0.2))
     model.add(Dense(2, activation='softmax'))  # Dit zorgt voor output in het juiste format van ons NN
     return model
 
