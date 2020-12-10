@@ -19,7 +19,7 @@ from sklearn.metrics import confusion_matrix, accuracy_score
 from sklearn.model_selection import train_test_split, GridSearchCV, StratifiedKFold
 from sklearn.pipeline import Pipeline
 from keras.layers import Dense, Embedding, LSTM, SpatialDropout1D
-from keras.callbacks import EarlyStopping
+from keras.callbacks import ModelCheckpoint
 
 import db
 from NLP import text_precessing, text_precessing_char
@@ -133,8 +133,11 @@ def construct_lstm(data, hate, max_features=100000, maxlen=500):
     epochs = 10  # Zal waarschijnlijk hoger moeten, is het aantal keren dat het traint kinda
     batch_size = 64
     x_train, x_test, y_train, y_test = train_test_split(x, hate, train_size=0.7, random_state=42)
-    history = model.fit(x_train, y_train, epochs=epochs, batch_size=batch_size, validation_split=0.1)
-# callbacks=[        EarlyStopping(monitor='val_loss', patience=3, min_delta=0.0001)]
+    mcp = ModelCheckpoint("beste_gewichten.hdf5", monitor="val_acc",
+                          save_best_only=True, save_weights_only=False)
+    history = model.fit(x_train, y_train, epochs=epochs, batch_size=batch_size, validation_data=(x_test, y_test), callbacks=[mcp])
+    # callbacks=[        EarlyStopping(monitor='val_loss', patience=3, min_delta=0.0001)]
+
     accuracy = model.evaluate(x_test, y_test)
     print(accuracy)
     # (Geeft eerst loss en dan accuracy terug in lijst)
