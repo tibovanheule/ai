@@ -10,7 +10,7 @@ from demoji import download_codes
 from flask import Flask, jsonify, request
 from nltk import download
 
-from ai import construct_model, process_text, analyse_text, validate
+from ai import construct_model, process_text, analyse_text, validate_ai
 from db import DB
 
 app = Flask(__name__)
@@ -28,7 +28,7 @@ def analyze():
 
 @app.route('/api/validate', methods=['POST'])
 def validate():
-    return validate()
+    return validate_ai()
 
 
 @app.route('/api/preprocess', methods=['POST'])

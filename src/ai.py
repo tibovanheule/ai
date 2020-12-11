@@ -41,7 +41,7 @@ def return_token(text):
     return text
 
 
-def validate():
+def validate_ai():
     return "Hello, the ai thanks you for the lesson!"
 
 

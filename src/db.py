@@ -38,10 +38,10 @@ class DB:
                                                                       i["average_offensiveness"]))
 
     def create_lexicon_db(self):
-        sql_file = open("./db/create_lexicon_db.sql")
-        sql_as_string = sql_file.read()
-        self.conn_lexicon.executescript(sql_as_string)
-        self.conn_lexicon.commit()
+        with open("./db/create_lexicon_db.sql") as sql_file:
+            sql_as_string = sql_file.read()
+            self.conn_lexicon.executescript(sql_as_string)
+            self.conn_lexicon.commit()
         # get token from hatebase
         if (self.token is None) or self.expired():
             self.refresh_token()
@@ -72,9 +72,9 @@ class DB:
             print(i)
 
     def create_data_db(self):
-        sql_file = open("./db/create_data_db.sql")
-        self.conn_data.executescript(sql_file.read())
-        self.conn_data.commit()
+        with open("./db/create_data_db.sql") as sql_file:
+            self.conn_data.executescript(sql_file.read())
+            self.conn_data.commit()
 
         # create cursor
         cursor = self.conn_data.cursor()
@@ -89,9 +89,9 @@ class DB:
         print("done")
 
     def create_adversarial_db(self):
-        sql_file = open("./db/create_adversarial_db.sql")
-        self.conn_ad.executescript(sql_file.read())
-        self.conn_ad.commit()
+        with open("./db/create_adversarial_db.sql") as sql_file:
+            self.conn_ad.executescript(sql_file.read())
+            self.conn_ad.commit()
 
         # create cursor
         cursor = self.conn_ad.cursor()
