@@ -200,7 +200,7 @@ def char_boundary(tokens):
 Checks if some giberrisch word conceals a hatefull word, character bounding 
 """
 def has_word(word, dict):
-    fragments = set(word[i:j] for i in range(len(word)) for j in range(i + 3, len(word) + 1))
+    fragments = {word[i:j] for i in range(len(word)) for j in range(i + 3, len(word) + 1)}
     sub_words = fragments.intersection(hate)
     if len(sub_words) > 0:
         dict[word] = sub_words
