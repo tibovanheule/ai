@@ -80,7 +80,7 @@ def logistic(vectorizer, data, hate, modelname):
     model = GridSearchCV(pipe, params, cv=StratifiedKFold(n_splits=5).split(x_train, y_train))
     print("initing model")
     model = model.fit(x_train_vectorized, y_train)
-    print(f"Model made")
+    print("Model made")
     predictions = model.predict(vect.transform(x_test))
     name_one = modelname + "_predictions"
     with open(name_one, 'w') as f:
