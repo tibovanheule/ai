@@ -9,6 +9,8 @@ import pickle
 import numpy as np
 import scipy.sparse as sp
 from gensim.models import Word2Vec
+from keras.callbacks import ModelCheckpoint
+from keras.layers import Dense, Embedding, LSTM, SpatialDropout1D
 from keras.models import Sequential
 from keras.preprocessing.text import Tokenizer
 from keras_preprocessing.sequence import pad_sequences
@@ -18,8 +20,6 @@ from sklearn.linear_model import LogisticRegression
 from sklearn.metrics import confusion_matrix, accuracy_score
 from sklearn.model_selection import train_test_split, GridSearchCV, StratifiedKFold
 from sklearn.pipeline import Pipeline
-from keras.layers import Dense, Embedding, LSTM, SpatialDropout1D
-from keras.callbacks import ModelCheckpoint
 
 import db
 from NLP import text_precessing, text_precessing_char
@@ -108,13 +108,16 @@ def parallel_construct(data, func):
 
 
 def construct_lstm(data, hate, max_features=100000, maxlen=500):
+    dbobj = db.DB()
     # Preprocess text (& join on space again :§
     # max features: top most frequently used words.
     # maxlen, how long can an inputtext be (will be truncated if longer)
-
-    hate = np.array([float(h) for h in hate])
+    dbobj.constructing_model_in_db("lstm")
+    hate = np.asarray(hate)
     # KERAS tokenizer (SETS INTO INTEGERS/ VECTORS INSTEAD OF WORDS)
-    preprocessedData = np.array([text_precessing_char(text) for text in data])
+    preprocessedData = np.asarray([text_precessing_char(text) for text in data])
+
+    print("tokenize + word embeddings")
     tokenizer = Tokenizer(num_words=max_features, lower=True, filters="")
     tokenizer.fit_on_texts(preprocessedData)
     word_index = tokenizer.word_index  # len(word_index) == aantal tokens als we dat willen zien
@@ -128,19 +131,21 @@ def construct_lstm(data, hate, max_features=100000, maxlen=500):
     # train test split
     model = make_lstm_model(x.shape[1])
     model.compile(optimizer='adam', loss='binary_crossentropy', metrics=['accuracy'])
-    print(model.summary())
+    model.summary()
 
-    epochs = 10  # Zal waarschijnlijk hoger moeten, is het aantal keren dat het traint kinda
+    epochs = 20  # Zal waarschijnlijk hoger moeten, is het aantal keren dat het traint kinda
     batch_size = 64
     x_train, x_test, y_train, y_test = train_test_split(x, hate, train_size=0.7, random_state=42)
-    mcp = ModelCheckpoint("beste_gewichten.hdf5", monitor="val_acc",
-                          save_best_only=True, save_weights_only=False)
-    history = model.fit(x_train, y_train, epochs=epochs, batch_size=batch_size, validation_data=(x_test, y_test), callbacks=[mcp])
+    mcp = ModelCheckpoint("beste_gewichten.hdf5", monitor="val_accuracy", save_best_only=True, save_weights_only=False)
+    history = model.fit(x_train, y_train, epochs=epochs, batch_size=batch_size, validation_data=(x_test, y_test),
+                        callbacks=[mcp])
     # callbacks=[        EarlyStopping(monitor='val_loss', patience=3, min_delta=0.0001)]
 
     accuracy = model.evaluate(x_test, y_test)
     print(accuracy)
     # (Geeft eerst loss en dan accuracy terug in lijst)
+    #with open("beste_gewichten.hdf5", "rb") as f:
+    #    dbobj.insert_model_in_db("lstm", pickle.load(f))
 
 
 def make_lstm_model(x):
