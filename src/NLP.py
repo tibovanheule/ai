@@ -87,7 +87,7 @@ except LookupError:
     print("PLEASE INIT, AND RESTART SERVER")
 
 database = DB()
-hate = set(i[0] for i in database.db_load_lexicon())
+hate = {i[0] for i in database.db_load_lexicon()}
 
 
 @lru_cache(maxsize=5000)
