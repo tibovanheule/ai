@@ -17,13 +17,11 @@ from spellchecker import SpellChecker
 
 from db import DB
 
-"""
-Natural language processing
+# Natural language processing
+#Main entry for natural language processing (text preprocessing).
 
-Main entry for natural language processing (text preprocessing).
-"""
 
-"GLOBAL module variabeles"
+# GLOBAL module variabeles"
 reg = re.compile(r'(.)\1{2,}')
 mention_hashtag_regex = re.compile(r'([^\w]|^)@[\w\-]+|^[\s]#([^\s])+')
 url_remove = re.compile(
@@ -156,13 +154,13 @@ def text_precessing(text):
     text = y.sub("y", text)
     text = z.sub("z", text)
 
-    """Tokenize the string"""
+    #Tokenize the string"""
     tokens = tokenize(text)
     tokens = char_boundary(tokens)
-    """ remove , . ! ? AND remove repeats"""
-    """Spelling check"""
+    # remove , . ! ? AND remove repeats"""
+    #Spelling check"""
     tokens = [spell_checker(remove_repeats(token)) for token in tokens if token not in stopwords_set]
-    """ Lemmanize text, ALWAYS LAST to avoid inconsistencies with incorrectly spelled words"""
+    # Lemmanize text, ALWAYS LAST to avoid inconsistencies with incorrectly spelled words"""
     worden = (lemmanize_text(wordsegment(word)) for word in tokens)
     tokens = [token for sublist in worden for token in sublist if token not in stopwords_set]
     return tokens
@@ -195,10 +193,6 @@ def char_boundary(tokens):
             has_word(token, voca)
     return [k if k not in voca else max(voca[k], key=len) for k in tokens]
 
-
-"""
-Checks if some giberrisch word conceals a hatefull word, character bounding 
-"""
 
 
 def has_word(word, voca):
