@@ -174,8 +174,7 @@ class DB:
         listd = self.conn_model.execute("select status from model where name=?", (name,)).fetchall()
         if not listd:
             return False
-        else:
-            return listd[0][0] == 0
+        return listd[0][0] == 0
 
     def insert_model_in_db(self, name, model):
         return self.conn_model.execute("INSERT OR REPLACE into model (name,model,cat,status) values (?,?,?,?)",

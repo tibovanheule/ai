@@ -23,8 +23,7 @@ hate = [i[0] for i in database.db_load_hate()]
 def analyze():
     if request.method == 'POST':
         return analyse_text(request.json["message"])
-    else:
-        return jsonify("Hello, this is the ai speaking. the ai hate you already and you are going to hate it :) ")
+    return jsonify("Hello, this is the ai speaking. the ai hate you already and you are going to hate it :) ")
 
 
 @app.route('/api/validate', methods=['POST'])
