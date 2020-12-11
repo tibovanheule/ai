@@ -137,14 +137,14 @@ def construct_lstm(data, hate, max_features=100000, maxlen=500):
     batch_size = 64
     x_train, x_test, y_train, y_test = train_test_split(x, hate, train_size=0.7, random_state=42)
     mcp = ModelCheckpoint("beste_gewichten.hdf5", monitor="val_accuracy", save_best_only=True, save_weights_only=False)
-    history = model.fit(x_train, y_train, epochs=epochs, batch_size=batch_size, validation_data=(x_test, y_test),
+    model.fit(x_train, y_train, epochs=epochs, batch_size=batch_size, validation_data=(x_test, y_test),
                         callbacks=[mcp])
     # callbacks=[        EarlyStopping(monitor='val_loss', patience=3, min_delta=0.0001)]
 
     accuracy = model.evaluate(x_test, y_test)
     print(accuracy)
     # (Geeft eerst loss en dan accuracy terug in lijst)
-    #with open("beste_gewichten.hdf5", "rb") as f:
+    # with open("beste_gewichten.hdf5", "rb") as f:
     #    dbobj.insert_model_in_db("lstm", pickle.load(f))
 
 
@@ -160,7 +160,7 @@ def make_lstm_model(x):
 
 
 def create_embeddings(data, embeddings_path, vocab_path):
-    model = Word2Vec(data, min_count=5,
+     Word2Vec(data, min_count=5,
                      window=5, sg=1, iter=25)
     # weights = model.syn0
     # Save weights into embeddings_path

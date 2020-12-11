@@ -165,9 +165,9 @@ class DB:
         return c.fetchall()
 
     def create_model_db(self):
-        sql_file = open("./db/create_model_db.sql")
-        self.conn_model.executescript(sql_file.read())
-        self.conn_model.commit()
+        with open("./db/create_model_db.sql") as sql_file:
+            self.conn_model.executescript(sql_file.read())
+            self.conn_model.commit()
         print("done")
 
     def model_in_db(self, name):

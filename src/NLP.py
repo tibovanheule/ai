@@ -61,7 +61,7 @@ s = re.compile(r'(?:\b(?:\$|§))')
 t = re.compile(r'(?:\b(?:\+|-\|-|†|\'\[\]\'))')
 u = re.compile(r'(?:\b(?:\|_\||\(_\)))')
 v = re.compile(r'(?:\b(?:\\/|\^))')
-w = re.compile(r'(?:\b(?:VV|\\/\\/|\\\\\'|\'//|\\\|/|\\\^/))') # have fun checking these slashes...
+w = re.compile(r'(?:\b(?:VV|\\/\\/|\\\\\'|\'//|\\\|/|\\\^/))')  # have fun checking these slashes...
 x = re.compile(r'(?:\b(?:><|\)\(|%))')
 y = re.compile(r'(?:\b(?:¥|\'/))')
 z = re.compile(r'(?:\b(?:~/_|-/_|>_))')
@@ -189,26 +189,28 @@ def get_wordnet_pos(treebank_tag):
 
 
 def char_boundary(tokens):
-    dict = {}
+    voca = {}
     for token in tokens:
         if token not in known_words and token not in hate and len(token) > 3:
-            has_word(token, dict)
-    return [k if k not in dict else max(dict[k], key=len) for k in tokens]
+            has_word(token, voca)
+    return [k if k not in voca else max(voca[k], key=len) for k in tokens]
 
 
 """
 Checks if some giberrisch word conceals a hatefull word, character bounding 
 """
-def has_word(word, dict):
+
+
+def has_word(word, voca):
     fragments = {word[i:j] for i in range(len(word)) for j in range(i + 3, len(word) + 1)}
     sub_words = fragments.intersection(hate)
     if len(sub_words) > 0:
-        dict[word] = sub_words
-        return dict
+        voca[word] = sub_words
+        return voca
     sub_words = fragments.intersection(known_words)
     if len(sub_words) > 0:
-        dict[word] = sub_words
-    return dict
+        voca[word] = sub_words
+    return voca
 
 
 def lemmanize_text(tokens):
