@@ -74,7 +74,7 @@ def logistic(vectorizer, data, hate, modelname):
     x_train_vectorized = parallel_construct(x_train, vect.transform)
 
     dbobj.insert_vect_in_db(modelname, pickle.dumps(vect))
-    params = [{}]
+    params = [{"C": np.linspace(0, 4, 5)}]
     pipe = Pipeline([('select', SelectFromModel(LogisticRegression(n_jobs=-1, max_iter=1e5))),
                      ('model', LogisticRegression(n_jobs=-1, max_iter=1e5))])
     model = GridSearchCV(pipe, params, cv=StratifiedKFold(n_splits=5).split(x_train, y_train))
@@ -138,7 +138,7 @@ def construct_lstm(data, hate, max_features=100000, maxlen=500):
     x_train, x_test, y_train, y_test = train_test_split(x, hate, train_size=0.7, random_state=42)
     mcp = ModelCheckpoint("beste_gewichten.hdf5", monitor="val_accuracy", save_best_only=True, save_weights_only=False)
     model.fit(x_train, y_train, epochs=epochs, batch_size=batch_size, validation_data=(x_test, y_test),
-                        callbacks=[mcp])
+              callbacks=[mcp])
     # callbacks=[        EarlyStopping(monitor='val_loss', patience=3, min_delta=0.0001)]
 
     accuracy = model.evaluate(x_test, y_test)
@@ -160,12 +160,14 @@ def make_lstm_model(x):
 
 
 def create_embeddings(data, embeddings_path, vocab_path):
-     Word2Vec(data, min_count=5,
-                     window=5, sg=1, iter=25)
-    # weights = model.syn0
-    # Save weights into embeddings_path
-    # vocab = dict([(k, v.index) for k, v in model.vocav.items()])
-    # Save vocab into vocab_path
+    Word2Vec(data, min_count=5,
+             window=5, sg=1, iter=25)
+
+
+# weights = model.syn0
+# Save weights into embeddings_path
+# vocab = dict([(k, v.index) for k, v in model.vocav.items()])
+# Save vocab into vocab_path
 
 
 #### Nieuwe testen op lstm:
