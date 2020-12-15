@@ -37,9 +37,41 @@ def analyse_ad():
     model = pickle.loads(dbobj.get_model_in_db("logistic_regression")[0][0])
     name = "logistic_regression_vect"
     vectorizer = pickle.loads(dbobj.get_model_in_db(name)[0][0])
+
+    print("normal data with logistic word")
+    tweet = [i[0] for i in dbobj.db_load_extra_tweet()]
+    print("got here")
+    predictions = model.predict(vectorizer.transform(tweet))
+    hate = [i[0] for i in dbobj.db_load_extra_hate()]
+    print("confusion matrix")
+    matrix = confusion_matrix(predictions, hate)
+    name = "extra_logistic_regression_confusion_matrix"
+    print(accuracy_score(predictions, hate, normalize=True))
+    with open(name, 'w') as f:
+        f.write(str(matrix))
+
+    print("ad data with logistic word")
     tweet = [i[0] for i in dbobj.db_load_ad_tweet()]
     predictions = model.predict(vectorizer.transform(tweet))
     hate = [i[0] for i in dbobj.db_load_ad_hate()]
+    print("confusion matrix")
+    matrix = confusion_matrix(predictions, hate)
+    name = "ad_logistic_regression_confusion_matrix"
+    print(accuracy_score(predictions, hate, normalize=True))
+    with open(name, 'w') as f:
+        f.write(str(matrix))
+
+
+
+
+
+
+
+    tweet = [i[0] for i in dbobj.db_load_ad_tweet()]
+    print("got here")
+    predictions = model.predict(vectorizer.transform(tweet))
+    hate = [i[0] for i in dbobj.db_load_ad_hate()]
+    print("confusion matrix")
     matrix = confusion_matrix(predictions, hate)
     name = "ad_logistic_regression_confusion_matrix"
     print(accuracy_score(predictions, hate, normalize=True))

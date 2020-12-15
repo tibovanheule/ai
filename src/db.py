@@ -18,6 +18,7 @@ class DB:
         self.conn_data = connect('db/train_data.db', isolation_level=None)
         self.conn_model = connect('db/model_data.db', isolation_level=None)
         self.conn_ad = connect('db/ad_data.db', isolation_level=None)
+        self.conn_extra_data = connect('db/extra_data.db', isolation_level=None)
         self.token = None
         self.expires = None
 
@@ -97,18 +98,19 @@ class DB:
         cursor = self.conn_ad.cursor()
         l = [i[0] for i in self.db_load_lexicon()]
         # Read csv
-        with open("../gekregen github repo/data/labeled_data.csv") as file:
-            read = reader(file, delimiter=',')
+        with open("./db/Ethos_Dataset_Binary.csv", encoding='utf-8') as file:
+            read = reader(file, delimiter=';')
             next(read)
             for i in read:
-                total = int(i[1]) / 2
                 # don't wont every non-hate, but some to test
-                if int(i[2]) < total and random.random() < 0.25:
+                if float(i[-1]) <= 0.5 and random.random() < 0.25:
+                    i[-1] = "0"
                     print("insert")
                     self.insert_ad(i, cursor)
                 # hate speech do something
                 else:
-                    tweet = i[-1]
+                    i[-1] = "1"
+                    tweet = i[0]
                     print(tweet)
                     hate_in_tweet = [word for word in l if word in tweet.split()]
                     if len(hate_in_tweet) > 0:
@@ -123,23 +125,51 @@ class DB:
                                                 range(random.randint(2, (len(tweet) % 4) + 2)))
                                 new = left + k + right
                                 tweet = tweet.replace(k, new, 1)
-                    if random.random() < 0.5:
-                        r = random.randint(1, len(tweet) // 2)
-                        tweet = tweet[:r] + tweet[r:].replace(' ', "", 1)
-                    if random.random() > 0.5:
-                        r = random.randint(1, len(tweet) - 1)
-                        tweet = tweet[:r] + ' ' + tweet[r:]
-                    i[-1] = tweet
-                    print(i[-1])
+                    for _ in [0, 1]:
+                        if random.random() < 0.5:
+                            r = random.randint(1, len(tweet) // 2)
+                            tweet = tweet[:r] + tweet[r:].replace(' ', "", 1)
+                        if random.random() > 0.5:
+                            r = random.randint(1, len(tweet) - 1)
+                            tweet = tweet[:r] + ' ' + tweet[r:]
+                    i[0] = tweet
+                    print(i[0])
                     self.insert_ad(i, cursor)
         self.conn_ad.commit()
         print("done")
 
+    def create_extra_db(self):
+        with open("./db/create_extra_db.sql") as sql_file:
+            self.conn_extra_data.executescript(sql_file.read())
+            self.conn_extra_data.commit()
+
+        # create cursor
+        cursor = self.conn_extra_data.cursor()
+        # Read csv
+        with open("./db/Ethos_Dataset_Binary.csv", encoding='utf-8') as file:
+            read = reader(file, delimiter=';')
+            next(read)
+            for i in read:
+                # don't wont every non-hate, but some to test
+                if float(i[-1]) <= 0.5:
+                    i[-1] = "0"
+                    self.insert_extra(i, cursor)
+                # hate speech do something
+                else:
+                    i[-1] = "1"
+                    self.insert_extra(i, cursor)
+        self.conn_extra_data.commit()
+        print("done")
+
     @staticmethod
     def insert_ad(i, cursor):
-        total = int(i[1]) / 2
-        cursor.execute('insert or ignore into adversarial values (?,?,?,?)',
-                       (int(i[0]), int(i[2]) >= total, int(i[3]) >= total, i[-1]))
+        cursor.execute('insert or ignore into adversarial (hate_speech,offensive_language,tweet) values (?,?,?)',
+                       (int(i[-1]), 0, i[0]))
+
+    @staticmethod
+    def insert_extra(i, cursor):
+        cursor.execute('insert or ignore into extra (hate_speech,offensive_language,tweet) values (?,?,?)',
+                       (int(i[-1]), 0, i[0]))
 
     @staticmethod
     def insert_data(i, cursor):
@@ -170,6 +200,14 @@ class DB:
 
     def db_load_ad_tweet(self):
         c = self.conn_ad.execute("select tweet from adversarial order by id asc;")
+        return c.fetchall()
+
+    def db_load_extra_hate(self):
+        c = self.conn_extra_data.execute("select hate_speech from extra order by id asc;")
+        return c.fetchall()
+
+    def db_load_extra_tweet(self):
+        c = self.conn_extra_data.execute("select tweet from extra order by id asc;")
         return c.fetchall()
 
     def create_model_db(self):
