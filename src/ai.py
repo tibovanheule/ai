@@ -63,6 +63,9 @@ def construct_model(data, hate, modelname="logistic_regression"):
     elif modelname == "lstm_char":
         tokenizer = Tokenizer(num_words=10000, lower=True, filters=None,char_level=True)
         construct_lstm(data, hate, tokenizer, modelname)
+    elif modelname == "lstm_les":
+        tokenizer = Tokenizer(num_words=10000, lower=True, filters=None, char_level=False)
+        construct_lstm_les(data, hate, tokenizer, modelname)
 
 
 def logistic(vectorizer, data, hate, modelname):
@@ -148,6 +151,43 @@ def construct_lstm(data, hate, tokenizer,modelname, maxlen=500):
     accuracy = model.evaluate(x_test, y_test)
     print(accuracy)
 
+def construct_lstm_les(data, hate, tokenizer,modelname, maxlen=500):
+    dbobj = db.DB()
+    # Preprocess text (& join on space again :§
+    # max features: top most frequently used words.
+    # maxlen, how long can an inputtext be (will be truncated if longer)
+    dbobj.constructing_model_in_db("lstm")
+    hate = np.asarray(hate)
+    # KERAS tokenizer (SETS INTO INTEGERS/ VECTORS INSTEAD OF WORDS)
+    preprocessedData = np.asarray([text_precessing_char(text) for text in data])
+
+    print("tokenize + word embeddings")
+
+    tokenizer.fit_on_texts(preprocessedData)
+    word_index = tokenizer.word_index  # len(word_index) == aantal tokens als we dat willen zien
+    print('Found %s unique tokens.' % len(word_index))
+    x = tokenizer.texts_to_sequences(preprocessedData)
+    x = pad_sequences(x, maxlen=maxlen)
+    print(f"Shape of tensor is: {x.shape}")
+    # Y = ? pd.get_dummies(data) #(getten labels -> numbers (dus bij ons 0 en 1?))
+    # shape van Y zou dan (X.shape[0], (1 of 2) moeten zijn
+
+    # train test split
+    model = make_lstm_les_model(len(tokenizer.word_index)+1)
+    model.compile(optimizer='adam', loss='binary_crossentropy', metrics=['accuracy'])
+    model.summary()
+
+    epochs = 20  # Zal waarschijnlijk hoger moeten, is het aantal keren dat het traint kinda
+    batch_size = 64
+    x_train, x_test, y_train, y_test = train_test_split(x, hate, train_size=0.7, random_state=42)
+    mcp = ModelCheckpoint(modelname+".hdf5", monitor="val_accuracy", save_best_only=True, save_weights_only=False)
+    model.fit(x_train, y_train, epochs=epochs, batch_size=batch_size, validation_data=(x_test, y_test),
+              callbacks=[mcp])
+    # callbacks=[        EarlyStopping(monitor='val_loss', patience=3, min_delta=0.0001)]
+
+    accuracy = model.evaluate(x_test, y_test)
+    print(accuracy)
+
 
 def make_lstm_model(x):
     model = Sequential()
@@ -160,24 +200,17 @@ def make_lstm_model(x):
     return model
 
 
+def make_lstm_les_model(x):
+    model = Sequential()
+    embed_layer = Embedding(x, 64, input_length=300)
+    model.add(embed_layer)
+    model.add(LSTM(32))
+    model.add(Dense(16, activation='relu'))
+    model.add(Dense(1, activation='sigmoid'))  # Dit zorgt voor output in het juiste format van ons NN
+    return model
+
+
 def create_embeddings(data, embeddings_path, vocab_path):
     Word2Vec(data, min_count=5,
              window=5, sg=1, iter=25)
 
-
-# weights = model.syn0
-# Save weights into embeddings_path
-# vocab = dict([(k, v.index) for k, v in model.vocav.items()])
-# Save vocab into vocab_path
-
-
-#### Nieuwe testen op lstm:
-## Hebben oude tokenizer EN model nodig...
-"""
-
-new_tekst = ['Hier komt een lange testzin. Mag zelfs meerdere zinnen zijn']
-seq = tokenizer.texts_to_sequences(new_complaint)
-padded = pad_sequences(seq, maxlen=MAX_SEQUENCE_LENGTH)
-pred = model.predict(padded)
-labels = ['hate','not_hate'] # Volgorde kan mis zijn...
-print(pred, labels[np.argmax(pred)])"""
