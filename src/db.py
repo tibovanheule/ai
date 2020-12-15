@@ -164,6 +164,14 @@ class DB:
         c = self.conn_data.execute("select hate_speech from data order by id asc;")
         return c.fetchall()
 
+    def db_load_ad_hate(self):
+        c = self.conn_ad.execute("select hate_speech from data order by id asc;")
+        return c.fetchall()
+
+    def db_load_ad_tweet(self):
+        c = self.conn_ad.execute("select tweet from data order by id asc;")
+        return c.fetchall()
+
     def create_model_db(self):
         with open("./db/create_model_db.sql") as sql_file:
             self.conn_model.executescript(sql_file.read())

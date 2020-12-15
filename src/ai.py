@@ -33,6 +33,22 @@ def analyse_text(text, modelname="logistic_regression"):
     return str(model.predict(vectorizer.transform([text])))
 
 
+def analyse_ad():
+    dbobj = db.DB()
+    model = pickle.loads(dbobj.get_model_in_db("logistic_regression")[0][0])
+    name = "logistic_regression_vect"
+    vectorizer = pickle.loads(dbobj.get_model_in_db(name)[0][0])
+    tweet = [i[0] for i in dbobj.db_load_ad_tweet()]
+    predictions = model.predict(vectorizer.transform(tweet))
+    hate = [i[0] for i in dbobj.db_load_ad_hate()]
+    matrix = confusion_matrix(predictions, hate)
+    name = "ad_logistic_regression_confusion_matrix"
+    print(accuracy_score(predictions, hate, normalize=True))
+    with open(name, 'w') as f:
+        f.write(str(matrix))
+
+
+
 def process_text(text):
     return str(text_precessing(text.lower()))
 
