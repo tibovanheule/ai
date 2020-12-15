@@ -63,6 +63,7 @@ def initmodel():
     thread.start()
     return "Thread started, initing model"
 
+
 @app.route('/api/model/init/small', methods=['GET'])
 def initmodelsmall():
     thread = Thread(target=construct_model, kwargs={'data': tweets[:100], 'hate': hate[:100],

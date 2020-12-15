@@ -61,7 +61,7 @@ def construct_model(data, hate, modelname="logistic_regression"):
         tokenizer = Tokenizer(num_words=10000, lower=True, filters=None, char_level=False)
         construct_lstm(data, hate, tokenizer, modelname)
     elif modelname == "lstm_char":
-        tokenizer = Tokenizer(num_words=10000, lower=True, filters=None,char_level=True)
+        tokenizer = Tokenizer(num_words=10000, lower=True, filters=None, char_level=True)
         construct_lstm(data, hate, tokenizer, modelname)
     elif modelname == "lstm_les":
         tokenizer = Tokenizer(num_words=10000, lower=True, filters=None, char_level=False)
@@ -114,7 +114,7 @@ def parallel_construct(data, func):
     return df
 
 
-def construct_lstm(data, hate, tokenizer,modelname, maxlen=500):
+def construct_lstm(data, hate, tokenizer, modelname, maxlen=500):
     dbobj = db.DB()
     # Preprocess text (& join on space again :§
     # max features: top most frequently used words.
@@ -143,7 +143,7 @@ def construct_lstm(data, hate, tokenizer,modelname, maxlen=500):
     epochs = 20  # Zal waarschijnlijk hoger moeten, is het aantal keren dat het traint kinda
     batch_size = 64
     x_train, x_test, y_train, y_test = train_test_split(x, hate, train_size=0.7, random_state=42)
-    mcp = ModelCheckpoint(modelname+".hdf5", monitor="val_accuracy", save_best_only=True, save_weights_only=False)
+    mcp = ModelCheckpoint(modelname + ".hdf5", monitor="val_accuracy", save_best_only=True, save_weights_only=False)
     model.fit(x_train, y_train, epochs=epochs, batch_size=batch_size, validation_data=(x_test, y_test),
               callbacks=[mcp])
     # callbacks=[        EarlyStopping(monitor='val_loss', patience=3, min_delta=0.0001)]
@@ -151,7 +151,8 @@ def construct_lstm(data, hate, tokenizer,modelname, maxlen=500):
     accuracy = model.evaluate(x_test, y_test)
     print(accuracy)
 
-def construct_lstm_les(data, hate, tokenizer,modelname, maxlen=500):
+
+def construct_lstm_les(data, hate, tokenizer, modelname, maxlen=500):
     dbobj = db.DB()
     # Preprocess text (& join on space again :§
     # max features: top most frequently used words.
@@ -173,14 +174,14 @@ def construct_lstm_les(data, hate, tokenizer,modelname, maxlen=500):
     # shape van Y zou dan (X.shape[0], (1 of 2) moeten zijn
 
     # train test split
-    model = make_lstm_les_model(len(tokenizer.word_index)+1)
+    model = make_lstm_les_model(len(tokenizer.word_index) + 1)
     model.compile(optimizer='adam', loss='binary_crossentropy', metrics=['accuracy'])
     model.summary()
 
     epochs = 20  # Zal waarschijnlijk hoger moeten, is het aantal keren dat het traint kinda
     batch_size = 64
     x_train, x_test, y_train, y_test = train_test_split(x, hate, train_size=0.7, random_state=42)
-    mcp = ModelCheckpoint(modelname+".hdf5", monitor="val_accuracy", save_best_only=True, save_weights_only=False)
+    mcp = ModelCheckpoint(modelname + ".hdf5", monitor="val_accuracy", save_best_only=True, save_weights_only=False)
     model.fit(x_train, y_train, epochs=epochs, batch_size=batch_size, validation_data=(x_test, y_test),
               callbacks=[mcp])
     # callbacks=[        EarlyStopping(monitor='val_loss', patience=3, min_delta=0.0001)]
@@ -213,4 +214,3 @@ def make_lstm_les_model(x):
 def create_embeddings(data, embeddings_path, vocab_path):
     Word2Vec(data, min_count=5,
              window=5, sg=1, iter=25)
-

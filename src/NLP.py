@@ -18,7 +18,7 @@ from spellchecker import SpellChecker
 from db import DB
 
 # Natural language processing
-#Main entry for natural language processing (text preprocessing).
+# Main entry for natural language processing (text preprocessing).
 
 
 # GLOBAL module variabeles"
@@ -154,11 +154,11 @@ def text_precessing(text):
     text = y.sub("y", text)
     text = z.sub("z", text)
 
-    #Tokenize the string"""
+    # Tokenize the string"""
     tokens = tokenize(text)
     tokens = char_boundary(tokens)
     # remove , . ! ? AND remove repeats"""
-    #Spelling check"""
+    # Spelling check"""
     tokens = [spell_checker(remove_repeats(token)) for token in tokens if token not in stopwords_set]
     # Lemmanize text, ALWAYS LAST to avoid inconsistencies with incorrectly spelled words"""
     worden = (lemmanize_text(wordsegment(word)) for word in tokens)
@@ -192,7 +192,6 @@ def char_boundary(tokens):
         if token not in known_words and token not in hate and len(token) > 3:
             has_word(token, voca)
     return [k if k not in voca else max(voca[k], key=len) for k in tokens]
-
 
 
 def has_word(word, voca):
