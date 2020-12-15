@@ -117,13 +117,13 @@ def construct_model(data, hate, modelname="logistic_regression"):
                                      analyzer="char")
         logistic(vectorizer, data, hate, modelname)
     elif modelname == "lstm":
-        tokenizer = Tokenizer(num_words=10000, lower=True, filters=None, char_level=False)
+        tokenizer = Tokenizer(num_words=10000, lower=True, filters="", char_level=False)
         construct_lstm(data, hate, tokenizer, modelname)
     elif modelname == "lstm_char":
-        tokenizer = Tokenizer(num_words=10000, lower=True, filters=None, char_level=True)
+        tokenizer = Tokenizer(num_words=10000, lower=True, filters="", char_level=True)
         construct_lstm(data, hate, tokenizer, modelname)
     elif modelname == "lstm_les":
-        tokenizer = Tokenizer(num_words=10000, lower=True, filters=None, char_level=False)
+        tokenizer = Tokenizer(num_words=10000, lower=True, filters="", char_level=False)
         construct_lstm_les(data, hate, tokenizer, modelname)
     elif modelname == "log_basic":
         vectorizer = TfidfVectorizer(preprocessor=basic_precessing, tokenizer=return_token,
