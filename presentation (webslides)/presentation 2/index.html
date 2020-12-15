@@ -202,36 +202,6 @@
             <!-- .end .wrap -->
         </section>
 
-        <!--- examples --->
-        <script>
-            const post = (url, data, id) => fetch(url, data).then((text) => document.getElementById(id).innerHTML = JSON.stringify({result:text}));
-        </script>
-
-        <section class="bg-secondary">
-            <!--.wrap = container (width: 90%) -->
-            <div class="wrap size-50 frame">
-                <h2 class="text-serif aligncenter">Live example</h2>
-                <p class="text-symbols">* * *</p>
-                <p class="aligncenter">I bet you didn't know that 🙋, 🙋‍♂️ and 🙋‍♀️ are three different emojis. More
-                    info on h t tp:/ / ai . tibovanheule. space?var=test</p>
-                <button onclick="post('https://ai.tibovanheule.space/api/preprocess',{
-    method: 'POST', // *GET, POST, PUT, DELETE, etc.
-    mode: 'cors', // no-cors, *cors, same-origin
-    cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
-    credentials: 'same-origin', // include, *same-origin, omit
-    headers: {
-      'Content-Type': 'application/json'
-    },
-    redirect: 'follow', // manual, *follow, error
-    referrerPolicy: 'no-referrer', // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
-    body: JSON.stringify({'message':'I bet you didn\'t know that 🙋, 🙋‍♂️ and 🙋‍♀️ are three different emojis. More info on h t tp:/ / ai . tibovanheule. space?var=test'})                },'resultone')">
-                    PreProcess
-                </button>
-                <p class="aligncenter" id="resultone"></p>
-            </div>
-        </section>
-
-
         <!--- Basic steps part two ---->
         <section>
             <div class="wrap">
@@ -256,38 +226,33 @@
                         <h2>06. tokenize</h2>
                         <p>[this, is , a, list]</p>
                     </li>
-                    <li>
-                        <div class="process step-1"></div>
-                        <span>
-                  <i class="fas fa-spell-check">                  </i>
-                </span>
-                        <h2>07. Leestekens</h2>
-                        <p>Oooooooooooh wow, that's long.</p>
-                    </li>
-                    <li>
-                        <div class="process step-1"></div>
-                        <span>
-                  <i class="fas fa-spell-check">                  </i>
-                </span>
-                        <h2>08. Repeats and spellchecker</h2>
-                        <p>Oooooooooooh wow, that's long.</p>
-                    </li>
                 </ul>
             </div>
             <!-- .end .wrap -->
         </section>
 
-
         <section class="bg-trans-dark">
             <!--.wrap = container (width: 90%) -->
             <div class="wrap size-50 frame">
-                <h2 class="text-serif aligncenter">Repeats, spellchecking and lemmanizing</h2>
+                <h2 class="text-serif aligncenter">Word boundary</h2>
                 <p class="text-symbols">* * *</p>
-                <p class="aligncenter">Woords having power, use them wisely!!!!</p>
+                <p class="aligncenter">dghjkhellondde</p>
 
-                <p class="aligncenter">['word', 'have', 'power', 'use', 'them', 'wisely']</p>
+                <p class="aligncenter">hello</p>
             </div>
         </section>
+
+        <section class="bg-secondary">
+            <!--.wrap = container (width: 90%) -->
+            <div class="wrap size-50 frame">
+                <h2 class="text-serif aligncenter">Word segmentation</h2>
+                <p class="text-symbols">* * *</p>
+                <p class="aligncenter">Addspacestothissentence</p>
+
+                <p class="aligncenter" id="resultone"></p>
+            </div>
+        </section>
+
 
 
         <!--- STATUS ---->
