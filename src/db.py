@@ -165,11 +165,11 @@ class DB:
         return c.fetchall()
 
     def db_load_ad_hate(self):
-        c = self.conn_ad.execute("select hate_speech from data order by id asc;")
+        c = self.conn_ad.execute("select hate_speech from adversarial order by id asc;")
         return c.fetchall()
 
     def db_load_ad_tweet(self):
-        c = self.conn_ad.execute("select tweet from data order by id asc;")
+        c = self.conn_ad.execute("select tweet from adversarial order by id asc;")
         return c.fetchall()
 
     def create_model_db(self):
