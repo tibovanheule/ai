@@ -72,6 +72,14 @@ def initmodelsmall():
     return "Thread started, initing model"
 
 
+@app.route('/api/model/init/medium', methods=['GET'])
+def initmodelmedium():
+    thread = Thread(target=construct_model, kwargs={'data': tweets[:1000], 'hate': hate[:1000],
+                                                    'modelname': request.args.get('modelname', "logistic_regression")})
+    thread.start()
+    return "Thread started, initing model"
+
+
 @app.route('/api/model/ready/', methods=['GET'])
 def statusmodel():
     return str(DB().model_in_db(request.args.get('modelname', "logistic_regression")))

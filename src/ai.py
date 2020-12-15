@@ -8,7 +8,6 @@ import pickle
 
 import numpy as np
 import scipy.sparse as sp
-from gensim.models import Word2Vec
 from keras.callbacks import ModelCheckpoint
 from keras.layers import Dense, Embedding, LSTM, SpatialDropout1D
 from keras.models import Sequential
@@ -22,7 +21,7 @@ from sklearn.model_selection import train_test_split, GridSearchCV, StratifiedKF
 from sklearn.pipeline import Pipeline
 
 import db
-from NLP import text_precessing, text_precessing_char
+from NLP import text_precessing, text_precessing_char, basic_precessing, basic_precessing_char
 
 
 def analyse_text(text, modelname="logistic_regression"):
@@ -82,6 +81,17 @@ def construct_model(data, hate, modelname="logistic_regression"):
     elif modelname == "lstm_les":
         tokenizer = Tokenizer(num_words=10000, lower=True, filters=None, char_level=False)
         construct_lstm_les(data, hate, tokenizer, modelname)
+    elif modelname == "log_basic":
+        vectorizer = TfidfVectorizer(preprocessor=basic_precessing, tokenizer=return_token,
+                                     max_df=0.75, min_df=5, use_idf=True, smooth_idf=False, ngram_range=(1, 3),
+                                     norm=None, decode_error="replace")
+        logistic(vectorizer, data, hate, modelname)
+
+    elif modelname == "log_basic_char":
+        vectorizer = TfidfVectorizer(preprocessor=basic_precessing_char,
+                                     max_df=0.75, min_df=5, use_idf=True, smooth_idf=False, ngram_range=(1, 3),
+                                     norm=None, decode_error="replace")
+        logistic(vectorizer, data, hate, modelname)
 
 
 def logistic(vectorizer, data, hate, modelname):
@@ -90,6 +100,7 @@ def logistic(vectorizer, data, hate, modelname):
     dbobj.constructing_model_in_db(modelname)
     print("Splitting data into train & test")
     x_train, x_test, y_train, y_test = train_test_split(data, hate, train_size=0.7, random_state=42)
+    print(f"training on a size of {len(x_train)}")
     print("fitting training")
     vect = vectorizer.fit(x_train)
     print("transforming training")
@@ -97,7 +108,7 @@ def logistic(vectorizer, data, hate, modelname):
     x_train_vectorized = parallel_construct(x_train, vect.transform)
 
     dbobj.insert_vect_in_db(modelname, pickle.dumps(vect))
-    params = [{"C": np.linspace(0, 4, 5)}]
+    params = [{}]
     pipe = Pipeline([('select', SelectFromModel(LogisticRegression(n_jobs=-1, max_iter=1e5))),
                      ('model', LogisticRegression(n_jobs=-1, max_iter=1e5))])
     model = GridSearchCV(pipe, params, cv=StratifiedKFold(n_splits=5).split(x_train, y_train))
@@ -226,7 +237,3 @@ def make_lstm_les_model(x):
     model.add(Dense(1, activation='sigmoid'))  # Dit zorgt voor output in het juiste format van ons NN
     return model
 
-
-def create_embeddings(data, embeddings_path, vocab_path):
-    Word2Vec(data, min_count=5,
-             window=5, sg=1, iter=25)

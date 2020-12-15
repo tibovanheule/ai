@@ -1,6 +1,8 @@
 
 src/venv/
 
+src/venv3.8
+
 src/__pycache__/
 
 src/static/.idea/

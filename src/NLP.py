@@ -165,6 +165,15 @@ def text_precessing(text):
     tokens = [token for sublist in worden for token in sublist if token not in stopwords_set]
     return tokens
 
+def basic_precessing(text):
+    text = mention_hashtag_regex.sub(" entity", text)
+    tokens = tokenize(text)
+    return list(lemmanize_text(tokens))
+
+
+def basic_precessing_char(text):
+    return ' '.join(basic_precessing(text))
+
 
 def text_precessing_char(text):
     return ' '.join(text_precessing(text))
