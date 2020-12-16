@@ -6,11 +6,13 @@ More details....
 import multiprocessing
 import pickle
 
+import db
 import numpy as np
 import scipy.sparse as sp
-from keras.callbacks import ModelCheckpoint
+from NLP import text_precessing, text_precessing_char, basic_precessing, basic_precessing_char
+from keras.callbacks import ModelCheckpoint, EarlyStopping
 from keras.layers import Dense, Embedding, LSTM, SpatialDropout1D
-from keras.models import Sequential
+from keras.models import Sequential, load_model
 from keras.preprocessing.text import Tokenizer
 from keras_preprocessing.sequence import pad_sequences
 from sklearn.feature_extraction.text import TfidfVectorizer
@@ -20,9 +22,6 @@ from sklearn.metrics import confusion_matrix, accuracy_score
 from sklearn.model_selection import train_test_split, GridSearchCV, StratifiedKFold
 from sklearn.pipeline import Pipeline
 
-import db
-from NLP import text_precessing, text_precessing_char, basic_precessing, basic_precessing_char
-
 
 def analyse_text(text, modelname="logistic_regression"):
     dbobj = db.DB()
@@ -30,6 +29,56 @@ def analyse_text(text, modelname="logistic_regression"):
     name = modelname + "_vect"
     vectorizer = pickle.loads(dbobj.get_model_in_db(name)[0][0])
     return str(model.predict(vectorizer.transform([text])))
+
+
+def analyse_ad_lstm(modelname):
+
+
+    """
+    model = load_model("beste_gewichten.hdf5",compile=False)
+    model.compile(optimizer='adam', loss='binary_crossentropy', metrics=['accuracy'])
+    name = "lstm_word"
+    print(name)
+    print("normal data with lstm word")
+
+    print("tokenize + word embeddings")
+
+    tokenizer.fit_on_texts(preprocessedData)
+    x = tokenizer.texts_to_sequences(preprocessedData)
+    x = pad_sequences(x, maxlen=500)
+    print("predicting")
+    predictions = model.predict(x)
+    print(predictions)
+    rounded_predictions = np.argmax(predictions, axis=-1)
+    cm = confusion_matrix(y_true=hate, y_pred=rounded_predictions)
+    print(cm)
+    with open(name, 'w') as f:
+        f.write(str(cm))
+        """
+    if(modelname == "lstm_les"):
+        dbobj = db.DB()
+
+        tokenizer = Tokenizer(num_words=10000, lower=True, filters=None, char_level=True)
+        tweet = [i[0] for i in dbobj.db_load_tweet()]
+        tweet = tweet[:1000]
+        hate = [i[0] for i in dbobj.db_load_hate()]
+        hate = hate[:1000]
+
+        model = construct_lstm_les(tweet, hate, tokenizer, modelname)
+        hate = np.asarray(hate)
+        preprocessedData = np.asarray([text_precessing_char(text) for text in tweet])
+        x = tokenizer.texts_to_sequences(preprocessedData)
+        x = pad_sequences(x, maxlen=300)
+
+        predictions = model.predict(x)
+        rounded_predictions = np.argmax(predictions, axis=-1)
+        for i in range(20):
+            print(predictions[i])
+            print(rounded_predictions[i])
+        cm = confusion_matrix(y_true=hate, y_pred=rounded_predictions)
+        print(cm)
+        with open(modelname+"_matrix.txt", 'w') as f:
+            f.write(str(cm))
 
 
 def analyse_ad():
@@ -60,8 +109,6 @@ def analyse_ad():
     print(accuracy_score(predictions, hate, normalize=True))
     with open(name, 'w') as f:
         f.write(str(matrix))
-
-
 
     model = pickle.loads(dbobj.get_model_in_db("logistic_regression")[0][0])
     name = "logistic_regression_vect"
@@ -189,6 +236,10 @@ def construct_lstm(data, hate, tokenizer, modelname, maxlen=500):
     # max features: top most frequently used words.
     # maxlen, how long can an inputtext be (will be truncated if longer)
     dbobj.constructing_model_in_db("lstm")
+
+    data = [i[0] for i in dbobj.db_load_extra_tweet()]
+    hate = [i[0] for i in dbobj.db_load_extra_hate()]
+
     hate = np.asarray(hate)
     # KERAS tokenizer (SETS INTO INTEGERS/ VECTORS INSTEAD OF WORDS)
     preprocessedData = np.asarray([text_precessing_char(text) for text in data])
@@ -219,6 +270,7 @@ def construct_lstm(data, hate, tokenizer, modelname, maxlen=500):
 
     accuracy = model.evaluate(x_test, y_test)
     print(accuracy)
+    return model
 
 
 def construct_lstm_les(data, hate, tokenizer, modelname, maxlen=500):
@@ -226,6 +278,9 @@ def construct_lstm_les(data, hate, tokenizer, modelname, maxlen=500):
     # Preprocess text (& join on space again :§
     # max features: top most frequently used words.
     # maxlen, how long can an inputtext be (will be truncated if longer)
+    data = [i[0] for i in dbobj.db_load_extra_tweet()]
+    hate = [i[0] for i in dbobj.db_load_extra_hate()]
+
     dbobj.constructing_model_in_db("lstm")
     hate = np.asarray(hate)
     # KERAS tokenizer (SETS INTO INTEGERS/ VECTORS INSTEAD OF WORDS)
@@ -250,13 +305,13 @@ def construct_lstm_les(data, hate, tokenizer, modelname, maxlen=500):
     epochs = 20  # Zal waarschijnlijk hoger moeten, is het aantal keren dat het traint kinda
     batch_size = 64
     x_train, x_test, y_train, y_test = train_test_split(x, hate, train_size=0.7, random_state=42)
-    mcp = ModelCheckpoint(modelname + ".hdf5", monitor="val_accuracy", save_best_only=True, save_weights_only=False)
+    #mcp = ModelCheckpoint(modelname + ".hdf5", monitor="val_accuracy", save_best_only=True, save_weights_only=False)
     model.fit(x_train, y_train, epochs=epochs, batch_size=batch_size, validation_data=(x_test, y_test),
-              callbacks=[mcp])
-    # callbacks=[        EarlyStopping(monitor='val_loss', patience=3, min_delta=0.0001)]
+              callbacks=[EarlyStopping(monitor='val_loss', patience=3, min_delta=0.0001)])
 
     accuracy = model.evaluate(x_test, y_test)
     print(accuracy)
+    return model
 
 
 def make_lstm_model(x):
@@ -278,4 +333,3 @@ def make_lstm_les_model(x):
     model.add(Dense(16, activation='relu'))
     model.add(Dense(1, activation='sigmoid'))  # Dit zorgt voor output in het juiste format van ons NN
     return model
-
