@@ -41,7 +41,6 @@ def analyse_ad():
 
     print("normal data with logistic char")
     tweet = [i[0] for i in dbobj.db_load_extra_tweet()]
-    print("got here")
     predictions = model.predict(vectorizer.transform(tweet))
     hate = [i[0] for i in dbobj.db_load_extra_hate()]
     print("confusion matrix")
@@ -70,7 +69,6 @@ def analyse_ad():
 
     print("normal data with logistic word")
     tweet = [i[0] for i in dbobj.db_load_extra_tweet()]
-    print("got here")
     predictions = model.predict(vectorizer.transform(tweet))
     hate = [i[0] for i in dbobj.db_load_extra_hate()]
     print("confusion matrix")
