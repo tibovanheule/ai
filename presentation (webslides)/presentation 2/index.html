@@ -320,17 +320,31 @@
                 <h2 class="text-serif aligncenter">Extra dataset</h2>
                 <p class="text-symbols">* * *</p>
                 <ul>
-                    <li><p class="aligncenter">Dataset without tweetid</p></li>
-                    <li><p class="aligncenter">Not used for training or validation</p></li>
-                    <li><p class="aligncenter">Used to create adversial dataset</p></li>
-                    <ul>
+                    <li><p>Dataset without tweetid</p></li>
+                    <li><p>Not used for training or validation</p></li>
+                    <li><p>Used to create adversial dataset</p></li>
+                    <ul style="margin-left:20px">
                         <li><p >45% chance for word boudary attack</p></li>
-                        <ul>
+                        <ul style="margin-left:40px">
                             <li><p>A random prefix/suffix of length 2-6</p></li>
                         </ul>
                         <li><p >50% chance for space add attack</p></li>
                         <li><p >50% chance for space removal attack</p></li>
                     </ul>
+                </ul>
+            </div>
+        </section>
+
+        <section>
+            <div class="wrap">
+                <h2>Training results</h2>
+                <ul class="flexblock features">
+                    <li>
+                        <div>
+                            <p class="aligncenter">logistic regression Character based</p>
+                            <img src="log_char.png" style="width: 100%"/>
+                        </div>
+                    </li>
                 </ul>
             </div>
         </section>
