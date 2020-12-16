@@ -104,12 +104,9 @@ class DB:
             for i in read:
                 # don't wont every non-hate, but some to test
                 if float(i[-1]) <= 0.5:
-                    if random.random() < 0.25:
-                        i[-1] = "0"
-                        print("insert")
-                        self.insert_ad(i, cursor)
-                    else:
-                        continue
+                    i[-1] = "0"
+                    print("insert")
+                    self.insert_ad(i, cursor)
                 # hate speech do something
                 else:
                     i[-1] = "1"
@@ -128,12 +125,13 @@ class DB:
                                                 range(random.randint(2, (len(tweet) % 4) + 2)))
                                 new = left + k + right
                                 tweet = tweet.replace(k, new, 1)
-                    if random.random() < 0.5:
-                        r = random.randint(1, len(tweet) // 2)
-                        tweet = tweet[:r] + tweet[r:].replace(' ', "", 1)
-                    if random.random() > 0.5:
-                        r = random.randint(1, len(tweet) - 1)
-                        tweet = tweet[:r] + ' ' + tweet[r:]
+                    for _ in [0, 1]:
+                        if random.random() < 0.5:
+                            r = random.randint(1, len(tweet) // 2)
+                            tweet = tweet[:r] + tweet[r:].replace(' ', "", 1)
+                        if random.random() > 0.5:
+                            r = random.randint(1, len(tweet) - 1)
+                            tweet = tweet[:r] + ' ' + tweet[r:]
                     i[0] = tweet
                     print(i[0])
                     self.insert_ad(i, cursor)
