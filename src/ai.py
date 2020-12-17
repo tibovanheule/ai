@@ -21,6 +21,7 @@ from sklearn.linear_model import LogisticRegression
 from sklearn.metrics import confusion_matrix, accuracy_score
 from sklearn.model_selection import train_test_split, GridSearchCV, StratifiedKFold
 from sklearn.pipeline import Pipeline
+from sklearn.naive_bayes import MultinomialNB
 
 
 def analyse_text(text, modelname="logistic_regression"):
@@ -181,7 +182,11 @@ def construct_model(data, hate, modelname="logistic_regression"):
                                      max_df=0.75, min_df=5, use_idf=True, smooth_idf=False, ngram_range=(1, 3),
                                      norm=None, decode_error="replace")
         logistic(vectorizer, data, hate, modelname)
-
+    elif modelname == "naive_bayes":
+        vectorizer = TfidfVectorizer(preprocessor=text_precessing_char,
+                                     max_df=0.75, min_df=5, use_idf=True, smooth_idf=False, ngram_range=(1, 3),
+                                     norm=None, decode_error="replace")
+        naive_bayes(vectorizer, data, hate, modelname)
 
 def logistic(vectorizer, data, hate, modelname):
     dbobj = db.DB()
@@ -228,6 +233,37 @@ def parallel_construct(data, func):
     pool.close()
     pool.join()
     return df
+
+
+def naive_bayes(vectorizer, data, hate, modelname):
+    dbobj = db.DB()
+    """Construct a db entry. Avoid using old model for requests made before ending of model construction"""
+    dbobj.constructing_model_in_db(modelname)
+    print("Splitting data into train & test")
+    x_train, x_test, y_train, y_test = train_test_split(data, hate, train_size=0.7, random_state=42)
+    print(f"training on a size of {len(x_train)}")
+    print("fitting training")
+    vect = vectorizer.fit(x_train)
+    print("transforming training")
+    params = [{}]
+    # x_train_vectorized = vect.transform(x_train)
+    x_train_vectorized = parallel_construct(x_train, vect.transform)
+    dbobj.insert_vect_in_db(modelname, pickle.dumps(vect))
+    model = MultinomialNB(alpha=1)
+    print("initing model")
+    model.fit(x_train_vectorized, y_train)
+    print("Model made")
+    predictions = model.predict(vect.transform(x_test))
+    name_one = modelname + "_predictions"
+    with open(name_one, 'w') as f:
+        for i in predictions:
+            f.write(str(i))
+    dbobj.insert_model_in_db(modelname, pickle.dumps(model))
+    matrix = confusion_matrix(predictions, y_test)
+    name = modelname + "_confusion_matrix"
+    print(accuracy_score(predictions, y_test, normalize=True))
+    with open(name, 'w') as f:
+        f.write(str(matrix))
 
 
 def construct_lstm(data, hate, tokenizer, modelname, maxlen=500):
