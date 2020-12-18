@@ -1,64 +1,448 @@
 \begin{theindex}
 
   \item {\_\_init\_\_}
-    \subitem {db.DB}, \hyperpage{11}
+    \subitem {db.DB}, \hyperpage{29}
 
   \indexspace
 
-  \item {ai}, \hyperpage{7}
-    \subitem {analyse\_text}, \hyperpage{7}
-    \subitem {validate}, \hyperpage{7}
-  \item {ai.py}, \hyperpage{13}
+  \item {a}
+    \subitem {NLP}, \hyperpage{17}
+  \item {accaracy}
+    \subitem {plot\_confusion\_matrix}, \hyperpage{23}
+  \item {ai}, \hyperpage{9}
+    \subitem {analyse\_ad}, \hyperpage{9}
+    \subitem {analyse\_ad\_lstm}, \hyperpage{9}
+    \subitem {analyse\_text}, \hyperpage{10}
+    \subitem {construct\_lstm}, \hyperpage{10}
+    \subitem {construct\_lstm\_les}, \hyperpage{10}
+    \subitem {construct\_lstm\_tibo}, \hyperpage{10}
+    \subitem {construct\_model}, \hyperpage{11}
+    \subitem {logistic}, \hyperpage{11}
+    \subitem {make\_lstm\_les\_model}, \hyperpage{11}
+    \subitem {make\_lstm\_model}, \hyperpage{11}
+    \subitem {naive\_bayes}, \hyperpage{12}
+    \subitem {parallel\_construct}, \hyperpage{12}
+    \subitem {process\_text}, \hyperpage{12}
+    \subitem {return\_token}, \hyperpage{12}
+  \item {ai.py}, \hyperpage{37}
+  \item {analyse\_ad}
+    \subitem {ai}, \hyperpage{9}
+  \item {analyse\_ad\_lstm}
+    \subitem {ai}, \hyperpage{9}
   \item {analyse\_text}
-    \subitem {ai}, \hyperpage{7}
+    \subitem {ai}, \hyperpage{10}
   \item {analyze}
-    \subitem {server}, \hyperpage{8}
+    \subitem {server}, \hyperpage{24}
   \item {app}
-    \subitem {server}, \hyperpage{9}
+    \subitem {server}, \hyperpage{26}
 
   \indexspace
 
+  \item {b}
+    \subitem {NLP}, \hyperpage{17}
+  \item {basic\_precessing}
+    \subitem {NLP}, \hyperpage{15}
+  \item {basic\_precessing\_char}
+    \subitem {NLP}, \hyperpage{15}
+
+  \indexspace
+
+  \item {c}
+    \subitem {NLP}, \hyperpage{17}
+  \item {char\_boundary}
+    \subitem {NLP}, \hyperpage{15}
+  \item {checker}
+    \subitem {NLP}, \hyperpage{17}
+  \item {conn\_ad}
+    \subitem {db.DB}, \hyperpage{34}
+  \item {conn\_data}
+    \subitem {db.DB}, \hyperpage{34}
+  \item {conn\_extra\_data}
+    \subitem {db.DB}, \hyperpage{34}
   \item {conn\_lexicon}
-    \subitem {db.DB}, \hyperpage{11}
-  \item {conn\_trainings\_data}
-    \subitem {db.DB}, \hyperpage{11}
+    \subitem {db.DB}, \hyperpage{34}
+  \item {conn\_model}
+    \subitem {db.DB}, \hyperpage{35}
+  \item {construct\_lstm}
+    \subitem {ai}, \hyperpage{10}
+  \item {construct\_lstm\_les}
+    \subitem {ai}, \hyperpage{10}
+  \item {construct\_lstm\_tibo}
+    \subitem {ai}, \hyperpage{10}
+  \item {construct\_model}
+    \subitem {ai}, \hyperpage{11}
+  \item {constructing\_model\_in\_db}
+    \subitem {db.DB}, \hyperpage{29}
+  \item {contarction\_am}
+    \subitem {NLP}, \hyperpage{18}
+  \item {contarction\_have}
+    \subitem {NLP}, \hyperpage{18}
+  \item {contarction\_not}
+    \subitem {NLP}, \hyperpage{18}
+  \item {contarction\_will}
+    \subitem {NLP}, \hyperpage{18}
+  \item {create\_adversarial\_db}
+    \subitem {db.DB}, \hyperpage{29}
+  \item {create\_data\_db}
+    \subitem {db.DB}, \hyperpage{29}
+  \item {create\_extra\_db}
+    \subitem {db.DB}, \hyperpage{29}
+  \item {create\_lexicon\_db}
+    \subitem {db.DB}, \hyperpage{30}
+  \item {create\_model\_db}
+    \subitem {db.DB}, \hyperpage{30}
 
   \indexspace
 
-  \item {db}, \hyperpage{8}
-  \item {db.DB}, \hyperpage{11}
-    \subitem {\_\_init\_\_}, \hyperpage{11}
-    \subitem {conn\_lexicon}, \hyperpage{11}
-    \subitem {conn\_trainings\_data}, \hyperpage{11}
-  \item {db.py}, \hyperpage{13}
+  \item {d}
+    \subitem {NLP}, \hyperpage{18}
+  \item {database}
+    \subitem {NLP}, \hyperpage{18}
+    \subitem {server}, \hyperpage{26}
+  \item {db}, \hyperpage{13}
+  \item {db.DB}, \hyperpage{28}
+    \subitem {\_\_init\_\_}, \hyperpage{29}
+    \subitem {conn\_ad}, \hyperpage{34}
+    \subitem {conn\_data}, \hyperpage{34}
+    \subitem {conn\_extra\_data}, \hyperpage{34}
+    \subitem {conn\_lexicon}, \hyperpage{34}
+    \subitem {conn\_model}, \hyperpage{35}
+    \subitem {constructing\_model\_in\_db}, \hyperpage{29}
+    \subitem {create\_adversarial\_db}, \hyperpage{29}
+    \subitem {create\_data\_db}, \hyperpage{29}
+    \subitem {create\_extra\_db}, \hyperpage{29}
+    \subitem {create\_lexicon\_db}, \hyperpage{30}
+    \subitem {create\_model\_db}, \hyperpage{30}
+    \subitem {db\_load\_ad\_hate}, \hyperpage{30}
+    \subitem {db\_load\_ad\_tweet}, \hyperpage{30}
+    \subitem {db\_load\_extra\_hate}, \hyperpage{30}
+    \subitem {db\_load\_extra\_tweet}, \hyperpage{31}
+    \subitem {db\_load\_hate}, \hyperpage{31}
+    \subitem {db\_load\_lexicon}, \hyperpage{31}
+    \subitem {db\_load\_tweet}, \hyperpage{31}
+    \subitem {expired}, \hyperpage{31}
+    \subitem {expires}, \hyperpage{35}
+    \subitem {get\_model\_in\_db}, \hyperpage{32}
+    \subitem {insert\_ad}, \hyperpage{32}
+    \subitem {insert\_data}, \hyperpage{32}
+    \subitem {insert\_extra}, \hyperpage{32}
+    \subitem {insert\_model\_in\_db}, \hyperpage{32}
+    \subitem {insert\_term}, \hyperpage{33}
+    \subitem {insert\_vect\_in\_db}, \hyperpage{33}
+    \subitem {model\_in\_db}, \hyperpage{33}
+    \subitem {refresh\_token}, \hyperpage{33}
+    \subitem {show\_data\_db}, \hyperpage{34}
+    \subitem {show\_lexicon\_db}, \hyperpage{34}
+    \subitem {token}, \hyperpage{35}
+  \item {db.py}, \hyperpage{37}
+  \item {db\_load\_ad\_hate}
+    \subitem {db.DB}, \hyperpage{30}
+  \item {db\_load\_ad\_tweet}
+    \subitem {db.DB}, \hyperpage{30}
+  \item {db\_load\_extra\_hate}
+    \subitem {db.DB}, \hyperpage{30}
+  \item {db\_load\_extra\_tweet}
+    \subitem {db.DB}, \hyperpage{31}
+  \item {db\_load\_hate}
+    \subitem {db.DB}, \hyperpage{31}
+  \item {db\_load\_lexicon}
+    \subitem {db.DB}, \hyperpage{31}
+  \item {db\_load\_tweet}
+    \subitem {db.DB}, \hyperpage{31}
 
   \indexspace
 
+  \item {e}
+    \subitem {NLP}, \hyperpage{18}
+  \item {expired}
+    \subitem {db.DB}, \hyperpage{31}
+  \item {expires}
+    \subitem {db.DB}, \hyperpage{35}
+
+  \indexspace
+
+  \item {f}
+    \subitem {NLP}, \hyperpage{18}
+
+  \indexspace
+
+  \item {g}
+    \subitem {NLP}, \hyperpage{19}
+  \item {get\_model\_in\_db}
+    \subitem {db.DB}, \hyperpage{32}
+  \item {get\_wordnet\_pos}
+    \subitem {NLP}, \hyperpage{15}
+
+  \indexspace
+
+  \item {h}
+    \subitem {NLP}, \hyperpage{19}
+  \item {has\_word}
+    \subitem {NLP}, \hyperpage{15}
+  \item {hate}
+    \subitem {NLP}, \hyperpage{19}
+    \subitem {server}, \hyperpage{26}
+
+  \indexspace
+
+  \item {i}
+    \subitem {NLP}, \hyperpage{19}
+  \item {init}
+    \subitem {server}, \hyperpage{24}
+  \item {initmodel}
+    \subitem {server}, \hyperpage{24}
+  \item {initmodelmedium}
+    \subitem {server}, \hyperpage{24}
+  \item {initmodelsmall}
+    \subitem {server}, \hyperpage{24}
+  \item {insert\_ad}
+    \subitem {db.DB}, \hyperpage{32}
+  \item {insert\_data}
+    \subitem {db.DB}, \hyperpage{32}
+  \item {insert\_extra}
+    \subitem {db.DB}, \hyperpage{32}
+  \item {insert\_model\_in\_db}
+    \subitem {db.DB}, \hyperpage{32}
+  \item {insert\_term}
+    \subitem {db.DB}, \hyperpage{33}
+  \item {insert\_vect\_in\_db}
+    \subitem {db.DB}, \hyperpage{33}
+
+  \indexspace
+
+  \item {j}
+    \subitem {NLP}, \hyperpage{19}
+
+  \indexspace
+
+  \item {k}
+    \subitem {NLP}, \hyperpage{19}
+  \item {known\_words}
+    \subitem {NLP}, \hyperpage{19}
+
+  \indexspace
+
+  \item {lemmanize\_text}
+    \subitem {NLP}, \hyperpage{16}
+  \item {lemmatize}
+    \subitem {NLP}, \hyperpage{16}
+  \item {letter\_l}
+    \subitem {NLP}, \hyperpage{19}
+  \item {logistic}
+    \subitem {ai}, \hyperpage{11}
+
+  \indexspace
+
+  \item {m}
+    \subitem {NLP}, \hyperpage{20}
+  \item {make\_lstm\_les\_model}
+    \subitem {ai}, \hyperpage{11}
+  \item {make\_lstm\_model}
+    \subitem {ai}, \hyperpage{11}
+  \item {maxsize}
+    \subitem {NLP}, \hyperpage{20}
+  \item {mention\_hashtag\_regex}
+    \subitem {NLP}, \hyperpage{20}
   \item {methods}
-    \subitem {server}, \hyperpage{9}
+    \subitem {server}, \hyperpage{26}
+  \item {model\_in\_db}
+    \subitem {db.DB}, \hyperpage{33}
 
   \indexspace
 
-  \item {requirements.txt}, \hyperpage{13}
+  \item {n}
+    \subitem {NLP}, \hyperpage{20}
+  \item {naive\_bayes}
+    \subitem {ai}, \hyperpage{12}
+  \item {NLP}, \hyperpage{13}
+    \subitem {a}, \hyperpage{17}
+    \subitem {b}, \hyperpage{17}
+    \subitem {basic\_precessing}, \hyperpage{15}
+    \subitem {basic\_precessing\_char}, \hyperpage{15}
+    \subitem {c}, \hyperpage{17}
+    \subitem {char\_boundary}, \hyperpage{15}
+    \subitem {checker}, \hyperpage{17}
+    \subitem {contarction\_am}, \hyperpage{18}
+    \subitem {contarction\_have}, \hyperpage{18}
+    \subitem {contarction\_not}, \hyperpage{18}
+    \subitem {contarction\_will}, \hyperpage{18}
+    \subitem {d}, \hyperpage{18}
+    \subitem {database}, \hyperpage{18}
+    \subitem {e}, \hyperpage{18}
+    \subitem {f}, \hyperpage{18}
+    \subitem {g}, \hyperpage{19}
+    \subitem {get\_wordnet\_pos}, \hyperpage{15}
+    \subitem {h}, \hyperpage{19}
+    \subitem {has\_word}, \hyperpage{15}
+    \subitem {hate}, \hyperpage{19}
+    \subitem {i}, \hyperpage{19}
+    \subitem {j}, \hyperpage{19}
+    \subitem {k}, \hyperpage{19}
+    \subitem {known\_words}, \hyperpage{19}
+    \subitem {lemmanize\_text}, \hyperpage{16}
+    \subitem {lemmatize}, \hyperpage{16}
+    \subitem {letter\_l}, \hyperpage{19}
+    \subitem {m}, \hyperpage{20}
+    \subitem {maxsize}, \hyperpage{20}
+    \subitem {mention\_hashtag\_regex}, \hyperpage{20}
+    \subitem {n}, \hyperpage{20}
+    \subitem {o}, \hyperpage{20}
+    \subitem {p}, \hyperpage{20}
+    \subitem {q}, \hyperpage{20}
+    \subitem {r}, \hyperpage{20}
+    \subitem {reg}, \hyperpage{21}
+    \subitem {remove\_repeats}, \hyperpage{16}
+    \subitem {s}, \hyperpage{21}
+    \subitem {spell\_checker}, \hyperpage{16}
+    \subitem {stopwords\_set}, \hyperpage{21}
+    \subitem {t}, \hyperpage{21}
+    \subitem {tag}, \hyperpage{21}
+    \subitem {text\_precessing}, \hyperpage{16}
+    \subitem {text\_precessing\_char}, \hyperpage{17}
+    \subitem {tokenize}, \hyperpage{21}
+    \subitem {u}, \hyperpage{21}
+    \subitem {url\_remove}, \hyperpage{21}
+    \subitem {v}, \hyperpage{22}
+    \subitem {w}, \hyperpage{22}
+    \subitem {wnl}, \hyperpage{22}
+    \subitem {wordsegment}, \hyperpage{17}
+    \subitem {x}, \hyperpage{22}
+    \subitem {y}, \hyperpage{22}
+    \subitem {z}, \hyperpage{22}
+  \item {NLP.CustomTweetTokenizer}, \hyperpage{27}
+    \subitem {tokenize}, \hyperpage{27}
+  \item {NLP.py}, \hyperpage{38}
 
   \indexspace
 
-  \item {server}, \hyperpage{8}
-    \subitem {analyze}, \hyperpage{8}
-    \subitem {app}, \hyperpage{9}
-    \subitem {methods}, \hyperpage{9}
-    \subitem {validate}, \hyperpage{8}
-  \item {server.py}, \hyperpage{13}
+  \item {o}
+    \subitem {NLP}, \hyperpage{20}
 
   \indexspace
 
-  \item {validate}
-    \subitem {ai}, \hyperpage{7}
-    \subitem {server}, \hyperpage{8}
+  \item {p}
+    \subitem {NLP}, \hyperpage{20}
+  \item {parallel\_construct}
+    \subitem {ai}, \hyperpage{12}
+  \item {plot}
+    \subitem {plot\_confusion\_matrix}, \hyperpage{23}
+  \item {plot\_confusion\_matrix}, \hyperpage{23}
+    \subitem {accaracy}, \hyperpage{23}
+    \subitem {plot}, \hyperpage{23}
+  \item {plot\_confusion\_matrix.py}, \hyperpage{39}
+  \item {process}
+    \subitem {server}, \hyperpage{25}
+  \item {process\_text}
+    \subitem {ai}, \hyperpage{12}
 
   \indexspace
 
-  \item {wsgi}, \hyperpage{9}
-  \item {wsgi.py}, \hyperpage{14}
+  \item {q}
+    \subitem {NLP}, \hyperpage{20}
+
+  \indexspace
+
+  \item {r}
+    \subitem {NLP}, \hyperpage{20}
+  \item {refresh\_token}
+    \subitem {db.DB}, \hyperpage{33}
+  \item {reg}
+    \subitem {NLP}, \hyperpage{21}
+  \item {remove\_repeats}
+    \subitem {NLP}, \hyperpage{16}
+  \item {requirements.txt}, \hyperpage{39}
+  \item {return\_token}
+    \subitem {ai}, \hyperpage{12}
+
+  \indexspace
+
+  \item {s}
+    \subitem {NLP}, \hyperpage{21}
+  \item {server}, \hyperpage{23}
+    \subitem {analyze}, \hyperpage{24}
+    \subitem {app}, \hyperpage{26}
+    \subitem {database}, \hyperpage{26}
+    \subitem {hate}, \hyperpage{26}
+    \subitem {init}, \hyperpage{24}
+    \subitem {initmodel}, \hyperpage{24}
+    \subitem {initmodelmedium}, \hyperpage{24}
+    \subitem {initmodelsmall}, \hyperpage{24}
+    \subitem {methods}, \hyperpage{26}
+    \subitem {process}, \hyperpage{25}
+    \subitem {showdata}, \hyperpage{25}
+    \subitem {showhate}, \hyperpage{25}
+    \subitem {statusmodel}, \hyperpage{25}
+    \subitem {tweets}, \hyperpage{26}
+  \item {server.py}, \hyperpage{39}
+  \item {show\_data\_db}
+    \subitem {db.DB}, \hyperpage{34}
+  \item {show\_lexicon\_db}
+    \subitem {db.DB}, \hyperpage{34}
+  \item {showdata}
+    \subitem {server}, \hyperpage{25}
+  \item {showhate}
+    \subitem {server}, \hyperpage{25}
+  \item {spell\_checker}
+    \subitem {NLP}, \hyperpage{16}
+  \item {statusmodel}
+    \subitem {server}, \hyperpage{25}
+  \item {stopwords\_set}
+    \subitem {NLP}, \hyperpage{21}
+
+  \indexspace
+
+  \item {t}
+    \subitem {NLP}, \hyperpage{21}
+  \item {tag}
+    \subitem {NLP}, \hyperpage{21}
+  \item {text\_precessing}
+    \subitem {NLP}, \hyperpage{16}
+  \item {text\_precessing\_char}
+    \subitem {NLP}, \hyperpage{17}
+  \item {token}
+    \subitem {db.DB}, \hyperpage{35}
+  \item {tokenize}
+    \subitem {NLP}, \hyperpage{21}
+    \subitem {NLP.CustomTweetTokenizer}, \hyperpage{27}
+  \item {tweets}
+    \subitem {server}, \hyperpage{26}
+
+  \indexspace
+
+  \item {u}
+    \subitem {NLP}, \hyperpage{21}
+  \item {url\_remove}
+    \subitem {NLP}, \hyperpage{21}
+
+  \indexspace
+
+  \item {v}
+    \subitem {NLP}, \hyperpage{22}
+
+  \indexspace
+
+  \item {w}
+    \subitem {NLP}, \hyperpage{22}
+  \item {wnl}
+    \subitem {NLP}, \hyperpage{22}
+  \item {wordsegment}
+    \subitem {NLP}, \hyperpage{17}
+  \item {wsgi}, \hyperpage{26}
+  \item {wsgi.py}, \hyperpage{40}
+
+  \indexspace
+
+  \item {x}
+    \subitem {NLP}, \hyperpage{22}
+
+  \indexspace
+
+  \item {y}
+    \subitem {NLP}, \hyperpage{22}
+
+  \indexspace
+
+  \item {z}
+    \subitem {NLP}, \hyperpage{22}
 
 \end{theindex}

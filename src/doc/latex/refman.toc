@@ -1,39 +1,162 @@
 \@ifundefined {etoctocstyle}{\let \etoc@startlocaltoc \@gobble \let \etoc@settocdepth \@gobble \let \etoc@depthtag \@gobble \let \etoc@setlocaltop \@gobble }{}
 \contentsline {chapter}{\numberline {1}Namespace Index}{1}{chapter.1}%
 \contentsline {section}{\numberline {1.1}Packages}{1}{section.1.1}%
-\contentsline {chapter}{\numberline {2}Class Index}{3}{chapter.2}%
-\contentsline {section}{\numberline {2.1}Class List}{3}{section.2.1}%
-\contentsline {chapter}{\numberline {3}File Index}{5}{chapter.3}%
-\contentsline {section}{\numberline {3.1}File List}{5}{section.3.1}%
-\contentsline {chapter}{\numberline {4}Namespace Documentation}{7}{chapter.4}%
-\contentsline {section}{\numberline {4.1}ai Namespace Reference}{7}{section.4.1}%
-\contentsline {subsection}{\numberline {4.1.1}Detailed Description}{7}{subsection.4.1.1}%
-\contentsline {subsection}{\numberline {4.1.2}Function Documentation}{7}{subsection.4.1.2}%
-\contentsline {subsubsection}{\numberline {4.1.2.1}analyse\_text()}{7}{subsubsection.4.1.2.1}%
-\contentsline {subsubsection}{\numberline {4.1.2.2}validate()}{7}{subsubsection.4.1.2.2}%
-\contentsline {section}{\numberline {4.2}db Namespace Reference}{8}{section.4.2}%
-\contentsline {subsection}{\numberline {4.2.1}Detailed Description}{8}{subsection.4.2.1}%
-\contentsline {section}{\numberline {4.3}server Namespace Reference}{8}{section.4.3}%
-\contentsline {subsection}{\numberline {4.3.1}Detailed Description}{8}{subsection.4.3.1}%
-\contentsline {subsection}{\numberline {4.3.2}Function Documentation}{8}{subsection.4.3.2}%
-\contentsline {subsubsection}{\numberline {4.3.2.1}analyze()}{8}{subsubsection.4.3.2.1}%
-\contentsline {subsubsection}{\numberline {4.3.2.2}validate()}{8}{subsubsection.4.3.2.2}%
-\contentsline {subsection}{\numberline {4.3.3}Variable Documentation}{9}{subsection.4.3.3}%
-\contentsline {subsubsection}{\numberline {4.3.3.1}app}{9}{subsubsection.4.3.3.1}%
-\contentsline {subsubsection}{\numberline {4.3.3.2}methods}{9}{subsubsection.4.3.3.2}%
-\contentsline {section}{\numberline {4.4}wsgi Namespace Reference}{9}{section.4.4}%
-\contentsline {subsection}{\numberline {4.4.1}Detailed Description}{9}{subsection.4.4.1}%
-\contentsline {chapter}{\numberline {5}Class Documentation}{11}{chapter.5}%
-\contentsline {section}{\numberline {5.1}db.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}DB Class Reference}{11}{section.5.1}%
-\contentsline {subsection}{\numberline {5.1.1}Constructor \& Destructor Documentation}{11}{subsection.5.1.1}%
-\contentsline {subsubsection}{\numberline {5.1.1.1}\_\_init\_\_()}{11}{subsubsection.5.1.1.1}%
-\contentsline {subsection}{\numberline {5.1.2}Member Data Documentation}{11}{subsection.5.1.2}%
-\contentsline {subsubsection}{\numberline {5.1.2.1}conn\_lexicon}{11}{subsubsection.5.1.2.1}%
-\contentsline {subsubsection}{\numberline {5.1.2.2}conn\_trainings\_data}{11}{subsubsection.5.1.2.2}%
-\contentsline {chapter}{\numberline {6}File Documentation}{13}{chapter.6}%
-\contentsline {section}{\numberline {6.1}ai.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}py File Reference}{13}{section.6.1}%
-\contentsline {section}{\numberline {6.2}db.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}py File Reference}{13}{section.6.2}%
-\contentsline {section}{\numberline {6.3}requirements.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}txt File Reference}{13}{section.6.3}%
-\contentsline {section}{\numberline {6.4}server.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}py File Reference}{13}{section.6.4}%
-\contentsline {section}{\numberline {6.5}wsgi.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}py File Reference}{14}{section.6.5}%
-\contentsline {chapter}{Index}{15}{section*.15}%
+\contentsline {chapter}{\numberline {2}Hierarchical Index}{3}{chapter.2}%
+\contentsline {section}{\numberline {2.1}Class Hierarchy}{3}{section.2.1}%
+\contentsline {chapter}{\numberline {3}Class Index}{5}{chapter.3}%
+\contentsline {section}{\numberline {3.1}Class List}{5}{section.3.1}%
+\contentsline {chapter}{\numberline {4}File Index}{7}{chapter.4}%
+\contentsline {section}{\numberline {4.1}File List}{7}{section.4.1}%
+\contentsline {chapter}{\numberline {5}Namespace Documentation}{9}{chapter.5}%
+\contentsline {section}{\numberline {5.1}ai Namespace Reference}{9}{section.5.1}%
+\contentsline {subsection}{\numberline {5.1.1}Detailed Description}{9}{subsection.5.1.1}%
+\contentsline {subsection}{\numberline {5.1.2}Function Documentation}{9}{subsection.5.1.2}%
+\contentsline {subsubsection}{\numberline {5.1.2.1}analyse\_ad()}{9}{subsubsection.5.1.2.1}%
+\contentsline {subsubsection}{\numberline {5.1.2.2}analyse\_ad\_lstm()}{10}{subsubsection.5.1.2.2}%
+\contentsline {subsubsection}{\numberline {5.1.2.3}analyse\_text()}{10}{subsubsection.5.1.2.3}%
+\contentsline {subsubsection}{\numberline {5.1.2.4}construct\_lstm()}{10}{subsubsection.5.1.2.4}%
+\contentsline {subsubsection}{\numberline {5.1.2.5}construct\_lstm\_les()}{10}{subsubsection.5.1.2.5}%
+\contentsline {subsubsection}{\numberline {5.1.2.6}construct\_lstm\_tibo()}{11}{subsubsection.5.1.2.6}%
+\contentsline {subsubsection}{\numberline {5.1.2.7}construct\_model()}{11}{subsubsection.5.1.2.7}%
+\contentsline {subsubsection}{\numberline {5.1.2.8}logistic()}{11}{subsubsection.5.1.2.8}%
+\contentsline {subsubsection}{\numberline {5.1.2.9}make\_lstm\_les\_model()}{11}{subsubsection.5.1.2.9}%
+\contentsline {subsubsection}{\numberline {5.1.2.10}make\_lstm\_model()}{12}{subsubsection.5.1.2.10}%
+\contentsline {subsubsection}{\numberline {5.1.2.11}naive\_bayes()}{12}{subsubsection.5.1.2.11}%
+\contentsline {subsubsection}{\numberline {5.1.2.12}parallel\_construct()}{12}{subsubsection.5.1.2.12}%
+\contentsline {subsubsection}{\numberline {5.1.2.13}process\_text()}{12}{subsubsection.5.1.2.13}%
+\contentsline {subsubsection}{\numberline {5.1.2.14}return\_token()}{13}{subsubsection.5.1.2.14}%
+\contentsline {section}{\numberline {5.2}db Namespace Reference}{13}{section.5.2}%
+\contentsline {subsection}{\numberline {5.2.1}Detailed Description}{13}{subsection.5.2.1}%
+\contentsline {section}{\numberline {5.3}N\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}LP Namespace Reference}{13}{section.5.3}%
+\contentsline {subsection}{\numberline {5.3.1}Detailed Description}{14}{subsection.5.3.1}%
+\contentsline {subsection}{\numberline {5.3.2}Function Documentation}{15}{subsection.5.3.2}%
+\contentsline {subsubsection}{\numberline {5.3.2.1}basic\_precessing()}{15}{subsubsection.5.3.2.1}%
+\contentsline {subsubsection}{\numberline {5.3.2.2}basic\_precessing\_char()}{15}{subsubsection.5.3.2.2}%
+\contentsline {subsubsection}{\numberline {5.3.2.3}char\_boundary()}{15}{subsubsection.5.3.2.3}%
+\contentsline {subsubsection}{\numberline {5.3.2.4}get\_wordnet\_pos()}{15}{subsubsection.5.3.2.4}%
+\contentsline {subsubsection}{\numberline {5.3.2.5}has\_word()}{16}{subsubsection.5.3.2.5}%
+\contentsline {subsubsection}{\numberline {5.3.2.6}lemmanize\_text()}{16}{subsubsection.5.3.2.6}%
+\contentsline {subsubsection}{\numberline {5.3.2.7}lemmatize()}{16}{subsubsection.5.3.2.7}%
+\contentsline {subsubsection}{\numberline {5.3.2.8}remove\_repeats()}{16}{subsubsection.5.3.2.8}%
+\contentsline {subsubsection}{\numberline {5.3.2.9}spell\_checker()}{16}{subsubsection.5.3.2.9}%
+\contentsline {subsubsection}{\numberline {5.3.2.10}text\_precessing()}{17}{subsubsection.5.3.2.10}%
+\contentsline {subsubsection}{\numberline {5.3.2.11}text\_precessing\_char()}{17}{subsubsection.5.3.2.11}%
+\contentsline {subsubsection}{\numberline {5.3.2.12}wordsegment()}{17}{subsubsection.5.3.2.12}%
+\contentsline {subsection}{\numberline {5.3.3}Variable Documentation}{17}{subsection.5.3.3}%
+\contentsline {subsubsection}{\numberline {5.3.3.1}a}{17}{subsubsection.5.3.3.1}%
+\contentsline {subsubsection}{\numberline {5.3.3.2}b}{17}{subsubsection.5.3.3.2}%
+\contentsline {subsubsection}{\numberline {5.3.3.3}c}{17}{subsubsection.5.3.3.3}%
+\contentsline {subsubsection}{\numberline {5.3.3.4}checker}{18}{subsubsection.5.3.3.4}%
+\contentsline {subsubsection}{\numberline {5.3.3.5}contarction\_am}{18}{subsubsection.5.3.3.5}%
+\contentsline {subsubsection}{\numberline {5.3.3.6}contarction\_have}{18}{subsubsection.5.3.3.6}%
+\contentsline {subsubsection}{\numberline {5.3.3.7}contarction\_not}{18}{subsubsection.5.3.3.7}%
+\contentsline {subsubsection}{\numberline {5.3.3.8}contarction\_will}{18}{subsubsection.5.3.3.8}%
+\contentsline {subsubsection}{\numberline {5.3.3.9}d}{18}{subsubsection.5.3.3.9}%
+\contentsline {subsubsection}{\numberline {5.3.3.10}database}{18}{subsubsection.5.3.3.10}%
+\contentsline {subsubsection}{\numberline {5.3.3.11}e}{18}{subsubsection.5.3.3.11}%
+\contentsline {subsubsection}{\numberline {5.3.3.12}f}{19}{subsubsection.5.3.3.12}%
+\contentsline {subsubsection}{\numberline {5.3.3.13}g}{19}{subsubsection.5.3.3.13}%
+\contentsline {subsubsection}{\numberline {5.3.3.14}h}{19}{subsubsection.5.3.3.14}%
+\contentsline {subsubsection}{\numberline {5.3.3.15}hate}{19}{subsubsection.5.3.3.15}%
+\contentsline {subsubsection}{\numberline {5.3.3.16}i}{19}{subsubsection.5.3.3.16}%
+\contentsline {subsubsection}{\numberline {5.3.3.17}j}{19}{subsubsection.5.3.3.17}%
+\contentsline {subsubsection}{\numberline {5.3.3.18}k}{19}{subsubsection.5.3.3.18}%
+\contentsline {subsubsection}{\numberline {5.3.3.19}known\_words}{19}{subsubsection.5.3.3.19}%
+\contentsline {subsubsection}{\numberline {5.3.3.20}letter\_l}{20}{subsubsection.5.3.3.20}%
+\contentsline {subsubsection}{\numberline {5.3.3.21}m}{20}{subsubsection.5.3.3.21}%
+\contentsline {subsubsection}{\numberline {5.3.3.22}maxsize}{20}{subsubsection.5.3.3.22}%
+\contentsline {subsubsection}{\numberline {5.3.3.23}mention\_hashtag\_regex}{20}{subsubsection.5.3.3.23}%
+\contentsline {subsubsection}{\numberline {5.3.3.24}n}{20}{subsubsection.5.3.3.24}%
+\contentsline {subsubsection}{\numberline {5.3.3.25}o}{20}{subsubsection.5.3.3.25}%
+\contentsline {subsubsection}{\numberline {5.3.3.26}p}{20}{subsubsection.5.3.3.26}%
+\contentsline {subsubsection}{\numberline {5.3.3.27}q}{20}{subsubsection.5.3.3.27}%
+\contentsline {subsubsection}{\numberline {5.3.3.28}r}{21}{subsubsection.5.3.3.28}%
+\contentsline {subsubsection}{\numberline {5.3.3.29}reg}{21}{subsubsection.5.3.3.29}%
+\contentsline {subsubsection}{\numberline {5.3.3.30}s}{21}{subsubsection.5.3.3.30}%
+\contentsline {subsubsection}{\numberline {5.3.3.31}stopwords\_set}{21}{subsubsection.5.3.3.31}%
+\contentsline {subsubsection}{\numberline {5.3.3.32}t}{21}{subsubsection.5.3.3.32}%
+\contentsline {subsubsection}{\numberline {5.3.3.33}tag}{21}{subsubsection.5.3.3.33}%
+\contentsline {subsubsection}{\numberline {5.3.3.34}tokenize}{21}{subsubsection.5.3.3.34}%
+\contentsline {subsubsection}{\numberline {5.3.3.35}u}{21}{subsubsection.5.3.3.35}%
+\contentsline {subsubsection}{\numberline {5.3.3.36}url\_remove}{22}{subsubsection.5.3.3.36}%
+\contentsline {subsubsection}{\numberline {5.3.3.37}v}{22}{subsubsection.5.3.3.37}%
+\contentsline {subsubsection}{\numberline {5.3.3.38}w}{22}{subsubsection.5.3.3.38}%
+\contentsline {subsubsection}{\numberline {5.3.3.39}wnl}{22}{subsubsection.5.3.3.39}%
+\contentsline {subsubsection}{\numberline {5.3.3.40}x}{22}{subsubsection.5.3.3.40}%
+\contentsline {subsubsection}{\numberline {5.3.3.41}y}{22}{subsubsection.5.3.3.41}%
+\contentsline {subsubsection}{\numberline {5.3.3.42}z}{22}{subsubsection.5.3.3.42}%
+\contentsline {section}{\numberline {5.4}plot\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}confusion\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}matrix Namespace Reference}{23}{section.5.4}%
+\contentsline {subsection}{\numberline {5.4.1}Function Documentation}{23}{subsection.5.4.1}%
+\contentsline {subsubsection}{\numberline {5.4.1.1}accaracy()}{23}{subsubsection.5.4.1.1}%
+\contentsline {subsubsection}{\numberline {5.4.1.2}plot()}{23}{subsubsection.5.4.1.2}%
+\contentsline {section}{\numberline {5.5}server Namespace Reference}{23}{section.5.5}%
+\contentsline {subsection}{\numberline {5.5.1}Detailed Description}{24}{subsection.5.5.1}%
+\contentsline {subsection}{\numberline {5.5.2}Function Documentation}{24}{subsection.5.5.2}%
+\contentsline {subsubsection}{\numberline {5.5.2.1}analyze()}{24}{subsubsection.5.5.2.1}%
+\contentsline {subsubsection}{\numberline {5.5.2.2}init()}{24}{subsubsection.5.5.2.2}%
+\contentsline {subsubsection}{\numberline {5.5.2.3}initmodel()}{24}{subsubsection.5.5.2.3}%
+\contentsline {subsubsection}{\numberline {5.5.2.4}initmodelmedium()}{24}{subsubsection.5.5.2.4}%
+\contentsline {subsubsection}{\numberline {5.5.2.5}initmodelsmall()}{25}{subsubsection.5.5.2.5}%
+\contentsline {subsubsection}{\numberline {5.5.2.6}process()}{25}{subsubsection.5.5.2.6}%
+\contentsline {subsubsection}{\numberline {5.5.2.7}showdata()}{25}{subsubsection.5.5.2.7}%
+\contentsline {subsubsection}{\numberline {5.5.2.8}showhate()}{25}{subsubsection.5.5.2.8}%
+\contentsline {subsubsection}{\numberline {5.5.2.9}statusmodel()}{25}{subsubsection.5.5.2.9}%
+\contentsline {subsection}{\numberline {5.5.3}Variable Documentation}{26}{subsection.5.5.3}%
+\contentsline {subsubsection}{\numberline {5.5.3.1}app}{26}{subsubsection.5.5.3.1}%
+\contentsline {subsubsection}{\numberline {5.5.3.2}database}{26}{subsubsection.5.5.3.2}%
+\contentsline {subsubsection}{\numberline {5.5.3.3}hate}{26}{subsubsection.5.5.3.3}%
+\contentsline {subsubsection}{\numberline {5.5.3.4}methods}{26}{subsubsection.5.5.3.4}%
+\contentsline {subsubsection}{\numberline {5.5.3.5}tweets}{26}{subsubsection.5.5.3.5}%
+\contentsline {section}{\numberline {5.6}wsgi Namespace Reference}{26}{section.5.6}%
+\contentsline {subsection}{\numberline {5.6.1}Detailed Description}{26}{subsection.5.6.1}%
+\contentsline {chapter}{\numberline {6}Class Documentation}{27}{chapter.6}%
+\contentsline {section}{\numberline {6.1}N\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}L\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}P.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Custom\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Tweet\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Tokenizer Class Reference}{27}{section.6.1}%
+\contentsline {subsection}{\numberline {6.1.1}Member Function Documentation}{27}{subsection.6.1.1}%
+\contentsline {subsubsection}{\numberline {6.1.1.1}tokenize()}{27}{subsubsection.6.1.1.1}%
+\contentsline {section}{\numberline {6.2}db.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}DB Class Reference}{28}{section.6.2}%
+\contentsline {subsection}{\numberline {6.2.1}Detailed Description}{28}{subsection.6.2.1}%
+\contentsline {subsection}{\numberline {6.2.2}Constructor \& Destructor Documentation}{29}{subsection.6.2.2}%
+\contentsline {subsubsection}{\numberline {6.2.2.1}\_\_init\_\_()}{29}{subsubsection.6.2.2.1}%
+\contentsline {subsection}{\numberline {6.2.3}Member Function Documentation}{29}{subsection.6.2.3}%
+\contentsline {subsubsection}{\numberline {6.2.3.1}constructing\_model\_in\_db()}{29}{subsubsection.6.2.3.1}%
+\contentsline {subsubsection}{\numberline {6.2.3.2}create\_adversarial\_db()}{29}{subsubsection.6.2.3.2}%
+\contentsline {subsubsection}{\numberline {6.2.3.3}create\_data\_db()}{29}{subsubsection.6.2.3.3}%
+\contentsline {subsubsection}{\numberline {6.2.3.4}create\_extra\_db()}{30}{subsubsection.6.2.3.4}%
+\contentsline {subsubsection}{\numberline {6.2.3.5}create\_lexicon\_db()}{30}{subsubsection.6.2.3.5}%
+\contentsline {subsubsection}{\numberline {6.2.3.6}create\_model\_db()}{30}{subsubsection.6.2.3.6}%
+\contentsline {subsubsection}{\numberline {6.2.3.7}db\_load\_ad\_hate()}{30}{subsubsection.6.2.3.7}%
+\contentsline {subsubsection}{\numberline {6.2.3.8}db\_load\_ad\_tweet()}{30}{subsubsection.6.2.3.8}%
+\contentsline {subsubsection}{\numberline {6.2.3.9}db\_load\_extra\_hate()}{31}{subsubsection.6.2.3.9}%
+\contentsline {subsubsection}{\numberline {6.2.3.10}db\_load\_extra\_tweet()}{31}{subsubsection.6.2.3.10}%
+\contentsline {subsubsection}{\numberline {6.2.3.11}db\_load\_hate()}{31}{subsubsection.6.2.3.11}%
+\contentsline {subsubsection}{\numberline {6.2.3.12}db\_load\_lexicon()}{31}{subsubsection.6.2.3.12}%
+\contentsline {subsubsection}{\numberline {6.2.3.13}db\_load\_tweet()}{31}{subsubsection.6.2.3.13}%
+\contentsline {subsubsection}{\numberline {6.2.3.14}expired()}{32}{subsubsection.6.2.3.14}%
+\contentsline {subsubsection}{\numberline {6.2.3.15}get\_model\_in\_db()}{32}{subsubsection.6.2.3.15}%
+\contentsline {subsubsection}{\numberline {6.2.3.16}insert\_ad()}{32}{subsubsection.6.2.3.16}%
+\contentsline {subsubsection}{\numberline {6.2.3.17}insert\_data()}{32}{subsubsection.6.2.3.17}%
+\contentsline {subsubsection}{\numberline {6.2.3.18}insert\_extra()}{32}{subsubsection.6.2.3.18}%
+\contentsline {subsubsection}{\numberline {6.2.3.19}insert\_model\_in\_db()}{33}{subsubsection.6.2.3.19}%
+\contentsline {subsubsection}{\numberline {6.2.3.20}insert\_term()}{33}{subsubsection.6.2.3.20}%
+\contentsline {subsubsection}{\numberline {6.2.3.21}insert\_vect\_in\_db()}{33}{subsubsection.6.2.3.21}%
+\contentsline {subsubsection}{\numberline {6.2.3.22}model\_in\_db()}{33}{subsubsection.6.2.3.22}%
+\contentsline {subsubsection}{\numberline {6.2.3.23}refresh\_token()}{34}{subsubsection.6.2.3.23}%
+\contentsline {subsubsection}{\numberline {6.2.3.24}show\_data\_db()}{34}{subsubsection.6.2.3.24}%
+\contentsline {subsubsection}{\numberline {6.2.3.25}show\_lexicon\_db()}{34}{subsubsection.6.2.3.25}%
+\contentsline {subsection}{\numberline {6.2.4}Member Data Documentation}{34}{subsection.6.2.4}%
+\contentsline {subsubsection}{\numberline {6.2.4.1}conn\_ad}{34}{subsubsection.6.2.4.1}%
+\contentsline {subsubsection}{\numberline {6.2.4.2}conn\_data}{34}{subsubsection.6.2.4.2}%
+\contentsline {subsubsection}{\numberline {6.2.4.3}conn\_extra\_data}{34}{subsubsection.6.2.4.3}%
+\contentsline {subsubsection}{\numberline {6.2.4.4}conn\_lexicon}{35}{subsubsection.6.2.4.4}%
+\contentsline {subsubsection}{\numberline {6.2.4.5}conn\_model}{35}{subsubsection.6.2.4.5}%
+\contentsline {subsubsection}{\numberline {6.2.4.6}expires}{35}{subsubsection.6.2.4.6}%
+\contentsline {subsubsection}{\numberline {6.2.4.7}token}{35}{subsubsection.6.2.4.7}%
+\contentsline {chapter}{\numberline {7}File Documentation}{37}{chapter.7}%
+\contentsline {section}{\numberline {7.1}ai.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}py File Reference}{37}{section.7.1}%
+\contentsline {section}{\numberline {7.2}db.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}py File Reference}{37}{section.7.2}%
+\contentsline {section}{\numberline {7.3}N\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}L\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}P.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}py File Reference}{38}{section.7.3}%
+\contentsline {section}{\numberline {7.4}plot\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}confusion\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}matrix.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}py File Reference}{39}{section.7.4}%
+\contentsline {section}{\numberline {7.5}requirements.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}txt File Reference}{39}{section.7.5}%
+\contentsline {section}{\numberline {7.6}server.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}py File Reference}{39}{section.7.6}%
+\contentsline {section}{\numberline {7.7}wsgi.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}py File Reference}{40}{section.7.7}%
+\contentsline {chapter}{Index}{41}{section*.28}%
