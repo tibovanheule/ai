@@ -3,30 +3,176 @@
 \doxysubsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
-def \mbox{\hyperlink{namespaceai_a05132965bfb91440798e43127e195696}{analyse\+\_\+text}} ()
+def \mbox{\hyperlink{namespaceai_aa6f6543a70d901f6436a29a9912570b2}{analyse\+\_\+text}} (text, modelname=\char`\"{}logistic\+\_\+regression\char`\"{})
 \item 
-def \mbox{\hyperlink{namespaceai_a53c06e13d3513a77d9f75ee9f49fd103}{validate}} ()
+def \mbox{\hyperlink{namespaceai_a594f4d63ecaaddecdafc04b0e5302b62}{analyse\+\_\+ad\+\_\+lstm}} (modelname)
+\item 
+def \mbox{\hyperlink{namespaceai_abee49529a8e1ff8d70158dd67a7f8ed8}{analyse\+\_\+ad}} ()
+\item 
+def \mbox{\hyperlink{namespaceai_a95ca1a004925bd23922dde58e53e2300}{process\+\_\+text}} (text)
+\item 
+def \mbox{\hyperlink{namespaceai_aa7f3a4e908df9f1b8080f87cf8174e23}{return\+\_\+token}} (text)
+\item 
+def \mbox{\hyperlink{namespaceai_a16865950022fe1f3e042387f5a3b982e}{construct\+\_\+model}} (data, hate, modelname=\char`\"{}logistic\+\_\+regression\char`\"{})
+\item 
+def \mbox{\hyperlink{namespaceai_ae5de441ddc08ecefa40e89d176cf9d85}{logistic}} (vectorizer, data, hate, modelname)
+\item 
+def \mbox{\hyperlink{namespaceai_a0d6054e88f70d15478db9f677d6fc59d}{parallel\+\_\+construct}} (data, func)
+\item 
+def \mbox{\hyperlink{namespaceai_aa1bedfcc6624f2951596006d702ad6ac}{naive\+\_\+bayes}} (vectorizer, data, hate, modelname)
+\item 
+def \mbox{\hyperlink{namespaceai_a8fc315fe57e1141a646db290d48b5ccd}{construct\+\_\+lstm}} (data, hate, tokenizer, modelname, maxlen=500)
+\item 
+def \mbox{\hyperlink{namespaceai_aaea4174014c800fbda69b0c82a1a3cda}{construct\+\_\+lstm\+\_\+tibo}} (data, hate, modelname)
+\item 
+def \mbox{\hyperlink{namespaceai_ad96cfc63fd45cf1a41f20c875a59afe2}{construct\+\_\+lstm\+\_\+les}} (data, hate, tokenizer, modelname, maxlen=500)
+\item 
+def \mbox{\hyperlink{namespaceai_a86c11bc41bb2352505d5e1de6e4dfcc3}{make\+\_\+lstm\+\_\+model}} (x)
+\item 
+def \mbox{\hyperlink{namespaceai_a8471915d15ea3b853f2a91b1e574a8b8}{make\+\_\+lstm\+\_\+les\+\_\+model}} (x)
 \end{DoxyCompactItemize}
 
 
 \doxysubsection{Detailed Description}
 \begin{DoxyVerb}@package AI
 The Ai module implements the core ai functions
-
-More details....
 \end{DoxyVerb}
  
 
 \doxysubsection{Function Documentation}
-\mbox{\Hypertarget{namespaceai_a05132965bfb91440798e43127e195696}\label{namespaceai_a05132965bfb91440798e43127e195696}} 
+\mbox{\Hypertarget{namespaceai_abee49529a8e1ff8d70158dd67a7f8ed8}\label{namespaceai_abee49529a8e1ff8d70158dd67a7f8ed8}} 
+\index{ai@{ai}!analyse\_ad@{analyse\_ad}}
+\index{analyse\_ad@{analyse\_ad}!ai@{ai}}
+\doxysubsubsection{\texorpdfstring{analyse\_ad()}{analyse\_ad()}}
+{\footnotesize\ttfamily def ai.\+analyse\+\_\+ad (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb} a function to evaluate a new data set and the adversarials dataset with all calssic models
+
+confusion matrix can be made with plot_confusion_matrix
+\end{DoxyVerb}
+ \mbox{\Hypertarget{namespaceai_a594f4d63ecaaddecdafc04b0e5302b62}\label{namespaceai_a594f4d63ecaaddecdafc04b0e5302b62}} 
+\index{ai@{ai}!analyse\_ad\_lstm@{analyse\_ad\_lstm}}
+\index{analyse\_ad\_lstm@{analyse\_ad\_lstm}!ai@{ai}}
+\doxysubsubsection{\texorpdfstring{analyse\_ad\_lstm()}{analyse\_ad\_lstm()}}
+{\footnotesize\ttfamily def ai.\+analyse\+\_\+ad\+\_\+lstm (\begin{DoxyParamCaption}\item[{}]{modelname }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}  a function to evaluate a new data set and the adversarials dataset with all lstm
+
+to generate confusion matrix see plot_confusion_matrix
+\end{DoxyVerb}
+ \mbox{\Hypertarget{namespaceai_aa6f6543a70d901f6436a29a9912570b2}\label{namespaceai_aa6f6543a70d901f6436a29a9912570b2}} 
 \index{ai@{ai}!analyse\_text@{analyse\_text}}
 \index{analyse\_text@{analyse\_text}!ai@{ai}}
 \doxysubsubsection{\texorpdfstring{analyse\_text()}{analyse\_text()}}
-{\footnotesize\ttfamily def ai.\+analyse\+\_\+text (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily def ai.\+analyse\+\_\+text (\begin{DoxyParamCaption}\item[{}]{text,  }\item[{}]{modelname = {\ttfamily \char`\"{}logistic\+\_\+regression\char`\"{}} }\end{DoxyParamCaption})}
 
-\mbox{\Hypertarget{namespaceai_a53c06e13d3513a77d9f75ee9f49fd103}\label{namespaceai_a53c06e13d3513a77d9f75ee9f49fd103}} 
-\index{ai@{ai}!validate@{validate}}
-\index{validate@{validate}!ai@{ai}}
-\doxysubsubsection{\texorpdfstring{validate()}{validate()}}
-{\footnotesize\ttfamily def ai.\+validate (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+\begin{DoxyVerb}  a function to predict a tweet with logistic
+
+used for the webinterface
+\end{DoxyVerb}
+ \mbox{\Hypertarget{namespaceai_a8fc315fe57e1141a646db290d48b5ccd}\label{namespaceai_a8fc315fe57e1141a646db290d48b5ccd}} 
+\index{ai@{ai}!construct\_lstm@{construct\_lstm}}
+\index{construct\_lstm@{construct\_lstm}!ai@{ai}}
+\doxysubsubsection{\texorpdfstring{construct\_lstm()}{construct\_lstm()}}
+{\footnotesize\ttfamily def ai.\+construct\+\_\+lstm (\begin{DoxyParamCaption}\item[{}]{data,  }\item[{}]{hate,  }\item[{}]{tokenizer,  }\item[{}]{modelname,  }\item[{}]{maxlen = {\ttfamily 500} }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb} make a lstm model
+
+based on a online text classification example
+\end{DoxyVerb}
+ \mbox{\Hypertarget{namespaceai_ad96cfc63fd45cf1a41f20c875a59afe2}\label{namespaceai_ad96cfc63fd45cf1a41f20c875a59afe2}} 
+\index{ai@{ai}!construct\_lstm\_les@{construct\_lstm\_les}}
+\index{construct\_lstm\_les@{construct\_lstm\_les}!ai@{ai}}
+\doxysubsubsection{\texorpdfstring{construct\_lstm\_les()}{construct\_lstm\_les()}}
+{\footnotesize\ttfamily def ai.\+construct\+\_\+lstm\+\_\+les (\begin{DoxyParamCaption}\item[{}]{data,  }\item[{}]{hate,  }\item[{}]{tokenizer,  }\item[{}]{modelname,  }\item[{}]{maxlen = {\ttfamily 500} }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb} make a lstm model and train it, save it
+
+based on the excersise of the lesseon
+\end{DoxyVerb}
+ \mbox{\Hypertarget{namespaceai_aaea4174014c800fbda69b0c82a1a3cda}\label{namespaceai_aaea4174014c800fbda69b0c82a1a3cda}} 
+\index{ai@{ai}!construct\_lstm\_tibo@{construct\_lstm\_tibo}}
+\index{construct\_lstm\_tibo@{construct\_lstm\_tibo}!ai@{ai}}
+\doxysubsubsection{\texorpdfstring{construct\_lstm\_tibo()}{construct\_lstm\_tibo()}}
+{\footnotesize\ttfamily def ai.\+construct\+\_\+lstm\+\_\+tibo (\begin{DoxyParamCaption}\item[{}]{data,  }\item[{}]{hate,  }\item[{}]{modelname }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb} make a lstm model
+
+based on https://www.youtube.com/watch?v=j7EB7yeySDw
+\end{DoxyVerb}
+ \mbox{\Hypertarget{namespaceai_a16865950022fe1f3e042387f5a3b982e}\label{namespaceai_a16865950022fe1f3e042387f5a3b982e}} 
+\index{ai@{ai}!construct\_model@{construct\_model}}
+\index{construct\_model@{construct\_model}!ai@{ai}}
+\doxysubsubsection{\texorpdfstring{construct\_model()}{construct\_model()}}
+{\footnotesize\ttfamily def ai.\+construct\+\_\+model (\begin{DoxyParamCaption}\item[{}]{data,  }\item[{}]{hate,  }\item[{}]{modelname = {\ttfamily \char`\"{}logistic\+\_\+regression\char`\"{}} }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb} a function to choose the model to build when a web requets comes in
+
+for flask server
+\end{DoxyVerb}
+ \mbox{\Hypertarget{namespaceai_ae5de441ddc08ecefa40e89d176cf9d85}\label{namespaceai_ae5de441ddc08ecefa40e89d176cf9d85}} 
+\index{ai@{ai}!logistic@{logistic}}
+\index{logistic@{logistic}!ai@{ai}}
+\doxysubsubsection{\texorpdfstring{logistic()}{logistic()}}
+{\footnotesize\ttfamily def ai.\+logistic (\begin{DoxyParamCaption}\item[{}]{vectorizer,  }\item[{}]{data,  }\item[{}]{hate,  }\item[{}]{modelname }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb} make a logistic model
+
+basedon original repo
+\end{DoxyVerb}
+ \mbox{\Hypertarget{namespaceai_a8471915d15ea3b853f2a91b1e574a8b8}\label{namespaceai_a8471915d15ea3b853f2a91b1e574a8b8}} 
+\index{ai@{ai}!make\_lstm\_les\_model@{make\_lstm\_les\_model}}
+\index{make\_lstm\_les\_model@{make\_lstm\_les\_model}!ai@{ai}}
+\doxysubsubsection{\texorpdfstring{make\_lstm\_les\_model()}{make\_lstm\_les\_model()}}
+{\footnotesize\ttfamily def ai.\+make\+\_\+lstm\+\_\+les\+\_\+model (\begin{DoxyParamCaption}\item[{}]{x }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb} make a lstm model
+
+based on the excersise of the lesseon
+\end{DoxyVerb}
+ \mbox{\Hypertarget{namespaceai_a86c11bc41bb2352505d5e1de6e4dfcc3}\label{namespaceai_a86c11bc41bb2352505d5e1de6e4dfcc3}} 
+\index{ai@{ai}!make\_lstm\_model@{make\_lstm\_model}}
+\index{make\_lstm\_model@{make\_lstm\_model}!ai@{ai}}
+\doxysubsubsection{\texorpdfstring{make\_lstm\_model()}{make\_lstm\_model()}}
+{\footnotesize\ttfamily def ai.\+make\+\_\+lstm\+\_\+model (\begin{DoxyParamCaption}\item[{}]{x }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb} make a lstm model
+
+based on the an online lstm text classification example
+\end{DoxyVerb}
+ \mbox{\Hypertarget{namespaceai_aa1bedfcc6624f2951596006d702ad6ac}\label{namespaceai_aa1bedfcc6624f2951596006d702ad6ac}} 
+\index{ai@{ai}!naive\_bayes@{naive\_bayes}}
+\index{naive\_bayes@{naive\_bayes}!ai@{ai}}
+\doxysubsubsection{\texorpdfstring{naive\_bayes()}{naive\_bayes()}}
+{\footnotesize\ttfamily def ai.\+naive\+\_\+bayes (\begin{DoxyParamCaption}\item[{}]{vectorizer,  }\item[{}]{data,  }\item[{}]{hate,  }\item[{}]{modelname }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb} make a naive bayes model
+
+based on the sklearn docs
+\end{DoxyVerb}
+ \mbox{\Hypertarget{namespaceai_a0d6054e88f70d15478db9f677d6fc59d}\label{namespaceai_a0d6054e88f70d15478db9f677d6fc59d}} 
+\index{ai@{ai}!parallel\_construct@{parallel\_construct}}
+\index{parallel\_construct@{parallel\_construct}!ai@{ai}}
+\doxysubsubsection{\texorpdfstring{parallel\_construct()}{parallel\_construct()}}
+{\footnotesize\ttfamily def ai.\+parallel\+\_\+construct (\begin{DoxyParamCaption}\item[{}]{data,  }\item[{}]{func }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb} a function to transform sequences in parallel
+
+based on https://github.com/rafaelvalero/ParallelTextProcessing
+\end{DoxyVerb}
+ \mbox{\Hypertarget{namespaceai_a95ca1a004925bd23922dde58e53e2300}\label{namespaceai_a95ca1a004925bd23922dde58e53e2300}} 
+\index{ai@{ai}!process\_text@{process\_text}}
+\index{process\_text@{process\_text}!ai@{ai}}
+\doxysubsubsection{\texorpdfstring{process\_text()}{process\_text()}}
+{\footnotesize\ttfamily def ai.\+process\+\_\+text (\begin{DoxyParamCaption}\item[{}]{text }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb} return just the text preprocessing
+
+For debugging
+\end{DoxyVerb}
+ \mbox{\Hypertarget{namespaceai_aa7f3a4e908df9f1b8080f87cf8174e23}\label{namespaceai_aa7f3a4e908df9f1b8080f87cf8174e23}} 
+\index{ai@{ai}!return\_token@{return\_token}}
+\index{return\_token@{return\_token}!ai@{ai}}
+\doxysubsubsection{\texorpdfstring{return\_token()}{return\_token()}}
+{\footnotesize\ttfamily def ai.\+return\+\_\+token (\begin{DoxyParamCaption}\item[{}]{text }\end{DoxyParamCaption})}
 

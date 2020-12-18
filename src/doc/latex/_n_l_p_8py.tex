@@ -1,0 +1,126 @@
+\hypertarget{_n_l_p_8py}{}\doxysection{N\+L\+P.\+py File Reference}
+\label{_n_l_p_8py}\index{NLP.py@{NLP.py}}
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{class_n_l_p_1_1_custom_tweet_tokenizer}{N\+L\+P.\+Custom\+Tweet\+Tokenizer}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Namespaces}
+\begin{DoxyCompactItemize}
+\item 
+ \mbox{\hyperlink{namespace_n_l_p}{N\+LP}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+def \mbox{\hyperlink{namespace_n_l_p_a92f5e01a64787f53f92de14ebc710309}{N\+L\+P.\+lemmatize}} (token, pos)
+\item 
+def \mbox{\hyperlink{namespace_n_l_p_a2cd2be3fc26bf5f20c55c62842868d5b}{N\+L\+P.\+wordsegment}} (token)
+\item 
+def \mbox{\hyperlink{namespace_n_l_p_aa72e6bd2a45ddbf5c0d605a3895b0c52}{N\+L\+P.\+spell\+\_\+checker}} (token)
+\item 
+def \mbox{\hyperlink{namespace_n_l_p_a8458851d846b447a7741394fdbdcb839}{N\+L\+P.\+text\+\_\+precessing}} (text)
+\item 
+def \mbox{\hyperlink{namespace_n_l_p_aaa70bf1fdbed60da75f919c903cb9448}{N\+L\+P.\+basic\+\_\+precessing}} (text)
+\item 
+def \mbox{\hyperlink{namespace_n_l_p_a322774b231a49580ecc36d5f2dffc85d}{N\+L\+P.\+basic\+\_\+precessing\+\_\+char}} (text)
+\item 
+def \mbox{\hyperlink{namespace_n_l_p_ad78b666919ea74e1c94b256a27684326}{N\+L\+P.\+text\+\_\+precessing\+\_\+char}} (text)
+\item 
+def \mbox{\hyperlink{namespace_n_l_p_a20552e82f531819a5b86cb8e0f2aff95}{N\+L\+P.\+remove\+\_\+repeats}} (word)
+\item 
+def \mbox{\hyperlink{namespace_n_l_p_a749077f6035de4f0993dea23031338e2}{N\+L\+P.\+get\+\_\+wordnet\+\_\+pos}} (treebank\+\_\+tag)
+\item 
+def \mbox{\hyperlink{namespace_n_l_p_a352926a49482a02a9376db62db2f86a1}{N\+L\+P.\+char\+\_\+boundary}} (tokens)
+\item 
+def \mbox{\hyperlink{namespace_n_l_p_a5f435e449aa09448bdd876865f61a730}{N\+L\+P.\+has\+\_\+word}} (word, voca)
+\item 
+def \mbox{\hyperlink{namespace_n_l_p_a829f3f7d847f1075997b96e67354b9c9}{N\+L\+P.\+lemmanize\+\_\+text}} (tokens)
+\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{namespace_n_l_p_aab3132be635be87942b0c6909ceaf957}{N\+L\+P.\+reg}} = re.\+compile(r\textquotesingle{}(.)\textbackslash{}1\{2,\}\textquotesingle{})
+\item 
+\mbox{\hyperlink{namespace_n_l_p_a2f79d86e5e00cb61c4eae51926aaa823}{N\+L\+P.\+mention\+\_\+hashtag\+\_\+regex}} = re.\+compile(r\textquotesingle{}(\mbox{[}$^\wedge$\textbackslash{}w\mbox{]}$\vert$$^\wedge$)@\mbox{[}\textbackslash{}w\textbackslash{}-\/\mbox{]}+$\vert$$^\wedge$\mbox{[}\textbackslash{}s\mbox{]}\#(\mbox{[}$^\wedge$\textbackslash{}s\mbox{]})+\textquotesingle{})
+\item 
+\mbox{\hyperlink{namespace_n_l_p_a97c94dba61265dba7f9b5a04ca839151}{N\+L\+P.\+url\+\_\+remove}}
+\item 
+\mbox{\hyperlink{namespace_n_l_p_a490c089e4593aaa13569607524868e6e}{N\+L\+P.\+contarction\+\_\+not}} = re.\+compile(r\textquotesingle{}n\textbackslash{}\textquotesingle{}t\textquotesingle{})
+\item 
+\mbox{\hyperlink{namespace_n_l_p_a4f756ac7d5fd3f8995735c605ea0624a}{N\+L\+P.\+contarction\+\_\+am}} = re.\+compile(r\textquotesingle{}\textbackslash{}\textquotesingle{}m\textquotesingle{})
+\item 
+\mbox{\hyperlink{namespace_n_l_p_aa66bbb43f8154f165ca6c279bdeb2546}{N\+L\+P.\+contarction\+\_\+have}} = re.\+compile(r\textquotesingle{}\textbackslash{}\textquotesingle{}ve\textquotesingle{})
+\item 
+\mbox{\hyperlink{namespace_n_l_p_a39873b0bfbdedcc9071b88a09828e646}{N\+L\+P.\+contarction\+\_\+will}} = re.\+compile(r\textquotesingle{}\textbackslash{}\textquotesingle{}ll\textquotesingle{})
+\item 
+\mbox{\hyperlink{namespace_n_l_p_a849d7c184098806239ec634392b6c91d}{N\+L\+P.\+a}} = re.\+compile(r\textquotesingle{}(?\+:\textbackslash{}b(?\+:@$\vert$/-\/\textbackslash{}\textbackslash{}$\vert$\textbackslash{}$^\wedge$$\vert$/\textbackslash{}\textbackslash{}))\textquotesingle{})
+\item 
+\mbox{\hyperlink{namespace_n_l_p_aa471c8cb5832ff6165e2e32b72870a0d}{N\+L\+P.\+b}} = re.\+compile(r\textquotesingle{}(?\+:\textbackslash{}b(?\+:\textbackslash{}$\vert$\+:$\vert$P$>$$\vert$ß))\textquotesingle{})
+\item 
+\mbox{\hyperlink{namespace_n_l_p_a23072a0dddb2389e55bdc3b5cfdc59fe}{N\+L\+P.\+c}} = re.\+compile(r\textquotesingle{}(?\+:\textbackslash{}b\mbox{[}©¢$<$\textbackslash{}\mbox{[}(\{\mbox{]})\textquotesingle{})
+\item 
+\mbox{\hyperlink{namespace_n_l_p_a887ecdde0a549cbf08669ee3ce8d0379}{N\+L\+P.\+d}} = re.\+compile(r\textquotesingle{}(?\+:\textbackslash{}b(?\+:\textbackslash{})$\vert$\textbackslash{}$\vert$\textbackslash{})$\vert$\textbackslash{}\mbox{[}\textbackslash{})$\vert$\textbackslash{}?$\vert$\textbackslash{}$\vert$$>$\textbackslash{}$\vert$o))\textquotesingle{})
+\item 
+\mbox{\hyperlink{namespace_n_l_p_aacfaed9629a25e12092efc47000a49e1}{N\+L\+P.\+e}} = re.\+compile(r\textquotesingle{}(?\+:\textbackslash{}b(?\+:\&$\vert$€$\vert$\textbackslash{}\mbox{[}-\/))\textquotesingle{})
+\item 
+\mbox{\hyperlink{namespace_n_l_p_a4bb762579df26b01339dd9cb6085de03}{N\+L\+P.\+f}} = re.\+compile(r\textquotesingle{}(?\+:\textbackslash{}b(?\+:\textbackslash{}$\vert$=$\vert$/=$\vert$ph$\vert$ƒ$\vert$\textbackslash{}$\vert$\#))\textquotesingle{})
+\item 
+\mbox{\hyperlink{namespace_n_l_p_a3106745afeadf7f3ea6cdf219f16bcac}{N\+L\+P.\+g}} = re.\+compile(r\textquotesingle{}(?\+:\textbackslash{}b(?\+:\&$\vert$C-\/$\vert$\textbackslash{}(\+\_\+\textbackslash{}+))\textquotesingle{})
+\item 
+\mbox{\hyperlink{namespace_n_l_p_a099b181a4f95a6e01554a6a4533ea7dd}{N\+L\+P.\+h}} = re.\+compile(r\textquotesingle{}(?\+:\textbackslash{}b(?\+:\#$\vert$\}\{$\vert$\textbackslash{}$\vert$-\/\textbackslash{}$\vert$$\vert$\textbackslash{}\mbox{]}-\/\textbackslash{}\mbox{[}\textbackslash{}$\vert$\textbackslash{}\mbox{[}-\/\textbackslash{}\mbox{]}$\vert$\textbackslash{}(-\/\textbackslash{})$\vert$\textbackslash{})-\/\textbackslash{}($\vert$/-\//))\textquotesingle{})
+\item 
+\mbox{\hyperlink{namespace_n_l_p_ab0bf830f304586d62252e44e8598853f}{N\+L\+P.\+i}} = re.\+compile(r\textquotesingle{}(?\+:\textbackslash{}b(?\+:!$\vert$\textbackslash{}$\vert$$\vert$\textbackslash{}\mbox{]}$\vert$¡))\textquotesingle{})
+\item 
+\mbox{\hyperlink{namespace_n_l_p_a61c5ae9f0b8d11f521da962e4b2252d1}{N\+L\+P.\+j}} = re.\+compile(r\textquotesingle{}(?\+:\textbackslash{}b(?\+:¿$\vert$\+\_\+\textbackslash{}$\vert$$\vert$\+\_\+/$\vert$$<$/$\vert$\textbackslash{}(/))\textquotesingle{})
+\item 
+\mbox{\hyperlink{namespace_n_l_p_ae71d589f159f189727a468bb7dcd6fd2}{N\+L\+P.\+k}} = re.\+compile(r\textquotesingle{}(?\+:\textbackslash{}b(?\+:\textbackslash{}$\vert$$<$$\vert$\textbackslash{}$\vert$\textbackslash{}\{$\vert$\textbackslash{}$\vert$\textbackslash{}())\textquotesingle{})
+\item 
+\mbox{\hyperlink{namespace_n_l_p_ab01802db4bf6f522cdd4a1c65cd6bccd}{N\+L\+P.\+letter\+\_\+l}} = re.\+compile(r\textquotesingle{}(?\+:\textbackslash{}b(?\+:\textbackslash{}$\vert$$\vert$£$\vert$\textbackslash{}$\vert$\+\_\+$\vert$¬))\textquotesingle{})
+\item 
+\mbox{\hyperlink{namespace_n_l_p_ad60517be29a9e23527964d848eac3ec9}{N\+L\+P.\+m}} = re.\+compile(r\textquotesingle{}(?\+:\textbackslash{}b(?\+:\textbackslash{}$\vert$v\textbackslash{}$\vert$$\vert$\textbackslash{}$\vert$\textbackslash{}\textbackslash{}/\textbackslash{}$\vert$$\vert$/\textbackslash{}\textbackslash{}/\textbackslash{}\textbackslash{}$\vert$\textbackslash{}(v\textbackslash{})$\vert$/\textbackslash{}$\vert$\textbackslash{}\textbackslash{}$\vert$//\textbackslash{}.$\vert$\textbackslash{}$^\wedge$\textbackslash{}$^\wedge$))\textquotesingle{})
+\item 
+\mbox{\hyperlink{namespace_n_l_p_a498f248038f1a067d7d26bbea0c7ccb6}{N\+L\+P.\+n}} = re.\+compile(r\textquotesingle{}(?\+:\textbackslash{}b(?\+:\textbackslash{}$\vert$\textbackslash{}\textbackslash{}\textbackslash{}$\vert$$\vert$/\textbackslash{}\textbackslash{}/$\vert$\textbackslash{}\mbox{[}\textbackslash{}\textbackslash{}\textbackslash{}\mbox{]}$\vert$$<$\textbackslash{}\textbackslash{}$>$$\vert$/V$\vert$\textbackslash{}$^\wedge$/))\textquotesingle{})
+\item 
+\mbox{\hyperlink{namespace_n_l_p_ac07e6f2b2b831a368d3af88772a5ada6}{N\+L\+P.\+o}} = re.\+compile(r\textquotesingle{}(?\+:\textbackslash{}b(?\+:\textbackslash{}(\textbackslash{})$\vert$\textbackslash{}\mbox{[}\textbackslash{}\mbox{]}$\vert$°))\textquotesingle{})
+\item 
+\mbox{\hyperlink{namespace_n_l_p_ae16a6ed80c0672d07244b0b751f8007d}{N\+L\+P.\+p}} = re.\+compile(r\textquotesingle{}(?\+:\textbackslash{}b(?\+:\textbackslash{}$\vert$\textbackslash{}$\ast$$\vert$¶$\vert$\textbackslash{}$\vert$o$\vert$\textbackslash{}$\vert$°$\vert$\textbackslash{}$\vert$\textbackslash{}\char`\"{}$\vert$\textbackslash{}$\vert$$>$$\vert$\textbackslash{}$\vert$\textbackslash{}$^\wedge$\textbackslash{}(o\textbackslash{})$\vert$\textbackslash{}$\vert$\textbackslash{}$^\wedge$\textbackslash{}(\textbackslash{})))\textquotesingle{})
+\item 
+\mbox{\hyperlink{namespace_n_l_p_a411c3dfb870e564357905f0e25bffa84}{N\+L\+P.\+q}} = re.\+compile(r\textquotesingle{}(?\+:\textbackslash{}b(?\+:\textbackslash{}(\textbackslash{})\+\_\+$\vert$\textbackslash{}(\+\_\+,\textbackslash{})$\vert$$<$\textbackslash{}$\vert$))\textquotesingle{})
+\item 
+\mbox{\hyperlink{namespace_n_l_p_aa4800920667d62648af100325d8ee740}{N\+L\+P.\+r}} = re.\+compile(r\textquotesingle{}(?\+:\textbackslash{}b(?\+:\textbackslash{}$\vert$\textbackslash{}$^\wedge$$\vert$\textbackslash{}$\vert$\textbackslash{}?$\vert$®))\textquotesingle{})
+\item 
+\mbox{\hyperlink{namespace_n_l_p_acd15904606901b4aae268dfff1d66fb1}{N\+L\+P.\+s}} = re.\+compile(r\textquotesingle{}(?\+:\textbackslash{}b(?\+:\textbackslash{}\$$\vert$§))\textquotesingle{})
+\item 
+\mbox{\hyperlink{namespace_n_l_p_a5c0e05291837d66a595840a63c37cb9c}{N\+L\+P.\+t}} = re.\+compile(r\textquotesingle{}(?\+:\textbackslash{}b(?\+:\textbackslash{}+$\vert$-\/\textbackslash{}$\vert$-\/$\vert$†$\vert$\textbackslash{}\textquotesingle{}\textbackslash{}\mbox{[}\textbackslash{}\mbox{]}\textbackslash{}\textquotesingle{}))\textquotesingle{})
+\item 
+\mbox{\hyperlink{namespace_n_l_p_abe9e3a9c11f37b8f0d69bc06820ec422}{N\+L\+P.\+u}} = re.\+compile(r\textquotesingle{}(?\+:\textbackslash{}b(?\+:\textbackslash{}$\vert$\+\_\+\textbackslash{}$\vert$$\vert$\textbackslash{}(\+\_\+\textbackslash{})))\textquotesingle{})
+\item 
+\mbox{\hyperlink{namespace_n_l_p_a4fc425c8a6c19381d6e7b5cba91687a5}{N\+L\+P.\+v}} = re.\+compile(r\textquotesingle{}(?\+:\textbackslash{}b(?\+:\textbackslash{}\textbackslash{}/$\vert$\textbackslash{}$^\wedge$))\textquotesingle{})
+\item 
+\mbox{\hyperlink{namespace_n_l_p_adbb35affdc76896711508d30b1d0670f}{N\+L\+P.\+w}} = re.\+compile(r\textquotesingle{}(?\+:\textbackslash{}b(?\+:VV$\vert$\textbackslash{}\textbackslash{}/\textbackslash{}\textbackslash{}/$\vert$\textbackslash{}\textbackslash{}\textbackslash{}\textbackslash{}\textbackslash{}\textquotesingle{}$\vert$\textbackslash{}\textquotesingle{}//$\vert$\textbackslash{}\textbackslash{}\textbackslash{}$\vert$/$\vert$\textbackslash{}\textbackslash{}\textbackslash{}$^\wedge$/))\textquotesingle{})
+\item 
+\mbox{\hyperlink{namespace_n_l_p_a1cec1a4bbdade6827f4fd122c36e6cb6}{N\+L\+P.\+x}} = re.\+compile(r\textquotesingle{}(?\+:\textbackslash{}b(?\+:$>$$<$$\vert$\textbackslash{})\textbackslash{}($\vert$\%))\textquotesingle{})
+\item 
+\mbox{\hyperlink{namespace_n_l_p_affc9920846b31ce244ee8206b643ec75}{N\+L\+P.\+y}} = re.\+compile(r\textquotesingle{}(?\+:\textbackslash{}b(?\+:¥$\vert$\textbackslash{}\textquotesingle{}/))\textquotesingle{})
+\item 
+\mbox{\hyperlink{namespace_n_l_p_a3b12b4d691869c9c46cd2f6c0759a557}{N\+L\+P.\+z}} = re.\+compile(r\textquotesingle{}(?\+:\textbackslash{}b(?\+:$\sim$/\+\_\+$\vert$-\//\+\_\+$\vert$$>$\+\_\+))\textquotesingle{})
+\item 
+\mbox{\hyperlink{namespace_n_l_p_ac044b7ca591dcdb1847e9a4ab788b53c}{N\+L\+P.\+checker}} = Spell\+Checker()
+\item 
+\mbox{\hyperlink{namespace_n_l_p_ad90ce9903a7c5fd93f3ef819549a1864}{N\+L\+P.\+wnl}} = Word\+Net\+Lemmatizer()
+\item 
+\mbox{\hyperlink{namespace_n_l_p_a5079c08c563b43b7c1e8855bc593a6f9}{N\+L\+P.\+tag}} = nltk.\+pos\+\_\+tag
+\item 
+\mbox{\hyperlink{namespace_n_l_p_a93ec2f76af279800e06b05b07aebd3a1}{N\+L\+P.\+stopwords\+\_\+set}} = stopwords.\+words(\char`\"{}english\char`\"{})
+\item 
+\mbox{\hyperlink{namespace_n_l_p_a39d670825a284ee4574da058c5bcc536}{N\+L\+P.\+known\+\_\+words}} = set(words.\+words())
+\item 
+\mbox{\hyperlink{namespace_n_l_p_a5494deedd3c2f980bf0259a17723f3c6}{N\+L\+P.\+database}} = DB()
+\item 
+dictionary \mbox{\hyperlink{namespace_n_l_p_ad867a9060167d530c77d7672f47805ba}{N\+L\+P.\+hate}} = \{i\mbox{[}0\mbox{]} for i in database.\+db\+\_\+load\+\_\+lexicon()\}
+\item 
+\mbox{\hyperlink{namespace_n_l_p_ac23be94f51ee07a31dc4c13a5aef0454}{N\+L\+P.\+maxsize}}
+\item 
+\mbox{\hyperlink{namespace_n_l_p_a85f6a4cd50a8f98c638d1fc97b76087d}{N\+L\+P.\+tokenize}} = Custom\+Tweet\+Tokenizer().tokenize
+\end{DoxyCompactItemize}

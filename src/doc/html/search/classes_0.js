@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['db_17',['DB',['../classdb_1_1_d_b.html',1,'db']]]
+  ['customtweettokenizer_129',['CustomTweetTokenizer',['../class_n_l_p_1_1_custom_tweet_tokenizer.html',1,'NLP']]]
 ];

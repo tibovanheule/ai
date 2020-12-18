@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['requirements_2etxt_24',['requirements.txt',['../requirements_8txt.html',1,'']]]
+  ['nlp_2epy_139',['NLP.py',['../_n_l_p_8py.html',1,'']]]
 ];

@@ -5,12 +5,32 @@
 \item 
 def \mbox{\hyperlink{namespaceserver_acae283d73517f2219a6f3ade71efdec8}{analyze}} ()
 \item 
-def \mbox{\hyperlink{namespaceserver_a14636d65f29da0368a670ce4417081a1}{validate}} ()
+def \mbox{\hyperlink{namespaceserver_a2d3627e8f426be841e8728a86faf042b}{process}} ()
+\item 
+def \mbox{\hyperlink{namespaceserver_a4cf9e8075e35e86337a328cf7a23cb22}{init}} ()
+\item 
+def \mbox{\hyperlink{namespaceserver_af5bde7c868c1478fc2b4cc4554af291c}{showdata}} ()
+\item 
+def \mbox{\hyperlink{namespaceserver_aeca65dbcd42a1f84663d76a2dc53ba10}{showhate}} ()
+\item 
+def \mbox{\hyperlink{namespaceserver_a31483d2d3055ebb4ffcf2d31890632db}{initmodel}} ()
+\item 
+def \mbox{\hyperlink{namespaceserver_aacca7758f31158243ddd41719b1e5ef7}{initmodelsmall}} ()
+\item 
+def \mbox{\hyperlink{namespaceserver_aa73c1921dd330574fc495af382316d4d}{initmodelmedium}} ()
+\item 
+def \mbox{\hyperlink{namespaceserver_aca3c8667177f6a3164aeb4cdf62c5aab}{statusmodel}} ()
 \end{DoxyCompactItemize}
 \doxysubsection*{Variables}
 \begin{DoxyCompactItemize}
 \item 
 \mbox{\hyperlink{namespaceserver_ad81539608721e4b8ffad6e7bb45dd34b}{app}} = Flask(\+\_\+\+\_\+name\+\_\+\+\_\+)
+\item 
+\mbox{\hyperlink{namespaceserver_ae038cb1fed2c929f9d4b7282967bcce1}{database}} = \mbox{\hyperlink{classdb_1_1_d_b}{DB}}()
+\item 
+list \mbox{\hyperlink{namespaceserver_a066585fc917f59cd029079289dd0509c}{tweets}} = \mbox{[}i\mbox{[}0\mbox{]} for i in database.\+db\+\_\+load\+\_\+tweet()\mbox{]}
+\item 
+list \mbox{\hyperlink{namespaceserver_a81147b1db920a0591af08177e696749b}{hate}} = \mbox{[}i\mbox{[}0\mbox{]} for i in database.\+db\+\_\+load\+\_\+hate()\mbox{]}
 \item 
 \mbox{\hyperlink{namespaceserver_a26c653098c4b10df9e71ee2da680daee}{methods}}
 \end{DoxyCompactItemize}
@@ -31,13 +51,85 @@ More details.
 \doxysubsubsection{\texorpdfstring{analyze()}{analyze()}}
 {\footnotesize\ttfamily def server.\+analyze (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
 
-\mbox{\Hypertarget{namespaceserver_a14636d65f29da0368a670ce4417081a1}\label{namespaceserver_a14636d65f29da0368a670ce4417081a1}} 
-\index{server@{server}!validate@{validate}}
-\index{validate@{validate}!server@{server}}
-\doxysubsubsection{\texorpdfstring{validate()}{validate()}}
-{\footnotesize\ttfamily def server.\+validate (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+\begin{DoxyVerb}  analyse a tweet using logistic word model
+\end{DoxyVerb}
+ \mbox{\Hypertarget{namespaceserver_a4cf9e8075e35e86337a328cf7a23cb22}\label{namespaceserver_a4cf9e8075e35e86337a328cf7a23cb22}} 
+\index{server@{server}!init@{init}}
+\index{init@{init}!server@{server}}
+\doxysubsubsection{\texorpdfstring{init()}{init()}}
+{\footnotesize\ttfamily def server.\+init (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
 
+\begin{DoxyVerb}  init the server and program
 
+download nesseary files for nlp
+\end{DoxyVerb}
+ \mbox{\Hypertarget{namespaceserver_a31483d2d3055ebb4ffcf2d31890632db}\label{namespaceserver_a31483d2d3055ebb4ffcf2d31890632db}} 
+\index{server@{server}!initmodel@{initmodel}}
+\index{initmodel@{initmodel}!server@{server}}
+\doxysubsubsection{\texorpdfstring{initmodel()}{initmodel()}}
+{\footnotesize\ttfamily def server.\+initmodel (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}  init a model
+
+modelname is given by the url parameter "modelname"
+\end{DoxyVerb}
+ \mbox{\Hypertarget{namespaceserver_aa73c1921dd330574fc495af382316d4d}\label{namespaceserver_aa73c1921dd330574fc495af382316d4d}} 
+\index{server@{server}!initmodelmedium@{initmodelmedium}}
+\index{initmodelmedium@{initmodelmedium}!server@{server}}
+\doxysubsubsection{\texorpdfstring{initmodelmedium()}{initmodelmedium()}}
+{\footnotesize\ttfamily def server.\+initmodelmedium (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}  init a model but with only a 1000 tweets
+
+modelname is given by the url parameter "modelname"
+for debugging
+\end{DoxyVerb}
+ \mbox{\Hypertarget{namespaceserver_aacca7758f31158243ddd41719b1e5ef7}\label{namespaceserver_aacca7758f31158243ddd41719b1e5ef7}} 
+\index{server@{server}!initmodelsmall@{initmodelsmall}}
+\index{initmodelsmall@{initmodelsmall}!server@{server}}
+\doxysubsubsection{\texorpdfstring{initmodelsmall()}{initmodelsmall()}}
+{\footnotesize\ttfamily def server.\+initmodelsmall (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}  init a model but with only a 100 tweets
+
+modelname is given by the url parameter "modelname"
+for debugging
+\end{DoxyVerb}
+ \mbox{\Hypertarget{namespaceserver_a2d3627e8f426be841e8728a86faf042b}\label{namespaceserver_a2d3627e8f426be841e8728a86faf042b}} 
+\index{server@{server}!process@{process}}
+\index{process@{process}!server@{server}}
+\doxysubsubsection{\texorpdfstring{process()}{process()}}
+{\footnotesize\ttfamily def server.\+process (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}  Get a preprocesing of a tweet
+
+for debugging
+\end{DoxyVerb}
+ \mbox{\Hypertarget{namespaceserver_af5bde7c868c1478fc2b4cc4554af291c}\label{namespaceserver_af5bde7c868c1478fc2b4cc4554af291c}} 
+\index{server@{server}!showdata@{showdata}}
+\index{showdata@{showdata}!server@{server}}
+\doxysubsubsection{\texorpdfstring{showdata()}{showdata()}}
+{\footnotesize\ttfamily def server.\+showdata (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}  give tweets present in the tweets database
+\end{DoxyVerb}
+ \mbox{\Hypertarget{namespaceserver_aeca65dbcd42a1f84663d76a2dc53ba10}\label{namespaceserver_aeca65dbcd42a1f84663d76a2dc53ba10}} 
+\index{server@{server}!showhate@{showhate}}
+\index{showhate@{showhate}!server@{server}}
+\doxysubsubsection{\texorpdfstring{showhate()}{showhate()}}
+{\footnotesize\ttfamily def server.\+showhate (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}  give tweets present in the tweets database
+\end{DoxyVerb}
+ \mbox{\Hypertarget{namespaceserver_aca3c8667177f6a3164aeb4cdf62c5aab}\label{namespaceserver_aca3c8667177f6a3164aeb4cdf62c5aab}} 
+\index{server@{server}!statusmodel@{statusmodel}}
+\index{statusmodel@{statusmodel}!server@{server}}
+\doxysubsubsection{\texorpdfstring{statusmodel()}{statusmodel()}}
+{\footnotesize\ttfamily def server.\+statusmodel (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}  give back if model is done building.
+\end{DoxyVerb}
+ 
 
 \doxysubsection{Variable Documentation}
 \mbox{\Hypertarget{namespaceserver_ad81539608721e4b8ffad6e7bb45dd34b}\label{namespaceserver_ad81539608721e4b8ffad6e7bb45dd34b}} 
@@ -46,9 +138,27 @@ More details.
 \doxysubsubsection{\texorpdfstring{app}{app}}
 {\footnotesize\ttfamily server.\+app = Flask(\+\_\+\+\_\+name\+\_\+\+\_\+)}
 
+\mbox{\Hypertarget{namespaceserver_ae038cb1fed2c929f9d4b7282967bcce1}\label{namespaceserver_ae038cb1fed2c929f9d4b7282967bcce1}} 
+\index{server@{server}!database@{database}}
+\index{database@{database}!server@{server}}
+\doxysubsubsection{\texorpdfstring{database}{database}}
+{\footnotesize\ttfamily server.\+database = \mbox{\hyperlink{classdb_1_1_d_b}{DB}}()}
+
+\mbox{\Hypertarget{namespaceserver_a81147b1db920a0591af08177e696749b}\label{namespaceserver_a81147b1db920a0591af08177e696749b}} 
+\index{server@{server}!hate@{hate}}
+\index{hate@{hate}!server@{server}}
+\doxysubsubsection{\texorpdfstring{hate}{hate}}
+{\footnotesize\ttfamily list server.\+hate = \mbox{[}i\mbox{[}0\mbox{]} for i in database.\+db\+\_\+load\+\_\+hate()\mbox{]}}
+
 \mbox{\Hypertarget{namespaceserver_a26c653098c4b10df9e71ee2da680daee}\label{namespaceserver_a26c653098c4b10df9e71ee2da680daee}} 
 \index{server@{server}!methods@{methods}}
 \index{methods@{methods}!server@{server}}
 \doxysubsubsection{\texorpdfstring{methods}{methods}}
 {\footnotesize\ttfamily server.\+methods}
+
+\mbox{\Hypertarget{namespaceserver_a066585fc917f59cd029079289dd0509c}\label{namespaceserver_a066585fc917f59cd029079289dd0509c}} 
+\index{server@{server}!tweets@{tweets}}
+\index{tweets@{tweets}!server@{server}}
+\doxysubsubsection{\texorpdfstring{tweets}{tweets}}
+{\footnotesize\ttfamily list server.\+tweets = \mbox{[}i\mbox{[}0\mbox{]} for i in database.\+db\+\_\+load\+\_\+tweet()\mbox{]}}
 

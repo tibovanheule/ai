@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['wsgi_2epy_26',['wsgi.py',['../wsgi_8py.html',1,'']]]
+  ['requirements_2etxt_141',['requirements.txt',['../requirements_8txt.html',1,'']]]
 ];

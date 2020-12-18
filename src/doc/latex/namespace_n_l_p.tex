@@ -1,0 +1,495 @@
+\hypertarget{namespace_n_l_p}{}\doxysection{N\+LP Namespace Reference}
+\label{namespace_n_l_p}\index{NLP@{NLP}}
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{class_n_l_p_1_1_custom_tweet_tokenizer}{Custom\+Tweet\+Tokenizer}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+def \mbox{\hyperlink{namespace_n_l_p_a92f5e01a64787f53f92de14ebc710309}{lemmatize}} (token, pos)
+\item 
+def \mbox{\hyperlink{namespace_n_l_p_a2cd2be3fc26bf5f20c55c62842868d5b}{wordsegment}} (token)
+\item 
+def \mbox{\hyperlink{namespace_n_l_p_aa72e6bd2a45ddbf5c0d605a3895b0c52}{spell\+\_\+checker}} (token)
+\item 
+def \mbox{\hyperlink{namespace_n_l_p_a8458851d846b447a7741394fdbdcb839}{text\+\_\+precessing}} (text)
+\item 
+def \mbox{\hyperlink{namespace_n_l_p_aaa70bf1fdbed60da75f919c903cb9448}{basic\+\_\+precessing}} (text)
+\item 
+def \mbox{\hyperlink{namespace_n_l_p_a322774b231a49580ecc36d5f2dffc85d}{basic\+\_\+precessing\+\_\+char}} (text)
+\item 
+def \mbox{\hyperlink{namespace_n_l_p_ad78b666919ea74e1c94b256a27684326}{text\+\_\+precessing\+\_\+char}} (text)
+\item 
+def \mbox{\hyperlink{namespace_n_l_p_a20552e82f531819a5b86cb8e0f2aff95}{remove\+\_\+repeats}} (word)
+\item 
+def \mbox{\hyperlink{namespace_n_l_p_a749077f6035de4f0993dea23031338e2}{get\+\_\+wordnet\+\_\+pos}} (treebank\+\_\+tag)
+\item 
+def \mbox{\hyperlink{namespace_n_l_p_a352926a49482a02a9376db62db2f86a1}{char\+\_\+boundary}} (tokens)
+\item 
+def \mbox{\hyperlink{namespace_n_l_p_a5f435e449aa09448bdd876865f61a730}{has\+\_\+word}} (word, voca)
+\item 
+def \mbox{\hyperlink{namespace_n_l_p_a829f3f7d847f1075997b96e67354b9c9}{lemmanize\+\_\+text}} (tokens)
+\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{namespace_n_l_p_aab3132be635be87942b0c6909ceaf957}{reg}} = re.\+compile(\mbox{\hyperlink{namespace_n_l_p_aa4800920667d62648af100325d8ee740}{r}}\textquotesingle{}(.)\textbackslash{}1\{2,\}\textquotesingle{})
+\item 
+\mbox{\hyperlink{namespace_n_l_p_a2f79d86e5e00cb61c4eae51926aaa823}{mention\+\_\+hashtag\+\_\+regex}} = re.\+compile(\mbox{\hyperlink{namespace_n_l_p_aa4800920667d62648af100325d8ee740}{r}}\textquotesingle{}(\mbox{[}$^\wedge$\textbackslash{}\mbox{\hyperlink{namespace_n_l_p_adbb35affdc76896711508d30b1d0670f}{w}}\mbox{]}$\vert$$^\wedge$)@\mbox{[}\textbackslash{}w\textbackslash{}-\/\mbox{]}+$\vert$$^\wedge$\mbox{[}\textbackslash{}\mbox{\hyperlink{namespace_n_l_p_acd15904606901b4aae268dfff1d66fb1}{s}}\mbox{]}\#(\mbox{[}$^\wedge$\textbackslash{}\mbox{\hyperlink{namespace_n_l_p_acd15904606901b4aae268dfff1d66fb1}{s}}\mbox{]})+\textquotesingle{})
+\item 
+\mbox{\hyperlink{namespace_n_l_p_a97c94dba61265dba7f9b5a04ca839151}{url\+\_\+remove}}
+\item 
+\mbox{\hyperlink{namespace_n_l_p_a490c089e4593aaa13569607524868e6e}{contarction\+\_\+not}} = re.\+compile(\mbox{\hyperlink{namespace_n_l_p_aa4800920667d62648af100325d8ee740}{r}}\textquotesingle{}n\textbackslash{}\textquotesingle{}\mbox{\hyperlink{namespace_n_l_p_a5c0e05291837d66a595840a63c37cb9c}{t}}\textquotesingle{})
+\item 
+\mbox{\hyperlink{namespace_n_l_p_a4f756ac7d5fd3f8995735c605ea0624a}{contarction\+\_\+am}} = re.\+compile(\mbox{\hyperlink{namespace_n_l_p_aa4800920667d62648af100325d8ee740}{r}}\textquotesingle{}\textbackslash{}\textquotesingle{}\mbox{\hyperlink{namespace_n_l_p_ad60517be29a9e23527964d848eac3ec9}{m}}\textquotesingle{})
+\item 
+\mbox{\hyperlink{namespace_n_l_p_aa66bbb43f8154f165ca6c279bdeb2546}{contarction\+\_\+have}} = re.\+compile(\mbox{\hyperlink{namespace_n_l_p_aa4800920667d62648af100325d8ee740}{r}}\textquotesingle{}\textbackslash{}\textquotesingle{}ve\textquotesingle{})
+\item 
+\mbox{\hyperlink{namespace_n_l_p_a39873b0bfbdedcc9071b88a09828e646}{contarction\+\_\+will}} = re.\+compile(\mbox{\hyperlink{namespace_n_l_p_aa4800920667d62648af100325d8ee740}{r}}\textquotesingle{}\textbackslash{}\textquotesingle{}ll\textquotesingle{})
+\item 
+\mbox{\hyperlink{namespace_n_l_p_a849d7c184098806239ec634392b6c91d}{a}} = re.\+compile(\mbox{\hyperlink{namespace_n_l_p_aa4800920667d62648af100325d8ee740}{r}}\textquotesingle{}(?\+:\textbackslash{}\mbox{\hyperlink{namespace_n_l_p_aa471c8cb5832ff6165e2e32b72870a0d}{b}}(?\+:@$\vert$/-\/\textbackslash{}\textbackslash{}$\vert$\textbackslash{}$^\wedge$$\vert$/\textbackslash{}\textbackslash{}))\textquotesingle{})
+\item 
+\mbox{\hyperlink{namespace_n_l_p_aa471c8cb5832ff6165e2e32b72870a0d}{b}} = re.\+compile(\mbox{\hyperlink{namespace_n_l_p_aa4800920667d62648af100325d8ee740}{r}}\textquotesingle{}(?\+:\textbackslash{}b(?\+:\textbackslash{}$\vert$\+:$\vert$P$>$$\vert$ß))\textquotesingle{})
+\item 
+\mbox{\hyperlink{namespace_n_l_p_a23072a0dddb2389e55bdc3b5cfdc59fe}{c}} = re.\+compile(\mbox{\hyperlink{namespace_n_l_p_aa4800920667d62648af100325d8ee740}{r}}\textquotesingle{}(?\+:\textbackslash{}\mbox{\hyperlink{namespace_n_l_p_aa471c8cb5832ff6165e2e32b72870a0d}{b}}\mbox{[}©¢$<$\textbackslash{}\mbox{[}(\{\mbox{]})\textquotesingle{})
+\item 
+\mbox{\hyperlink{namespace_n_l_p_a887ecdde0a549cbf08669ee3ce8d0379}{d}} = re.\+compile(\mbox{\hyperlink{namespace_n_l_p_aa4800920667d62648af100325d8ee740}{r}}\textquotesingle{}(?\+:\textbackslash{}\mbox{\hyperlink{namespace_n_l_p_aa471c8cb5832ff6165e2e32b72870a0d}{b}}(?\+:\textbackslash{})$\vert$\textbackslash{}$\vert$\textbackslash{})$\vert$\textbackslash{}\mbox{[}\textbackslash{})$\vert$\textbackslash{}?$\vert$\textbackslash{}$\vert$$>$\textbackslash{}$\vert$\mbox{\hyperlink{namespace_n_l_p_ac07e6f2b2b831a368d3af88772a5ada6}{o}}))\textquotesingle{})
+\item 
+\mbox{\hyperlink{namespace_n_l_p_aacfaed9629a25e12092efc47000a49e1}{e}} = re.\+compile(\mbox{\hyperlink{namespace_n_l_p_aa4800920667d62648af100325d8ee740}{r}}\textquotesingle{}(?\+:\textbackslash{}\mbox{\hyperlink{namespace_n_l_p_aa471c8cb5832ff6165e2e32b72870a0d}{b}}(?\+:\&$\vert$€$\vert$\textbackslash{}\mbox{[}-\/))\textquotesingle{})
+\item 
+\mbox{\hyperlink{namespace_n_l_p_a4bb762579df26b01339dd9cb6085de03}{f}} = re.\+compile(\mbox{\hyperlink{namespace_n_l_p_aa4800920667d62648af100325d8ee740}{r}}\textquotesingle{}(?\+:\textbackslash{}\mbox{\hyperlink{namespace_n_l_p_aa471c8cb5832ff6165e2e32b72870a0d}{b}}(?\+:\textbackslash{}$\vert$=$\vert$/=$\vert$ph$\vert$ƒ$\vert$\textbackslash{}$\vert$\#))\textquotesingle{})
+\item 
+\mbox{\hyperlink{namespace_n_l_p_a3106745afeadf7f3ea6cdf219f16bcac}{g}} = re.\+compile(\mbox{\hyperlink{namespace_n_l_p_aa4800920667d62648af100325d8ee740}{r}}\textquotesingle{}(?\+:\textbackslash{}\mbox{\hyperlink{namespace_n_l_p_aa471c8cb5832ff6165e2e32b72870a0d}{b}}(?\+:\&$\vert$C-\/$\vert$\textbackslash{}(\+\_\+\textbackslash{}+))\textquotesingle{})
+\item 
+\mbox{\hyperlink{namespace_n_l_p_a099b181a4f95a6e01554a6a4533ea7dd}{h}} = re.\+compile(\mbox{\hyperlink{namespace_n_l_p_aa4800920667d62648af100325d8ee740}{r}}\textquotesingle{}(?\+:\textbackslash{}\mbox{\hyperlink{namespace_n_l_p_aa471c8cb5832ff6165e2e32b72870a0d}{b}}(?\+:\#$\vert$\}\{$\vert$\textbackslash{}$\vert$-\/\textbackslash{}$\vert$$\vert$\textbackslash{}\mbox{]}-\/\textbackslash{}\mbox{[}\textbackslash{}$\vert$\textbackslash{}\mbox{[}-\/\textbackslash{}\mbox{]}$\vert$\textbackslash{}(-\/\textbackslash{})$\vert$\textbackslash{})-\/\textbackslash{}($\vert$/-\//))\textquotesingle{})
+\item 
+\mbox{\hyperlink{namespace_n_l_p_ab0bf830f304586d62252e44e8598853f}{i}} = re.\+compile(\mbox{\hyperlink{namespace_n_l_p_aa4800920667d62648af100325d8ee740}{r}}\textquotesingle{}(?\+:\textbackslash{}\mbox{\hyperlink{namespace_n_l_p_aa471c8cb5832ff6165e2e32b72870a0d}{b}}(?\+:!$\vert$\textbackslash{}$\vert$$\vert$\textbackslash{}\mbox{]}$\vert$¡))\textquotesingle{})
+\item 
+\mbox{\hyperlink{namespace_n_l_p_a61c5ae9f0b8d11f521da962e4b2252d1}{j}} = re.\+compile(\mbox{\hyperlink{namespace_n_l_p_aa4800920667d62648af100325d8ee740}{r}}\textquotesingle{}(?\+:\textbackslash{}\mbox{\hyperlink{namespace_n_l_p_aa471c8cb5832ff6165e2e32b72870a0d}{b}}(?\+:¿$\vert$\+\_\+\textbackslash{}$\vert$$\vert$\+\_\+/$\vert$$<$/$\vert$\textbackslash{}(/))\textquotesingle{})
+\item 
+\mbox{\hyperlink{namespace_n_l_p_ae71d589f159f189727a468bb7dcd6fd2}{k}} = re.\+compile(\mbox{\hyperlink{namespace_n_l_p_aa4800920667d62648af100325d8ee740}{r}}\textquotesingle{}(?\+:\textbackslash{}\mbox{\hyperlink{namespace_n_l_p_aa471c8cb5832ff6165e2e32b72870a0d}{b}}(?\+:\textbackslash{}$\vert$$<$$\vert$\textbackslash{}$\vert$\textbackslash{}\{$\vert$\textbackslash{}$\vert$\textbackslash{}())\textquotesingle{})
+\item 
+\mbox{\hyperlink{namespace_n_l_p_ab01802db4bf6f522cdd4a1c65cd6bccd}{letter\+\_\+l}} = re.\+compile(\mbox{\hyperlink{namespace_n_l_p_aa4800920667d62648af100325d8ee740}{r}}\textquotesingle{}(?\+:\textbackslash{}\mbox{\hyperlink{namespace_n_l_p_aa471c8cb5832ff6165e2e32b72870a0d}{b}}(?\+:\textbackslash{}$\vert$$\vert$£$\vert$\textbackslash{}$\vert$\+\_\+$\vert$¬))\textquotesingle{})
+\item 
+\mbox{\hyperlink{namespace_n_l_p_ad60517be29a9e23527964d848eac3ec9}{m}} = re.\+compile(\mbox{\hyperlink{namespace_n_l_p_aa4800920667d62648af100325d8ee740}{r}}\textquotesingle{}(?\+:\textbackslash{}\mbox{\hyperlink{namespace_n_l_p_aa471c8cb5832ff6165e2e32b72870a0d}{b}}(?\+:\textbackslash{}$\vert$v\textbackslash{}$\vert$$\vert$\textbackslash{}$\vert$\textbackslash{}\textbackslash{}/\textbackslash{}$\vert$$\vert$/\textbackslash{}\textbackslash{}/\textbackslash{}\textbackslash{}$\vert$\textbackslash{}(v\textbackslash{})$\vert$/\textbackslash{}$\vert$\textbackslash{}\textbackslash{}$\vert$//\textbackslash{}.$\vert$\textbackslash{}$^\wedge$\textbackslash{}$^\wedge$))\textquotesingle{})
+\item 
+\mbox{\hyperlink{namespace_n_l_p_a498f248038f1a067d7d26bbea0c7ccb6}{n}} = re.\+compile(\mbox{\hyperlink{namespace_n_l_p_aa4800920667d62648af100325d8ee740}{r}}\textquotesingle{}(?\+:\textbackslash{}\mbox{\hyperlink{namespace_n_l_p_aa471c8cb5832ff6165e2e32b72870a0d}{b}}(?\+:\textbackslash{}$\vert$\textbackslash{}\textbackslash{}\textbackslash{}$\vert$$\vert$/\textbackslash{}\textbackslash{}/$\vert$\textbackslash{}\mbox{[}\textbackslash{}\textbackslash{}\textbackslash{}\mbox{]}$\vert$$<$\textbackslash{}\textbackslash{}$>$$\vert$/V$\vert$\textbackslash{}$^\wedge$/))\textquotesingle{})
+\item 
+\mbox{\hyperlink{namespace_n_l_p_ac07e6f2b2b831a368d3af88772a5ada6}{o}} = re.\+compile(\mbox{\hyperlink{namespace_n_l_p_aa4800920667d62648af100325d8ee740}{r}}\textquotesingle{}(?\+:\textbackslash{}\mbox{\hyperlink{namespace_n_l_p_aa471c8cb5832ff6165e2e32b72870a0d}{b}}(?\+:\textbackslash{}(\textbackslash{})$\vert$\textbackslash{}\mbox{[}\textbackslash{}\mbox{]}$\vert$°))\textquotesingle{})
+\item 
+\mbox{\hyperlink{namespace_n_l_p_ae16a6ed80c0672d07244b0b751f8007d}{p}} = re.\+compile(\mbox{\hyperlink{namespace_n_l_p_aa4800920667d62648af100325d8ee740}{r}}\textquotesingle{}(?\+:\textbackslash{}\mbox{\hyperlink{namespace_n_l_p_aa471c8cb5832ff6165e2e32b72870a0d}{b}}(?\+:\textbackslash{}$\vert$\textbackslash{}$\ast$$\vert$¶$\vert$\textbackslash{}$\vert$\mbox{\hyperlink{namespace_n_l_p_ac07e6f2b2b831a368d3af88772a5ada6}{o}}$\vert$\textbackslash{}$\vert$°$\vert$\textbackslash{}$\vert$\textbackslash{}\char`\"{}$\vert$\textbackslash{}$\vert$$>$$\vert$\textbackslash{}$\vert$\textbackslash{}$^\wedge$\textbackslash{}(o\textbackslash{})$\vert$\textbackslash{}$\vert$\textbackslash{}$^\wedge$\textbackslash{}(\textbackslash{})))\textquotesingle{})
+\item 
+\mbox{\hyperlink{namespace_n_l_p_a411c3dfb870e564357905f0e25bffa84}{q}} = re.\+compile(\mbox{\hyperlink{namespace_n_l_p_aa4800920667d62648af100325d8ee740}{r}}\textquotesingle{}(?\+:\textbackslash{}\mbox{\hyperlink{namespace_n_l_p_aa471c8cb5832ff6165e2e32b72870a0d}{b}}(?\+:\textbackslash{}(\textbackslash{})\+\_\+$\vert$\textbackslash{}(\+\_\+,\textbackslash{})$\vert$$<$\textbackslash{}$\vert$))\textquotesingle{})
+\item 
+\mbox{\hyperlink{namespace_n_l_p_aa4800920667d62648af100325d8ee740}{r}} = re.\+compile(r\textquotesingle{}(?\+:\textbackslash{}\mbox{\hyperlink{namespace_n_l_p_aa471c8cb5832ff6165e2e32b72870a0d}{b}}(?\+:\textbackslash{}$\vert$\textbackslash{}$^\wedge$$\vert$\textbackslash{}$\vert$\textbackslash{}?$\vert$®))\textquotesingle{})
+\item 
+\mbox{\hyperlink{namespace_n_l_p_acd15904606901b4aae268dfff1d66fb1}{s}} = re.\+compile(\mbox{\hyperlink{namespace_n_l_p_aa4800920667d62648af100325d8ee740}{r}}\textquotesingle{}(?\+:\textbackslash{}\mbox{\hyperlink{namespace_n_l_p_aa471c8cb5832ff6165e2e32b72870a0d}{b}}(?\+:\textbackslash{}\$$\vert$§))\textquotesingle{})
+\item 
+\mbox{\hyperlink{namespace_n_l_p_a5c0e05291837d66a595840a63c37cb9c}{t}} = re.\+compile(\mbox{\hyperlink{namespace_n_l_p_aa4800920667d62648af100325d8ee740}{r}}\textquotesingle{}(?\+:\textbackslash{}\mbox{\hyperlink{namespace_n_l_p_aa471c8cb5832ff6165e2e32b72870a0d}{b}}(?\+:\textbackslash{}+$\vert$-\/\textbackslash{}$\vert$-\/$\vert$†$\vert$\textbackslash{}\textquotesingle{}\textbackslash{}\mbox{[}\textbackslash{}\mbox{]}\textbackslash{}\textquotesingle{}))\textquotesingle{})
+\item 
+\mbox{\hyperlink{namespace_n_l_p_abe9e3a9c11f37b8f0d69bc06820ec422}{u}} = re.\+compile(\mbox{\hyperlink{namespace_n_l_p_aa4800920667d62648af100325d8ee740}{r}}\textquotesingle{}(?\+:\textbackslash{}\mbox{\hyperlink{namespace_n_l_p_aa471c8cb5832ff6165e2e32b72870a0d}{b}}(?\+:\textbackslash{}$\vert$\+\_\+\textbackslash{}$\vert$$\vert$\textbackslash{}(\+\_\+\textbackslash{})))\textquotesingle{})
+\item 
+\mbox{\hyperlink{namespace_n_l_p_a4fc425c8a6c19381d6e7b5cba91687a5}{v}} = re.\+compile(\mbox{\hyperlink{namespace_n_l_p_aa4800920667d62648af100325d8ee740}{r}}\textquotesingle{}(?\+:\textbackslash{}\mbox{\hyperlink{namespace_n_l_p_aa471c8cb5832ff6165e2e32b72870a0d}{b}}(?\+:\textbackslash{}\textbackslash{}/$\vert$\textbackslash{}$^\wedge$))\textquotesingle{})
+\item 
+\mbox{\hyperlink{namespace_n_l_p_adbb35affdc76896711508d30b1d0670f}{w}} = re.\+compile(\mbox{\hyperlink{namespace_n_l_p_aa4800920667d62648af100325d8ee740}{r}}\textquotesingle{}(?\+:\textbackslash{}\mbox{\hyperlink{namespace_n_l_p_aa471c8cb5832ff6165e2e32b72870a0d}{b}}(?\+:VV$\vert$\textbackslash{}\textbackslash{}/\textbackslash{}\textbackslash{}/$\vert$\textbackslash{}\textbackslash{}\textbackslash{}\textbackslash{}\textbackslash{}\textquotesingle{}$\vert$\textbackslash{}\textquotesingle{}//$\vert$\textbackslash{}\textbackslash{}\textbackslash{}$\vert$/$\vert$\textbackslash{}\textbackslash{}\textbackslash{}$^\wedge$/))\textquotesingle{})
+\item 
+\mbox{\hyperlink{namespace_n_l_p_a1cec1a4bbdade6827f4fd122c36e6cb6}{x}} = re.\+compile(\mbox{\hyperlink{namespace_n_l_p_aa4800920667d62648af100325d8ee740}{r}}\textquotesingle{}(?\+:\textbackslash{}\mbox{\hyperlink{namespace_n_l_p_aa471c8cb5832ff6165e2e32b72870a0d}{b}}(?\+:$>$$<$$\vert$\textbackslash{})\textbackslash{}($\vert$\%))\textquotesingle{})
+\item 
+\mbox{\hyperlink{namespace_n_l_p_affc9920846b31ce244ee8206b643ec75}{y}} = re.\+compile(\mbox{\hyperlink{namespace_n_l_p_aa4800920667d62648af100325d8ee740}{r}}\textquotesingle{}(?\+:\textbackslash{}\mbox{\hyperlink{namespace_n_l_p_aa471c8cb5832ff6165e2e32b72870a0d}{b}}(?\+:¥$\vert$\textbackslash{}\textquotesingle{}/))\textquotesingle{})
+\item 
+\mbox{\hyperlink{namespace_n_l_p_a3b12b4d691869c9c46cd2f6c0759a557}{z}} = re.\+compile(\mbox{\hyperlink{namespace_n_l_p_aa4800920667d62648af100325d8ee740}{r}}\textquotesingle{}(?\+:\textbackslash{}\mbox{\hyperlink{namespace_n_l_p_aa471c8cb5832ff6165e2e32b72870a0d}{b}}(?\+:$\sim$/\+\_\+$\vert$-\//\+\_\+$\vert$$>$\+\_\+))\textquotesingle{})
+\item 
+\mbox{\hyperlink{namespace_n_l_p_ac044b7ca591dcdb1847e9a4ab788b53c}{checker}} = Spell\+Checker()
+\item 
+\mbox{\hyperlink{namespace_n_l_p_ad90ce9903a7c5fd93f3ef819549a1864}{wnl}} = Word\+Net\+Lemmatizer()
+\item 
+\mbox{\hyperlink{namespace_n_l_p_a5079c08c563b43b7c1e8855bc593a6f9}{tag}} = nltk.\+pos\+\_\+tag
+\item 
+\mbox{\hyperlink{namespace_n_l_p_a93ec2f76af279800e06b05b07aebd3a1}{stopwords\+\_\+set}} = stopwords.\+words(\char`\"{}english\char`\"{})
+\item 
+\mbox{\hyperlink{namespace_n_l_p_a39d670825a284ee4574da058c5bcc536}{known\+\_\+words}} = set(words.\+words())
+\item 
+\mbox{\hyperlink{namespace_n_l_p_a5494deedd3c2f980bf0259a17723f3c6}{database}} = \mbox{\hyperlink{classdb_1_1_d_b}{DB}}()
+\item 
+dictionary \mbox{\hyperlink{namespace_n_l_p_ad867a9060167d530c77d7672f47805ba}{hate}} = \{\mbox{\hyperlink{namespace_n_l_p_ab0bf830f304586d62252e44e8598853f}{i}}\mbox{[}0\mbox{]} for \mbox{\hyperlink{namespace_n_l_p_ab0bf830f304586d62252e44e8598853f}{i}} in database.\+db\+\_\+load\+\_\+lexicon()\}
+\item 
+\mbox{\hyperlink{namespace_n_l_p_ac23be94f51ee07a31dc4c13a5aef0454}{maxsize}}
+\item 
+\mbox{\hyperlink{namespace_n_l_p_a85f6a4cd50a8f98c638d1fc97b76087d}{tokenize}} = \mbox{\hyperlink{class_n_l_p_1_1_custom_tweet_tokenizer}{Custom\+Tweet\+Tokenizer}}().tokenize
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}@package NLP
+Natural language processing
+
+Does all pre proccesing
+\end{DoxyVerb}
+ 
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{namespace_n_l_p_aaa70bf1fdbed60da75f919c903cb9448}\label{namespace_n_l_p_aaa70bf1fdbed60da75f919c903cb9448}} 
+\index{NLP@{NLP}!basic\_precessing@{basic\_precessing}}
+\index{basic\_precessing@{basic\_precessing}!NLP@{NLP}}
+\doxysubsubsection{\texorpdfstring{basic\_precessing()}{basic\_precessing()}}
+{\footnotesize\ttfamily def N\+L\+P.\+basic\+\_\+precessing (\begin{DoxyParamCaption}\item[{}]{text }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}  basic pre processing
+
+for comparing results
+\end{DoxyVerb}
+ \mbox{\Hypertarget{namespace_n_l_p_a322774b231a49580ecc36d5f2dffc85d}\label{namespace_n_l_p_a322774b231a49580ecc36d5f2dffc85d}} 
+\index{NLP@{NLP}!basic\_precessing\_char@{basic\_precessing\_char}}
+\index{basic\_precessing\_char@{basic\_precessing\_char}!NLP@{NLP}}
+\doxysubsubsection{\texorpdfstring{basic\_precessing\_char()}{basic\_precessing\_char()}}
+{\footnotesize\ttfamily def N\+L\+P.\+basic\+\_\+precessing\+\_\+char (\begin{DoxyParamCaption}\item[{}]{text }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}  basic pre processing
+
+for comparing results
+\end{DoxyVerb}
+ \mbox{\Hypertarget{namespace_n_l_p_a352926a49482a02a9376db62db2f86a1}\label{namespace_n_l_p_a352926a49482a02a9376db62db2f86a1}} 
+\index{NLP@{NLP}!char\_boundary@{char\_boundary}}
+\index{char\_boundary@{char\_boundary}!NLP@{NLP}}
+\doxysubsubsection{\texorpdfstring{char\_boundary()}{char\_boundary()}}
+{\footnotesize\ttfamily def N\+L\+P.\+char\+\_\+boundary (\begin{DoxyParamCaption}\item[{}]{tokens }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}  revert char boundary attack
+
+uses lexicon to check for hate in a unknown word
+\end{DoxyVerb}
+ \mbox{\Hypertarget{namespace_n_l_p_a749077f6035de4f0993dea23031338e2}\label{namespace_n_l_p_a749077f6035de4f0993dea23031338e2}} 
+\index{NLP@{NLP}!get\_wordnet\_pos@{get\_wordnet\_pos}}
+\index{get\_wordnet\_pos@{get\_wordnet\_pos}!NLP@{NLP}}
+\doxysubsubsection{\texorpdfstring{get\_wordnet\_pos()}{get\_wordnet\_pos()}}
+{\footnotesize\ttfamily def N\+L\+P.\+get\+\_\+wordnet\+\_\+pos (\begin{DoxyParamCaption}\item[{}]{treebank\+\_\+tag }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}  convert pos tags to lemmanitizer wordnet pos tags
+
+helper function of lemmanize_text()
+\end{DoxyVerb}
+ \mbox{\Hypertarget{namespace_n_l_p_a5f435e449aa09448bdd876865f61a730}\label{namespace_n_l_p_a5f435e449aa09448bdd876865f61a730}} 
+\index{NLP@{NLP}!has\_word@{has\_word}}
+\index{has\_word@{has\_word}!NLP@{NLP}}
+\doxysubsubsection{\texorpdfstring{has\_word()}{has\_word()}}
+{\footnotesize\ttfamily def N\+L\+P.\+has\+\_\+word (\begin{DoxyParamCaption}\item[{}]{word,  }\item[{}]{voca }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}  uses lexicon to check for hate word in a unknown word
+
+helper function of char_boundary() function
+\end{DoxyVerb}
+ \mbox{\Hypertarget{namespace_n_l_p_a829f3f7d847f1075997b96e67354b9c9}\label{namespace_n_l_p_a829f3f7d847f1075997b96e67354b9c9}} 
+\index{NLP@{NLP}!lemmanize\_text@{lemmanize\_text}}
+\index{lemmanize\_text@{lemmanize\_text}!NLP@{NLP}}
+\doxysubsubsection{\texorpdfstring{lemmanize\_text()}{lemmanize\_text()}}
+{\footnotesize\ttfamily def N\+L\+P.\+lemmanize\+\_\+text (\begin{DoxyParamCaption}\item[{}]{tokens }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}  lemmanitize tokens
+
+use of pos tagger to detect nouns, verbs, ...
+\end{DoxyVerb}
+ \mbox{\Hypertarget{namespace_n_l_p_a92f5e01a64787f53f92de14ebc710309}\label{namespace_n_l_p_a92f5e01a64787f53f92de14ebc710309}} 
+\index{NLP@{NLP}!lemmatize@{lemmatize}}
+\index{lemmatize@{lemmatize}!NLP@{NLP}}
+\doxysubsubsection{\texorpdfstring{lemmatize()}{lemmatize()}}
+{\footnotesize\ttfamily def N\+L\+P.\+lemmatize (\begin{DoxyParamCaption}\item[{}]{token,  }\item[{}]{pos }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{namespace_n_l_p_a20552e82f531819a5b86cb8e0f2aff95}\label{namespace_n_l_p_a20552e82f531819a5b86cb8e0f2aff95}} 
+\index{NLP@{NLP}!remove\_repeats@{remove\_repeats}}
+\index{remove\_repeats@{remove\_repeats}!NLP@{NLP}}
+\doxysubsubsection{\texorpdfstring{remove\_repeats()}{remove\_repeats()}}
+{\footnotesize\ttfamily def N\+L\+P.\+remove\+\_\+repeats (\begin{DoxyParamCaption}\item[{}]{word }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}  remove repeats
+\end{DoxyVerb}
+ \mbox{\Hypertarget{namespace_n_l_p_aa72e6bd2a45ddbf5c0d605a3895b0c52}\label{namespace_n_l_p_aa72e6bd2a45ddbf5c0d605a3895b0c52}} 
+\index{NLP@{NLP}!spell\_checker@{spell\_checker}}
+\index{spell\_checker@{spell\_checker}!NLP@{NLP}}
+\doxysubsubsection{\texorpdfstring{spell\_checker()}{spell\_checker()}}
+{\footnotesize\ttfamily def N\+L\+P.\+spell\+\_\+checker (\begin{DoxyParamCaption}\item[{}]{token }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{namespace_n_l_p_a8458851d846b447a7741394fdbdcb839}\label{namespace_n_l_p_a8458851d846b447a7741394fdbdcb839}} 
+\index{NLP@{NLP}!text\_precessing@{text\_precessing}}
+\index{text\_precessing@{text\_precessing}!NLP@{NLP}}
+\doxysubsubsection{\texorpdfstring{text\_precessing()}{text\_precessing()}}
+{\footnotesize\ttfamily def N\+L\+P.\+text\+\_\+precessing (\begin{DoxyParamCaption}\item[{}]{text }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}  iMain entry for test preprocessing\end{DoxyVerb}
+ \mbox{\Hypertarget{namespace_n_l_p_ad78b666919ea74e1c94b256a27684326}\label{namespace_n_l_p_ad78b666919ea74e1c94b256a27684326}} 
+\index{NLP@{NLP}!text\_precessing\_char@{text\_precessing\_char}}
+\index{text\_precessing\_char@{text\_precessing\_char}!NLP@{NLP}}
+\doxysubsubsection{\texorpdfstring{text\_precessing\_char()}{text\_precessing\_char()}}
+{\footnotesize\ttfamily def N\+L\+P.\+text\+\_\+precessing\+\_\+char (\begin{DoxyParamCaption}\item[{}]{text }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}  for use in char-based models
+\end{DoxyVerb}
+ \mbox{\Hypertarget{namespace_n_l_p_a2cd2be3fc26bf5f20c55c62842868d5b}\label{namespace_n_l_p_a2cd2be3fc26bf5f20c55c62842868d5b}} 
+\index{NLP@{NLP}!wordsegment@{wordsegment}}
+\index{wordsegment@{wordsegment}!NLP@{NLP}}
+\doxysubsubsection{\texorpdfstring{wordsegment()}{wordsegment()}}
+{\footnotesize\ttfamily def N\+L\+P.\+wordsegment (\begin{DoxyParamCaption}\item[{}]{token }\end{DoxyParamCaption})}
+
+
+
+\doxysubsection{Variable Documentation}
+\mbox{\Hypertarget{namespace_n_l_p_a849d7c184098806239ec634392b6c91d}\label{namespace_n_l_p_a849d7c184098806239ec634392b6c91d}} 
+\index{NLP@{NLP}!a@{a}}
+\index{a@{a}!NLP@{NLP}}
+\doxysubsubsection{\texorpdfstring{a}{a}}
+{\footnotesize\ttfamily N\+L\+P.\+a = re.\+compile(\mbox{\hyperlink{namespace_n_l_p_aa4800920667d62648af100325d8ee740}{r}}\textquotesingle{}(?\+:\textbackslash{}\mbox{\hyperlink{namespace_n_l_p_aa471c8cb5832ff6165e2e32b72870a0d}{b}}(?\+:@$\vert$/-\/\textbackslash{}\textbackslash{}$\vert$\textbackslash{}$^\wedge$$\vert$/\textbackslash{}\textbackslash{}))\textquotesingle{})}
+
+\mbox{\Hypertarget{namespace_n_l_p_aa471c8cb5832ff6165e2e32b72870a0d}\label{namespace_n_l_p_aa471c8cb5832ff6165e2e32b72870a0d}} 
+\index{NLP@{NLP}!b@{b}}
+\index{b@{b}!NLP@{NLP}}
+\doxysubsubsection{\texorpdfstring{b}{b}}
+{\footnotesize\ttfamily N\+L\+P.\+b = re.\+compile(\mbox{\hyperlink{namespace_n_l_p_aa4800920667d62648af100325d8ee740}{r}}\textquotesingle{}(?\+:\textbackslash{}b(?\+:\textbackslash{}$\vert$\+:$\vert$P$>$$\vert$ß))\textquotesingle{})}
+
+\mbox{\Hypertarget{namespace_n_l_p_a23072a0dddb2389e55bdc3b5cfdc59fe}\label{namespace_n_l_p_a23072a0dddb2389e55bdc3b5cfdc59fe}} 
+\index{NLP@{NLP}!c@{c}}
+\index{c@{c}!NLP@{NLP}}
+\doxysubsubsection{\texorpdfstring{c}{c}}
+{\footnotesize\ttfamily N\+L\+P.\+c = re.\+compile(\mbox{\hyperlink{namespace_n_l_p_aa4800920667d62648af100325d8ee740}{r}}\textquotesingle{}(?\+:\textbackslash{}\mbox{\hyperlink{namespace_n_l_p_aa471c8cb5832ff6165e2e32b72870a0d}{b}}\mbox{[}©¢$<$\textbackslash{}\mbox{[}(\{\mbox{]})\textquotesingle{})}
+
+\mbox{\Hypertarget{namespace_n_l_p_ac044b7ca591dcdb1847e9a4ab788b53c}\label{namespace_n_l_p_ac044b7ca591dcdb1847e9a4ab788b53c}} 
+\index{NLP@{NLP}!checker@{checker}}
+\index{checker@{checker}!NLP@{NLP}}
+\doxysubsubsection{\texorpdfstring{checker}{checker}}
+{\footnotesize\ttfamily N\+L\+P.\+checker = Spell\+Checker()}
+
+\mbox{\Hypertarget{namespace_n_l_p_a4f756ac7d5fd3f8995735c605ea0624a}\label{namespace_n_l_p_a4f756ac7d5fd3f8995735c605ea0624a}} 
+\index{NLP@{NLP}!contarction\_am@{contarction\_am}}
+\index{contarction\_am@{contarction\_am}!NLP@{NLP}}
+\doxysubsubsection{\texorpdfstring{contarction\_am}{contarction\_am}}
+{\footnotesize\ttfamily N\+L\+P.\+contarction\+\_\+am = re.\+compile(\mbox{\hyperlink{namespace_n_l_p_aa4800920667d62648af100325d8ee740}{r}}\textquotesingle{}\textbackslash{}\textquotesingle{}\mbox{\hyperlink{namespace_n_l_p_ad60517be29a9e23527964d848eac3ec9}{m}}\textquotesingle{})}
+
+\mbox{\Hypertarget{namespace_n_l_p_aa66bbb43f8154f165ca6c279bdeb2546}\label{namespace_n_l_p_aa66bbb43f8154f165ca6c279bdeb2546}} 
+\index{NLP@{NLP}!contarction\_have@{contarction\_have}}
+\index{contarction\_have@{contarction\_have}!NLP@{NLP}}
+\doxysubsubsection{\texorpdfstring{contarction\_have}{contarction\_have}}
+{\footnotesize\ttfamily N\+L\+P.\+contarction\+\_\+have = re.\+compile(\mbox{\hyperlink{namespace_n_l_p_aa4800920667d62648af100325d8ee740}{r}}\textquotesingle{}\textbackslash{}\textquotesingle{}ve\textquotesingle{})}
+
+\mbox{\Hypertarget{namespace_n_l_p_a490c089e4593aaa13569607524868e6e}\label{namespace_n_l_p_a490c089e4593aaa13569607524868e6e}} 
+\index{NLP@{NLP}!contarction\_not@{contarction\_not}}
+\index{contarction\_not@{contarction\_not}!NLP@{NLP}}
+\doxysubsubsection{\texorpdfstring{contarction\_not}{contarction\_not}}
+{\footnotesize\ttfamily N\+L\+P.\+contarction\+\_\+not = re.\+compile(\mbox{\hyperlink{namespace_n_l_p_aa4800920667d62648af100325d8ee740}{r}}\textquotesingle{}n\textbackslash{}\textquotesingle{}\mbox{\hyperlink{namespace_n_l_p_a5c0e05291837d66a595840a63c37cb9c}{t}}\textquotesingle{})}
+
+\mbox{\Hypertarget{namespace_n_l_p_a39873b0bfbdedcc9071b88a09828e646}\label{namespace_n_l_p_a39873b0bfbdedcc9071b88a09828e646}} 
+\index{NLP@{NLP}!contarction\_will@{contarction\_will}}
+\index{contarction\_will@{contarction\_will}!NLP@{NLP}}
+\doxysubsubsection{\texorpdfstring{contarction\_will}{contarction\_will}}
+{\footnotesize\ttfamily N\+L\+P.\+contarction\+\_\+will = re.\+compile(\mbox{\hyperlink{namespace_n_l_p_aa4800920667d62648af100325d8ee740}{r}}\textquotesingle{}\textbackslash{}\textquotesingle{}ll\textquotesingle{})}
+
+\mbox{\Hypertarget{namespace_n_l_p_a887ecdde0a549cbf08669ee3ce8d0379}\label{namespace_n_l_p_a887ecdde0a549cbf08669ee3ce8d0379}} 
+\index{NLP@{NLP}!d@{d}}
+\index{d@{d}!NLP@{NLP}}
+\doxysubsubsection{\texorpdfstring{d}{d}}
+{\footnotesize\ttfamily N\+L\+P.\+d = re.\+compile(\mbox{\hyperlink{namespace_n_l_p_aa4800920667d62648af100325d8ee740}{r}}\textquotesingle{}(?\+:\textbackslash{}\mbox{\hyperlink{namespace_n_l_p_aa471c8cb5832ff6165e2e32b72870a0d}{b}}(?\+:\textbackslash{})$\vert$\textbackslash{}$\vert$\textbackslash{})$\vert$\textbackslash{}\mbox{[}\textbackslash{})$\vert$\textbackslash{}?$\vert$\textbackslash{}$\vert$$>$\textbackslash{}$\vert$\mbox{\hyperlink{namespace_n_l_p_ac07e6f2b2b831a368d3af88772a5ada6}{o}}))\textquotesingle{})}
+
+\mbox{\Hypertarget{namespace_n_l_p_a5494deedd3c2f980bf0259a17723f3c6}\label{namespace_n_l_p_a5494deedd3c2f980bf0259a17723f3c6}} 
+\index{NLP@{NLP}!database@{database}}
+\index{database@{database}!NLP@{NLP}}
+\doxysubsubsection{\texorpdfstring{database}{database}}
+{\footnotesize\ttfamily N\+L\+P.\+database = \mbox{\hyperlink{classdb_1_1_d_b}{DB}}()}
+
+\mbox{\Hypertarget{namespace_n_l_p_aacfaed9629a25e12092efc47000a49e1}\label{namespace_n_l_p_aacfaed9629a25e12092efc47000a49e1}} 
+\index{NLP@{NLP}!e@{e}}
+\index{e@{e}!NLP@{NLP}}
+\doxysubsubsection{\texorpdfstring{e}{e}}
+{\footnotesize\ttfamily N\+L\+P.\+e = re.\+compile(\mbox{\hyperlink{namespace_n_l_p_aa4800920667d62648af100325d8ee740}{r}}\textquotesingle{}(?\+:\textbackslash{}\mbox{\hyperlink{namespace_n_l_p_aa471c8cb5832ff6165e2e32b72870a0d}{b}}(?\+:\&$\vert$€$\vert$\textbackslash{}\mbox{[}-\/))\textquotesingle{})}
+
+\mbox{\Hypertarget{namespace_n_l_p_a4bb762579df26b01339dd9cb6085de03}\label{namespace_n_l_p_a4bb762579df26b01339dd9cb6085de03}} 
+\index{NLP@{NLP}!f@{f}}
+\index{f@{f}!NLP@{NLP}}
+\doxysubsubsection{\texorpdfstring{f}{f}}
+{\footnotesize\ttfamily N\+L\+P.\+f = re.\+compile(\mbox{\hyperlink{namespace_n_l_p_aa4800920667d62648af100325d8ee740}{r}}\textquotesingle{}(?\+:\textbackslash{}\mbox{\hyperlink{namespace_n_l_p_aa471c8cb5832ff6165e2e32b72870a0d}{b}}(?\+:\textbackslash{}$\vert$=$\vert$/=$\vert$ph$\vert$ƒ$\vert$\textbackslash{}$\vert$\#))\textquotesingle{})}
+
+\mbox{\Hypertarget{namespace_n_l_p_a3106745afeadf7f3ea6cdf219f16bcac}\label{namespace_n_l_p_a3106745afeadf7f3ea6cdf219f16bcac}} 
+\index{NLP@{NLP}!g@{g}}
+\index{g@{g}!NLP@{NLP}}
+\doxysubsubsection{\texorpdfstring{g}{g}}
+{\footnotesize\ttfamily N\+L\+P.\+g = re.\+compile(\mbox{\hyperlink{namespace_n_l_p_aa4800920667d62648af100325d8ee740}{r}}\textquotesingle{}(?\+:\textbackslash{}\mbox{\hyperlink{namespace_n_l_p_aa471c8cb5832ff6165e2e32b72870a0d}{b}}(?\+:\&$\vert$C-\/$\vert$\textbackslash{}(\+\_\+\textbackslash{}+))\textquotesingle{})}
+
+\mbox{\Hypertarget{namespace_n_l_p_a099b181a4f95a6e01554a6a4533ea7dd}\label{namespace_n_l_p_a099b181a4f95a6e01554a6a4533ea7dd}} 
+\index{NLP@{NLP}!h@{h}}
+\index{h@{h}!NLP@{NLP}}
+\doxysubsubsection{\texorpdfstring{h}{h}}
+{\footnotesize\ttfamily N\+L\+P.\+h = re.\+compile(\mbox{\hyperlink{namespace_n_l_p_aa4800920667d62648af100325d8ee740}{r}}\textquotesingle{}(?\+:\textbackslash{}\mbox{\hyperlink{namespace_n_l_p_aa471c8cb5832ff6165e2e32b72870a0d}{b}}(?\+:\#$\vert$\}\{$\vert$\textbackslash{}$\vert$-\/\textbackslash{}$\vert$$\vert$\textbackslash{}\mbox{]}-\/\textbackslash{}\mbox{[}\textbackslash{}$\vert$\textbackslash{}\mbox{[}-\/\textbackslash{}\mbox{]}$\vert$\textbackslash{}(-\/\textbackslash{})$\vert$\textbackslash{})-\/\textbackslash{}($\vert$/-\//))\textquotesingle{})}
+
+\mbox{\Hypertarget{namespace_n_l_p_ad867a9060167d530c77d7672f47805ba}\label{namespace_n_l_p_ad867a9060167d530c77d7672f47805ba}} 
+\index{NLP@{NLP}!hate@{hate}}
+\index{hate@{hate}!NLP@{NLP}}
+\doxysubsubsection{\texorpdfstring{hate}{hate}}
+{\footnotesize\ttfamily dictionary N\+L\+P.\+hate = \{\mbox{\hyperlink{namespace_n_l_p_ab0bf830f304586d62252e44e8598853f}{i}}\mbox{[}0\mbox{]} for \mbox{\hyperlink{namespace_n_l_p_ab0bf830f304586d62252e44e8598853f}{i}} in database.\+db\+\_\+load\+\_\+lexicon()\}}
+
+\mbox{\Hypertarget{namespace_n_l_p_ab0bf830f304586d62252e44e8598853f}\label{namespace_n_l_p_ab0bf830f304586d62252e44e8598853f}} 
+\index{NLP@{NLP}!i@{i}}
+\index{i@{i}!NLP@{NLP}}
+\doxysubsubsection{\texorpdfstring{i}{i}}
+{\footnotesize\ttfamily N\+L\+P.\+i = re.\+compile(\mbox{\hyperlink{namespace_n_l_p_aa4800920667d62648af100325d8ee740}{r}}\textquotesingle{}(?\+:\textbackslash{}\mbox{\hyperlink{namespace_n_l_p_aa471c8cb5832ff6165e2e32b72870a0d}{b}}(?\+:!$\vert$\textbackslash{}$\vert$$\vert$\textbackslash{}\mbox{]}$\vert$¡))\textquotesingle{})}
+
+\mbox{\Hypertarget{namespace_n_l_p_a61c5ae9f0b8d11f521da962e4b2252d1}\label{namespace_n_l_p_a61c5ae9f0b8d11f521da962e4b2252d1}} 
+\index{NLP@{NLP}!j@{j}}
+\index{j@{j}!NLP@{NLP}}
+\doxysubsubsection{\texorpdfstring{j}{j}}
+{\footnotesize\ttfamily N\+L\+P.\+j = re.\+compile(\mbox{\hyperlink{namespace_n_l_p_aa4800920667d62648af100325d8ee740}{r}}\textquotesingle{}(?\+:\textbackslash{}\mbox{\hyperlink{namespace_n_l_p_aa471c8cb5832ff6165e2e32b72870a0d}{b}}(?\+:¿$\vert$\+\_\+\textbackslash{}$\vert$$\vert$\+\_\+/$\vert$$<$/$\vert$\textbackslash{}(/))\textquotesingle{})}
+
+\mbox{\Hypertarget{namespace_n_l_p_ae71d589f159f189727a468bb7dcd6fd2}\label{namespace_n_l_p_ae71d589f159f189727a468bb7dcd6fd2}} 
+\index{NLP@{NLP}!k@{k}}
+\index{k@{k}!NLP@{NLP}}
+\doxysubsubsection{\texorpdfstring{k}{k}}
+{\footnotesize\ttfamily N\+L\+P.\+k = re.\+compile(\mbox{\hyperlink{namespace_n_l_p_aa4800920667d62648af100325d8ee740}{r}}\textquotesingle{}(?\+:\textbackslash{}\mbox{\hyperlink{namespace_n_l_p_aa471c8cb5832ff6165e2e32b72870a0d}{b}}(?\+:\textbackslash{}$\vert$$<$$\vert$\textbackslash{}$\vert$\textbackslash{}\{$\vert$\textbackslash{}$\vert$\textbackslash{}())\textquotesingle{})}
+
+\mbox{\Hypertarget{namespace_n_l_p_a39d670825a284ee4574da058c5bcc536}\label{namespace_n_l_p_a39d670825a284ee4574da058c5bcc536}} 
+\index{NLP@{NLP}!known\_words@{known\_words}}
+\index{known\_words@{known\_words}!NLP@{NLP}}
+\doxysubsubsection{\texorpdfstring{known\_words}{known\_words}}
+{\footnotesize\ttfamily N\+L\+P.\+known\+\_\+words = set(words.\+words())}
+
+\mbox{\Hypertarget{namespace_n_l_p_ab01802db4bf6f522cdd4a1c65cd6bccd}\label{namespace_n_l_p_ab01802db4bf6f522cdd4a1c65cd6bccd}} 
+\index{NLP@{NLP}!letter\_l@{letter\_l}}
+\index{letter\_l@{letter\_l}!NLP@{NLP}}
+\doxysubsubsection{\texorpdfstring{letter\_l}{letter\_l}}
+{\footnotesize\ttfamily N\+L\+P.\+letter\+\_\+l = re.\+compile(\mbox{\hyperlink{namespace_n_l_p_aa4800920667d62648af100325d8ee740}{r}}\textquotesingle{}(?\+:\textbackslash{}\mbox{\hyperlink{namespace_n_l_p_aa471c8cb5832ff6165e2e32b72870a0d}{b}}(?\+:\textbackslash{}$\vert$$\vert$£$\vert$\textbackslash{}$\vert$\+\_\+$\vert$¬))\textquotesingle{})}
+
+\mbox{\Hypertarget{namespace_n_l_p_ad60517be29a9e23527964d848eac3ec9}\label{namespace_n_l_p_ad60517be29a9e23527964d848eac3ec9}} 
+\index{NLP@{NLP}!m@{m}}
+\index{m@{m}!NLP@{NLP}}
+\doxysubsubsection{\texorpdfstring{m}{m}}
+{\footnotesize\ttfamily N\+L\+P.\+m = re.\+compile(\mbox{\hyperlink{namespace_n_l_p_aa4800920667d62648af100325d8ee740}{r}}\textquotesingle{}(?\+:\textbackslash{}\mbox{\hyperlink{namespace_n_l_p_aa471c8cb5832ff6165e2e32b72870a0d}{b}}(?\+:\textbackslash{}$\vert$v\textbackslash{}$\vert$$\vert$\textbackslash{}$\vert$\textbackslash{}\textbackslash{}/\textbackslash{}$\vert$$\vert$/\textbackslash{}\textbackslash{}/\textbackslash{}\textbackslash{}$\vert$\textbackslash{}(v\textbackslash{})$\vert$/\textbackslash{}$\vert$\textbackslash{}\textbackslash{}$\vert$//\textbackslash{}.$\vert$\textbackslash{}$^\wedge$\textbackslash{}$^\wedge$))\textquotesingle{})}
+
+\mbox{\Hypertarget{namespace_n_l_p_ac23be94f51ee07a31dc4c13a5aef0454}\label{namespace_n_l_p_ac23be94f51ee07a31dc4c13a5aef0454}} 
+\index{NLP@{NLP}!maxsize@{maxsize}}
+\index{maxsize@{maxsize}!NLP@{NLP}}
+\doxysubsubsection{\texorpdfstring{maxsize}{maxsize}}
+{\footnotesize\ttfamily N\+L\+P.\+maxsize}
+
+\mbox{\Hypertarget{namespace_n_l_p_a2f79d86e5e00cb61c4eae51926aaa823}\label{namespace_n_l_p_a2f79d86e5e00cb61c4eae51926aaa823}} 
+\index{NLP@{NLP}!mention\_hashtag\_regex@{mention\_hashtag\_regex}}
+\index{mention\_hashtag\_regex@{mention\_hashtag\_regex}!NLP@{NLP}}
+\doxysubsubsection{\texorpdfstring{mention\_hashtag\_regex}{mention\_hashtag\_regex}}
+{\footnotesize\ttfamily N\+L\+P.\+mention\+\_\+hashtag\+\_\+regex = re.\+compile(\mbox{\hyperlink{namespace_n_l_p_aa4800920667d62648af100325d8ee740}{r}}\textquotesingle{}(\mbox{[}$^\wedge$\textbackslash{}\mbox{\hyperlink{namespace_n_l_p_adbb35affdc76896711508d30b1d0670f}{w}}\mbox{]}$\vert$$^\wedge$)@\mbox{[}\textbackslash{}w\textbackslash{}-\/\mbox{]}+$\vert$$^\wedge$\mbox{[}\textbackslash{}\mbox{\hyperlink{namespace_n_l_p_acd15904606901b4aae268dfff1d66fb1}{s}}\mbox{]}\#(\mbox{[}$^\wedge$\textbackslash{}\mbox{\hyperlink{namespace_n_l_p_acd15904606901b4aae268dfff1d66fb1}{s}}\mbox{]})+\textquotesingle{})}
+
+\mbox{\Hypertarget{namespace_n_l_p_a498f248038f1a067d7d26bbea0c7ccb6}\label{namespace_n_l_p_a498f248038f1a067d7d26bbea0c7ccb6}} 
+\index{NLP@{NLP}!n@{n}}
+\index{n@{n}!NLP@{NLP}}
+\doxysubsubsection{\texorpdfstring{n}{n}}
+{\footnotesize\ttfamily N\+L\+P.\+n = re.\+compile(\mbox{\hyperlink{namespace_n_l_p_aa4800920667d62648af100325d8ee740}{r}}\textquotesingle{}(?\+:\textbackslash{}\mbox{\hyperlink{namespace_n_l_p_aa471c8cb5832ff6165e2e32b72870a0d}{b}}(?\+:\textbackslash{}$\vert$\textbackslash{}\textbackslash{}\textbackslash{}$\vert$$\vert$/\textbackslash{}\textbackslash{}/$\vert$\textbackslash{}\mbox{[}\textbackslash{}\textbackslash{}\textbackslash{}\mbox{]}$\vert$$<$\textbackslash{}\textbackslash{}$>$$\vert$/V$\vert$\textbackslash{}$^\wedge$/))\textquotesingle{})}
+
+\mbox{\Hypertarget{namespace_n_l_p_ac07e6f2b2b831a368d3af88772a5ada6}\label{namespace_n_l_p_ac07e6f2b2b831a368d3af88772a5ada6}} 
+\index{NLP@{NLP}!o@{o}}
+\index{o@{o}!NLP@{NLP}}
+\doxysubsubsection{\texorpdfstring{o}{o}}
+{\footnotesize\ttfamily N\+L\+P.\+o = re.\+compile(\mbox{\hyperlink{namespace_n_l_p_aa4800920667d62648af100325d8ee740}{r}}\textquotesingle{}(?\+:\textbackslash{}\mbox{\hyperlink{namespace_n_l_p_aa471c8cb5832ff6165e2e32b72870a0d}{b}}(?\+:\textbackslash{}(\textbackslash{})$\vert$\textbackslash{}\mbox{[}\textbackslash{}\mbox{]}$\vert$°))\textquotesingle{})}
+
+\mbox{\Hypertarget{namespace_n_l_p_ae16a6ed80c0672d07244b0b751f8007d}\label{namespace_n_l_p_ae16a6ed80c0672d07244b0b751f8007d}} 
+\index{NLP@{NLP}!p@{p}}
+\index{p@{p}!NLP@{NLP}}
+\doxysubsubsection{\texorpdfstring{p}{p}}
+{\footnotesize\ttfamily N\+L\+P.\+p = re.\+compile(\mbox{\hyperlink{namespace_n_l_p_aa4800920667d62648af100325d8ee740}{r}}\textquotesingle{}(?\+:\textbackslash{}\mbox{\hyperlink{namespace_n_l_p_aa471c8cb5832ff6165e2e32b72870a0d}{b}}(?\+:\textbackslash{}$\vert$\textbackslash{}$\ast$$\vert$¶$\vert$\textbackslash{}$\vert$\mbox{\hyperlink{namespace_n_l_p_ac07e6f2b2b831a368d3af88772a5ada6}{o}}$\vert$\textbackslash{}$\vert$°$\vert$\textbackslash{}$\vert$\textbackslash{}\char`\"{}$\vert$\textbackslash{}$\vert$$>$$\vert$\textbackslash{}$\vert$\textbackslash{}$^\wedge$\textbackslash{}(o\textbackslash{})$\vert$\textbackslash{}$\vert$\textbackslash{}$^\wedge$\textbackslash{}(\textbackslash{})))\textquotesingle{})}
+
+\mbox{\Hypertarget{namespace_n_l_p_a411c3dfb870e564357905f0e25bffa84}\label{namespace_n_l_p_a411c3dfb870e564357905f0e25bffa84}} 
+\index{NLP@{NLP}!q@{q}}
+\index{q@{q}!NLP@{NLP}}
+\doxysubsubsection{\texorpdfstring{q}{q}}
+{\footnotesize\ttfamily N\+L\+P.\+q = re.\+compile(\mbox{\hyperlink{namespace_n_l_p_aa4800920667d62648af100325d8ee740}{r}}\textquotesingle{}(?\+:\textbackslash{}\mbox{\hyperlink{namespace_n_l_p_aa471c8cb5832ff6165e2e32b72870a0d}{b}}(?\+:\textbackslash{}(\textbackslash{})\+\_\+$\vert$\textbackslash{}(\+\_\+,\textbackslash{})$\vert$$<$\textbackslash{}$\vert$))\textquotesingle{})}
+
+\mbox{\Hypertarget{namespace_n_l_p_aa4800920667d62648af100325d8ee740}\label{namespace_n_l_p_aa4800920667d62648af100325d8ee740}} 
+\index{NLP@{NLP}!r@{r}}
+\index{r@{r}!NLP@{NLP}}
+\doxysubsubsection{\texorpdfstring{r}{r}}
+{\footnotesize\ttfamily N\+L\+P.\+r = re.\+compile(r\textquotesingle{}(?\+:\textbackslash{}\mbox{\hyperlink{namespace_n_l_p_aa471c8cb5832ff6165e2e32b72870a0d}{b}}(?\+:\textbackslash{}$\vert$\textbackslash{}$^\wedge$$\vert$\textbackslash{}$\vert$\textbackslash{}?$\vert$®))\textquotesingle{})}
+
+\mbox{\Hypertarget{namespace_n_l_p_aab3132be635be87942b0c6909ceaf957}\label{namespace_n_l_p_aab3132be635be87942b0c6909ceaf957}} 
+\index{NLP@{NLP}!reg@{reg}}
+\index{reg@{reg}!NLP@{NLP}}
+\doxysubsubsection{\texorpdfstring{reg}{reg}}
+{\footnotesize\ttfamily N\+L\+P.\+reg = re.\+compile(\mbox{\hyperlink{namespace_n_l_p_aa4800920667d62648af100325d8ee740}{r}}\textquotesingle{}(.)\textbackslash{}1\{2,\}\textquotesingle{})}
+
+\mbox{\Hypertarget{namespace_n_l_p_acd15904606901b4aae268dfff1d66fb1}\label{namespace_n_l_p_acd15904606901b4aae268dfff1d66fb1}} 
+\index{NLP@{NLP}!s@{s}}
+\index{s@{s}!NLP@{NLP}}
+\doxysubsubsection{\texorpdfstring{s}{s}}
+{\footnotesize\ttfamily N\+L\+P.\+s = re.\+compile(\mbox{\hyperlink{namespace_n_l_p_aa4800920667d62648af100325d8ee740}{r}}\textquotesingle{}(?\+:\textbackslash{}\mbox{\hyperlink{namespace_n_l_p_aa471c8cb5832ff6165e2e32b72870a0d}{b}}(?\+:\textbackslash{}\$$\vert$§))\textquotesingle{})}
+
+\mbox{\Hypertarget{namespace_n_l_p_a93ec2f76af279800e06b05b07aebd3a1}\label{namespace_n_l_p_a93ec2f76af279800e06b05b07aebd3a1}} 
+\index{NLP@{NLP}!stopwords\_set@{stopwords\_set}}
+\index{stopwords\_set@{stopwords\_set}!NLP@{NLP}}
+\doxysubsubsection{\texorpdfstring{stopwords\_set}{stopwords\_set}}
+{\footnotesize\ttfamily N\+L\+P.\+stopwords\+\_\+set = stopwords.\+words(\char`\"{}english\char`\"{})}
+
+\mbox{\Hypertarget{namespace_n_l_p_a5c0e05291837d66a595840a63c37cb9c}\label{namespace_n_l_p_a5c0e05291837d66a595840a63c37cb9c}} 
+\index{NLP@{NLP}!t@{t}}
+\index{t@{t}!NLP@{NLP}}
+\doxysubsubsection{\texorpdfstring{t}{t}}
+{\footnotesize\ttfamily N\+L\+P.\+t = re.\+compile(\mbox{\hyperlink{namespace_n_l_p_aa4800920667d62648af100325d8ee740}{r}}\textquotesingle{}(?\+:\textbackslash{}\mbox{\hyperlink{namespace_n_l_p_aa471c8cb5832ff6165e2e32b72870a0d}{b}}(?\+:\textbackslash{}+$\vert$-\/\textbackslash{}$\vert$-\/$\vert$†$\vert$\textbackslash{}\textquotesingle{}\textbackslash{}\mbox{[}\textbackslash{}\mbox{]}\textbackslash{}\textquotesingle{}))\textquotesingle{})}
+
+\mbox{\Hypertarget{namespace_n_l_p_a5079c08c563b43b7c1e8855bc593a6f9}\label{namespace_n_l_p_a5079c08c563b43b7c1e8855bc593a6f9}} 
+\index{NLP@{NLP}!tag@{tag}}
+\index{tag@{tag}!NLP@{NLP}}
+\doxysubsubsection{\texorpdfstring{tag}{tag}}
+{\footnotesize\ttfamily N\+L\+P.\+tag = nltk.\+pos\+\_\+tag}
+
+\mbox{\Hypertarget{namespace_n_l_p_a85f6a4cd50a8f98c638d1fc97b76087d}\label{namespace_n_l_p_a85f6a4cd50a8f98c638d1fc97b76087d}} 
+\index{NLP@{NLP}!tokenize@{tokenize}}
+\index{tokenize@{tokenize}!NLP@{NLP}}
+\doxysubsubsection{\texorpdfstring{tokenize}{tokenize}}
+{\footnotesize\ttfamily N\+L\+P.\+tokenize = \mbox{\hyperlink{class_n_l_p_1_1_custom_tweet_tokenizer}{Custom\+Tweet\+Tokenizer}}().tokenize}
+
+\mbox{\Hypertarget{namespace_n_l_p_abe9e3a9c11f37b8f0d69bc06820ec422}\label{namespace_n_l_p_abe9e3a9c11f37b8f0d69bc06820ec422}} 
+\index{NLP@{NLP}!u@{u}}
+\index{u@{u}!NLP@{NLP}}
+\doxysubsubsection{\texorpdfstring{u}{u}}
+{\footnotesize\ttfamily N\+L\+P.\+u = re.\+compile(\mbox{\hyperlink{namespace_n_l_p_aa4800920667d62648af100325d8ee740}{r}}\textquotesingle{}(?\+:\textbackslash{}\mbox{\hyperlink{namespace_n_l_p_aa471c8cb5832ff6165e2e32b72870a0d}{b}}(?\+:\textbackslash{}$\vert$\+\_\+\textbackslash{}$\vert$$\vert$\textbackslash{}(\+\_\+\textbackslash{})))\textquotesingle{})}
+
+\mbox{\Hypertarget{namespace_n_l_p_a97c94dba61265dba7f9b5a04ca839151}\label{namespace_n_l_p_a97c94dba61265dba7f9b5a04ca839151}} 
+\index{NLP@{NLP}!url\_remove@{url\_remove}}
+\index{url\_remove@{url\_remove}!NLP@{NLP}}
+\doxysubsubsection{\texorpdfstring{url\_remove}{url\_remove}}
+{\footnotesize\ttfamily N\+L\+P.\+url\+\_\+remove}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 =  re.compile(}
+\DoxyCodeLine{2     \textcolor{stringliteral}{r'(h(\(\backslash\)s)*t(\(\backslash\)s)*t(\(\backslash\)s)*p(\(\backslash\)s)*s?://)(\(\backslash\)s)*(www\(\backslash\).)?(\(\backslash\)s)*((\(\backslash\)w|\(\backslash\)s)+\(\backslash\).)*([\(\backslash\)w\(\backslash\)-\/\(\backslash\)s]+/)*([\(\backslash\)w\(\backslash\)-\/]+)((\(\backslash\)?)?[\(\backslash\)w\(\backslash\)s]*=\(\backslash\)s*['}}
+\DoxyCodeLine{3     \textcolor{stringliteral}{r'\(\backslash\)w\%\&]*)*'})}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{namespace_n_l_p_a4fc425c8a6c19381d6e7b5cba91687a5}\label{namespace_n_l_p_a4fc425c8a6c19381d6e7b5cba91687a5}} 
+\index{NLP@{NLP}!v@{v}}
+\index{v@{v}!NLP@{NLP}}
+\doxysubsubsection{\texorpdfstring{v}{v}}
+{\footnotesize\ttfamily N\+L\+P.\+v = re.\+compile(\mbox{\hyperlink{namespace_n_l_p_aa4800920667d62648af100325d8ee740}{r}}\textquotesingle{}(?\+:\textbackslash{}\mbox{\hyperlink{namespace_n_l_p_aa471c8cb5832ff6165e2e32b72870a0d}{b}}(?\+:\textbackslash{}\textbackslash{}/$\vert$\textbackslash{}$^\wedge$))\textquotesingle{})}
+
+\mbox{\Hypertarget{namespace_n_l_p_adbb35affdc76896711508d30b1d0670f}\label{namespace_n_l_p_adbb35affdc76896711508d30b1d0670f}} 
+\index{NLP@{NLP}!w@{w}}
+\index{w@{w}!NLP@{NLP}}
+\doxysubsubsection{\texorpdfstring{w}{w}}
+{\footnotesize\ttfamily N\+L\+P.\+w = re.\+compile(\mbox{\hyperlink{namespace_n_l_p_aa4800920667d62648af100325d8ee740}{r}}\textquotesingle{}(?\+:\textbackslash{}\mbox{\hyperlink{namespace_n_l_p_aa471c8cb5832ff6165e2e32b72870a0d}{b}}(?\+:VV$\vert$\textbackslash{}\textbackslash{}/\textbackslash{}\textbackslash{}/$\vert$\textbackslash{}\textbackslash{}\textbackslash{}\textbackslash{}\textbackslash{}\textquotesingle{}$\vert$\textbackslash{}\textquotesingle{}//$\vert$\textbackslash{}\textbackslash{}\textbackslash{}$\vert$/$\vert$\textbackslash{}\textbackslash{}\textbackslash{}$^\wedge$/))\textquotesingle{})}
+
+\mbox{\Hypertarget{namespace_n_l_p_ad90ce9903a7c5fd93f3ef819549a1864}\label{namespace_n_l_p_ad90ce9903a7c5fd93f3ef819549a1864}} 
+\index{NLP@{NLP}!wnl@{wnl}}
+\index{wnl@{wnl}!NLP@{NLP}}
+\doxysubsubsection{\texorpdfstring{wnl}{wnl}}
+{\footnotesize\ttfamily N\+L\+P.\+wnl = Word\+Net\+Lemmatizer()}
+
+\mbox{\Hypertarget{namespace_n_l_p_a1cec1a4bbdade6827f4fd122c36e6cb6}\label{namespace_n_l_p_a1cec1a4bbdade6827f4fd122c36e6cb6}} 
+\index{NLP@{NLP}!x@{x}}
+\index{x@{x}!NLP@{NLP}}
+\doxysubsubsection{\texorpdfstring{x}{x}}
+{\footnotesize\ttfamily N\+L\+P.\+x = re.\+compile(\mbox{\hyperlink{namespace_n_l_p_aa4800920667d62648af100325d8ee740}{r}}\textquotesingle{}(?\+:\textbackslash{}\mbox{\hyperlink{namespace_n_l_p_aa471c8cb5832ff6165e2e32b72870a0d}{b}}(?\+:$>$$<$$\vert$\textbackslash{})\textbackslash{}($\vert$\%))\textquotesingle{})}
+
+\mbox{\Hypertarget{namespace_n_l_p_affc9920846b31ce244ee8206b643ec75}\label{namespace_n_l_p_affc9920846b31ce244ee8206b643ec75}} 
+\index{NLP@{NLP}!y@{y}}
+\index{y@{y}!NLP@{NLP}}
+\doxysubsubsection{\texorpdfstring{y}{y}}
+{\footnotesize\ttfamily N\+L\+P.\+y = re.\+compile(\mbox{\hyperlink{namespace_n_l_p_aa4800920667d62648af100325d8ee740}{r}}\textquotesingle{}(?\+:\textbackslash{}\mbox{\hyperlink{namespace_n_l_p_aa471c8cb5832ff6165e2e32b72870a0d}{b}}(?\+:¥$\vert$\textbackslash{}\textquotesingle{}/))\textquotesingle{})}
+
+\mbox{\Hypertarget{namespace_n_l_p_a3b12b4d691869c9c46cd2f6c0759a557}\label{namespace_n_l_p_a3b12b4d691869c9c46cd2f6c0759a557}} 
+\index{NLP@{NLP}!z@{z}}
+\index{z@{z}!NLP@{NLP}}
+\doxysubsubsection{\texorpdfstring{z}{z}}
+{\footnotesize\ttfamily N\+L\+P.\+z = re.\+compile(\mbox{\hyperlink{namespace_n_l_p_aa4800920667d62648af100325d8ee740}{r}}\textquotesingle{}(?\+:\textbackslash{}\mbox{\hyperlink{namespace_n_l_p_aa471c8cb5832ff6165e2e32b72870a0d}{b}}(?\+:$\sim$/\+\_\+$\vert$-\//\+\_\+$\vert$$>$\+\_\+))\textquotesingle{})}
+

@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['server_12',['server',['../namespaceserver.html',1,'']]],
-  ['server_2epy_13',['server.py',['../server_8py.html',1,'']]]
+  ['f_50',['f',['../namespace_n_l_p.html#a4bb762579df26b01339dd9cb6085de03',1,'NLP']]]
 ];

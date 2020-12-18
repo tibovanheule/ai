@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['wsgi_21',['wsgi',['../namespacewsgi.html',1,'']]]
+  ['plot_5fconfusion_5fmatrix_134',['plot_confusion_matrix',['../namespaceplot__confusion__matrix.html',1,'']]]
 ];

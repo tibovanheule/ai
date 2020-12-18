@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['server_2epy_25',['server.py',['../server_8py.html',1,'']]]
+  ['plot_5fconfusion_5fmatrix_2epy_140',['plot_confusion_matrix.py',['../plot__confusion__matrix_8py.html',1,'']]]
 ];
