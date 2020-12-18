@@ -1,8 +1,7 @@
 """@package AI
 The Ai module implements the core ai functions
-
-More details....
 """
+
 import multiprocessing
 import pickle
 from collections import Counter
@@ -28,6 +27,10 @@ from NLP import text_precessing, text_precessing_char, basic_precessing, basic_p
 
 
 def analyse_text(text, modelname="logistic_regression"):
+    """  a function to predict a tweet with logistic
+
+    used for the webinterface
+    """
     dbobj = db.DB()
     model = pickle.loads(dbobj.get_model_in_db(modelname)[0][0])
     name = modelname + "_vect"
@@ -36,50 +39,36 @@ def analyse_text(text, modelname="logistic_regression"):
 
 
 def analyse_ad_lstm(modelname):
+    """  a function to evaluate a new data set and the adversarials dataset with all lstm
+
+    to generate confusion matrix see plot_confusion_matrix
     """
-    model = load_model("beste_gewichten.hdf5",compile=False)
-    model.compile(optimizer='adam', loss='binary_crossentropy', metrics=['accuracy'])
-    name = "lstm_word"
-    print(name)
-    print("normal data with lstm word")
+    dbobj = db.DB()
 
-    print("tokenize + word embeddings")
-
-    tokenizer.fit_on_texts(preprocessedData)
+    tokenizer = Tokenizer(num_words=10000, lower=True, filters=None, char_level=True)
+    tweet = [i[0] for i in dbobj.db_load_extra_tweet()]
+    hate = [i[0] for i in dbobj.db_load_extra_hate()]
+    hate = np.asarray(hate)
+    preprocessedData = [text_precessing_char(text) for text in tweet]
+    print("done")
     x = tokenizer.texts_to_sequences(preprocessedData)
-    x = pad_sequences(x, maxlen=500)
-    print("predicting")
-    predictions = model.predict(x)
+    x = pad_sequences(x, maxlen=300)
+    model = load_model("lstm_les.hdf5")
+    predictions = model.predict_classes(x)
     print(predictions)
-    rounded_predictions = np.argmax(predictions, axis=-1)
-    cm = confusion_matrix(y_true=hate, y_pred=rounded_predictions)
+    accuracy = model.evaluate(x, hate)
+    print(accuracy)
+    cm = confusion_matrix(y_true=hate, y_pred=predictions)
     print(cm)
-    with open(name, 'w') as f:
+    with open(modelname + "_matrix.txt", 'w') as f:
         f.write(str(cm))
-        """
-    if (modelname == "lstm_les"):
-        dbobj = db.DB()
-
-        tokenizer = Tokenizer(num_words=10000, lower=True, filters=None, char_level=True)
-        tweet = [i[0] for i in dbobj.db_load_extra_tweet()]
-        hate = [i[0] for i in dbobj.db_load_extra_hate()]
-        hate = np.asarray(hate)
-        preprocessedData = [text_precessing_char(text) for text in tweet]
-        print("done")
-        x = tokenizer.texts_to_sequences(preprocessedData)
-        x = pad_sequences(x, maxlen=300)
-        model = load_model("lstm_les.hdf5")
-        predictions = model.predict_classes(x)
-        print(predictions)
-        accuracy = model.evaluate(x, hate)
-        print(accuracy)
-        cm = confusion_matrix(y_true=hate, y_pred=predictions)
-        print(cm)
-        with open(modelname + "_matrix.txt", 'w') as f:
-            f.write(str(cm))
 
 
 def analyse_ad():
+    """ a function to evaluate a new data set and the adversarials dataset with all calssic models
+
+    confusion matrix can be made with plot_confusion_matrix
+    """
     dbobj = db.DB()
 
     model = pickle.loads(dbobj.get_model_in_db("logistic_regression_char")[0][0])
@@ -164,6 +153,10 @@ def analyse_ad():
 
 
 def process_text(text):
+    """ return just the text preprocessing
+
+    For debugging
+    """
     return str(text_precessing(text.lower()))
 
 
@@ -171,11 +164,11 @@ def return_token(text):
     return text
 
 
-def validate_ai():
-    return "Hello, the ai thanks you for the lesson!"
-
-
 def construct_model(data, hate, modelname="logistic_regression"):
+    """ a function to choose the model to build when a web requets comes in
+
+    for flask server
+    """
     print(modelname)
     if modelname == "logistic_regression":
         vectorizer = TfidfVectorizer(preprocessor=text_precessing, tokenizer=return_token,
@@ -217,6 +210,10 @@ def construct_model(data, hate, modelname="logistic_regression"):
 
 
 def logistic(vectorizer, data, hate, modelname):
+    """ make a logistic model
+
+    basedon original repo
+    """
     dbobj = db.DB()
     """Construct a db entry. Avoid using old model for requests made before ending of model construction"""
     dbobj.constructing_model_in_db(modelname)
@@ -251,6 +248,10 @@ def logistic(vectorizer, data, hate, modelname):
 
 
 def parallel_construct(data, func):
+    """ a function to transform sequences in parallel
+
+    based on https://github.com/rafaelvalero/ParallelTextProcessing
+    """
     core_count = multiprocessing.cpu_count() - 1
     print(f"working on {core_count} threads")
 
@@ -264,6 +265,10 @@ def parallel_construct(data, func):
 
 
 def naive_bayes(vectorizer, data, hate, modelname):
+    """ make a naive bayes model
+
+    based on the sklearn docs
+    """
     dbobj = db.DB()
     """Construct a db entry. Avoid using old model for requests made before ending of model construction"""
     dbobj.constructing_model_in_db(modelname)
@@ -295,6 +300,10 @@ def naive_bayes(vectorizer, data, hate, modelname):
 
 
 def construct_lstm(data, hate, tokenizer, modelname, maxlen=500):
+    """ make a lstm model
+
+    based on a online text classification example
+    """
     dbobj = db.DB()
     # Preprocess text (& join on space again :§
     # max features: top most frequently used words.
@@ -338,7 +347,10 @@ def construct_lstm(data, hate, tokenizer, modelname, maxlen=500):
 
 
 def construct_lstm_tibo(data, hate, modelname):
-    # code gebasseerd op https://www.youtube.com/watch?v=j7EB7yeySDw
+    """ make a lstm model
+
+    based on https://www.youtube.com/watch?v=j7EB7yeySDw
+    """
     dbobj = db.DB()
     hate = np.asarray(hate)
     dbobj.constructing_model_in_db("lstm_tibo")
@@ -352,7 +364,7 @@ def construct_lstm_tibo(data, hate, modelname):
     for i in data:
         for word in i.split():
             counter[word] += 1
-    num_words = len(counter)
+    num_words = len(counter) + 1
     max_words = 25
     print("tokenizing")
     tokenizer = Tokenizer(num_words=num_words)
@@ -370,7 +382,7 @@ def construct_lstm_tibo(data, hate, modelname):
     optimizer = Adam(learning_rate=3e-4)
     model.compile(loss="binary_crossentropy", optimizer=optimizer, metrics=["accuracy"])
     model.fit(padded, y_train, epochs=20, validation_data=(test_padded, y_test))
-    model.save(modelname+".hdf5")
+    model.save(modelname + ".hdf5")
 
     # testing, predicting
     print("loading new dataset")
@@ -403,6 +415,10 @@ def construct_lstm_tibo(data, hate, modelname):
 
 
 def construct_lstm_les(data, hate, tokenizer, modelname, maxlen=500):
+    """ make a lstm model and train it, save it
+
+    based on the excersise of the lesseon
+    """
     dbobj = db.DB()
     # Preprocess text (& join on space again :§
     # max features: top most frequently used words.
@@ -442,6 +458,10 @@ def construct_lstm_les(data, hate, tokenizer, modelname, maxlen=500):
 
 
 def make_lstm_model(x):
+    """ make a lstm model
+
+    based on the an online lstm text classification example
+    """
     model = Sequential()
     embed_layer = Embedding(50000, 100, input_length=x)
     model.add(embed_layer)
@@ -453,6 +473,10 @@ def make_lstm_model(x):
 
 
 def make_lstm_les_model(x):
+    """ make a lstm model
+
+    based on the excersise of the lesseon
+    """
     model = Sequential()
     embed_layer = Embedding(x, 64, input_length=300)
     model.add(embed_layer)

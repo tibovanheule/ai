@@ -66,22 +66,3 @@ const analyse = async () => {
         });
     }
 }
-
-
-const validate = async (bool) => {document.getElementById("yes").disabled = true;
-    document.getElementById("no").disabled = true;
-    fetch('https://ai.tibovanheule.space/api/validate', {
-        method: 'POST',
-        mode: 'cors',
-        cache: 'no-cache',
-        credentials: 'same-origin',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({validate: bool, message: document.getElementById("tweet").value})
-    }).then(data => data.text()).then(data => {
-        console.log(data);
-        document.getElementById("validatingtext").innerHTML = "Thank you for your response";
-        fadeOut(document.getElementById("buttons"));
-    });
-}

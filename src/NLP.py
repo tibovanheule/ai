@@ -1,7 +1,7 @@
 """@package NLP
 Natural language processing
 
-More details....
+Does all pre proccesing
 """
 import re
 from functools import lru_cache
@@ -17,11 +17,8 @@ from spellchecker import SpellChecker
 
 from db import DB
 
-# Natural language processing
-# Main entry for natural language processing (text preprocessing).
-
-
 # GLOBAL module variabeles"
+# mostly regex compiles, only done once when module loads
 reg = re.compile(r'(.)\1{2,}')
 mention_hashtag_regex = re.compile(r'([^\w]|^)@[\w\-]+|^[\s]#([^\s])+')
 url_remove = re.compile(
@@ -32,11 +29,6 @@ contarction_am = re.compile(r'\'m')
 contarction_have = re.compile(r'\'ve')
 contarction_will = re.compile(r'\'ll')
 
-# NOTE: zal niet perfect alles aanpassen doordat chars verschillende letters kunnen voorstellen
-# maar spellchecker zal dit opmerken
-
-# @Tibo waarschijnlijk moeten 'gee' voor g en 'oh' voor o er niet bij, maar atm heb ik ze er in gestoken
-# T is makkelijker om ze gwn weg te doen
 a = re.compile(r'(?:\b(?:@|/-\\|\^|/\\))')
 b = re.compile(r'(?:\b(?:\|:|P>|ß))')
 c = re.compile(r'(?:\b[©¢<\[({])')
@@ -68,6 +60,7 @@ ws.load()
 checker = SpellChecker()
 wnl = WordNetLemmatizer()
 tag = nltk.pos_tag
+# try to load corpora, if fail you must init
 try:
     nltk.data.find('corpora/stopwords')
     stopwords_set = stopwords.words("english")
@@ -87,7 +80,7 @@ except LookupError:
 database = DB()
 hate = {i[0] for i in database.db_load_lexicon()}
 
-
+# make caches
 @lru_cache(maxsize=5000)
 def lemmatize(token, pos):
     return wnl.lemmatize(token, pos=pos)
@@ -117,16 +110,25 @@ tokenize = CustomTweetTokenizer().tokenize
 
 
 def text_precessing(text):
+    """  iMain entry for test preprocessing
+
+    """
+    # delete emojis
     text = demoji.replace_with_desc(text, sep="")
 
+    # delete contraction so can be properly deleted later
     text = contarction_not.sub(" not", text)
     text = contarction_am.sub(" am", text)
     text = contarction_have.sub(" have", text)
     text = contarction_will.sub(" will", text)
 
+    # replace url by the word site, lower tf-idf score
     text = url_remove.sub(" site", text)
 
+    # replace @ handlers, lower tf-idf score
     text = mention_hashtag_regex.sub(" entity", text)
+
+    #letter substitution
     text = a.sub("a", text)
     text = b.sub("b", text)
     text = c.sub("c", text)
@@ -156,8 +158,10 @@ def text_precessing(text):
 
     # Tokenize the string"""
     tokens = tokenize(text)
+    # using lexicon check if hate word is present
     tokens = char_boundary(tokens)
-    # remove , . ! ? AND remove repeats"""
+    # remove , . ! ?
+    # remove repeats"""
     # Spelling check"""
     tokens = [spell_checker(remove_repeats(token)) for token in tokens if token not in stopwords_set]
     # Lemmanize text, ALWAYS LAST to avoid inconsistencies with incorrectly spelled words"""
@@ -167,24 +171,40 @@ def text_precessing(text):
 
 
 def basic_precessing(text):
+    """  basic pre processing
+
+    for comparing results
+    """
     text = mention_hashtag_regex.sub(" entity", text)
     tokens = tokenize(text)
     return list(lemmanize_text(tokens))
 
 
 def basic_precessing_char(text):
+    """  basic pre processing
+
+    for comparing results
+    """
     return ' '.join(basic_precessing(text))
 
 
 def text_precessing_char(text):
+    """  for use in char-based models
+    """
     return ' '.join(text_precessing(text))
 
 
 def remove_repeats(word):
+    """  remove repeats
+    """
     return reg.sub(r'\1\1', word)
 
 
 def get_wordnet_pos(treebank_tag):
+    """  convert pos tags to lemmanitizer wordnet pos tags
+
+    helper function of lemmanize_text()
+    """
     if treebank_tag.startswith('J'):
         return wordnet.ADJ
     if treebank_tag.startswith('V'):
@@ -197,6 +217,10 @@ def get_wordnet_pos(treebank_tag):
 
 
 def char_boundary(tokens):
+    """  revert char boundary attack
+
+    uses lexicon to check for hate in a unknown word
+    """
     voca = {}
     for token in tokens:
         if token not in known_words and token not in hate and len(token) > 3:
@@ -205,6 +229,10 @@ def char_boundary(tokens):
 
 
 def has_word(word, voca):
+    """  uses lexicon to check for hate word in a unknown word
+
+    helper function of char_boundary() function
+    """
     fragments = {word[i:j] for i in range(len(word)) for j in range(i + 3, len(word) + 1)}
     sub_words = fragments.intersection(hate)
     if len(sub_words) > 0:
@@ -217,6 +245,10 @@ def has_word(word, voca):
 
 
 def lemmanize_text(tokens):
+    """  lemmanitize tokens
+
+    use of pos tagger to detect nouns, verbs, ...
+    """
     # Catogorize the tokens first
     tokens = tag(tokens)
     tokens = (lemmatize(token, pos=get_wordnet_pos(pos)) for (token, pos) in tokens)
