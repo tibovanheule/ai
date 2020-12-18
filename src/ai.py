@@ -357,6 +357,7 @@ def construct_lstm_tibo(data, hate, modelname):
     print("tokenizing")
     tokenizer = Tokenizer(num_words=num_words)
     tokenizer.fit_on_texts(x_train)
+
     seq_train = tokenizer.texts_to_sequences(x_train)
     seq_test = tokenizer.texts_to_sequences(x_test)
     print("padding")
@@ -368,10 +369,8 @@ def construct_lstm_tibo(data, hate, modelname):
     model.add(Dense(1, activation='sigmoid'))
     optimizer = Adam(learning_rate=3e-4)
     model.compile(loss="binary_crossentropy", optimizer=optimizer, metrics=["accuracy"])
-    mcp = ModelCheckpoint(modelname + ".hdf5", monitor="val_accuracy", save_best_only=True, save_weights_only=False)
-    model.fit(padded, y_train, epochs=20, validation_data=(test_padded, y_test), callbacks=[mcp])
-
-    model.load(modelname + ".hdf5")
+    model.fit(padded, y_train, epochs=20, validation_data=(test_padded, y_test))
+    model.save(modelname+".hdf5")
 
     # testing, predicting
     print("loading new dataset")
