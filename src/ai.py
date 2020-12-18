@@ -5,14 +5,14 @@ More details....
 """
 import multiprocessing
 import pickle
+from collections import Counter
 
-import db
 import numpy as np
 import scipy.sparse as sp
-from NLP import text_precessing, text_precessing_char, basic_precessing, basic_precessing_char
 from keras.callbacks import ModelCheckpoint, EarlyStopping
-from keras.layers import Dense, Embedding, LSTM, SpatialDropout1D
+from keras.layers import Dense, Embedding, LSTM, SpatialDropout1D, BatchNormalization
 from keras.models import Sequential, load_model
+from keras.optimizers import Adam
 from keras.preprocessing.text import Tokenizer
 from keras_preprocessing.sequence import pad_sequences
 from sklearn.feature_extraction.text import TfidfVectorizer
@@ -20,8 +20,11 @@ from sklearn.feature_selection import SelectFromModel
 from sklearn.linear_model import LogisticRegression
 from sklearn.metrics import confusion_matrix, accuracy_score
 from sklearn.model_selection import train_test_split, GridSearchCV, StratifiedKFold
-from sklearn.pipeline import Pipeline
 from sklearn.naive_bayes import MultinomialNB
+from sklearn.pipeline import Pipeline
+
+import db
+from NLP import text_precessing, text_precessing_char, basic_precessing, basic_precessing_char
 
 
 def analyse_text(text, modelname="logistic_regression"):
@@ -33,8 +36,6 @@ def analyse_text(text, modelname="logistic_regression"):
 
 
 def analyse_ad_lstm(modelname):
-
-
     """
     model = load_model("beste_gewichten.hdf5",compile=False)
     model.compile(optimizer='adam', loss='binary_crossentropy', metrics=['accuracy'])
@@ -56,29 +57,25 @@ def analyse_ad_lstm(modelname):
     with open(name, 'w') as f:
         f.write(str(cm))
         """
-    if(modelname == "lstm_les"):
+    if (modelname == "lstm_les"):
         dbobj = db.DB()
 
         tokenizer = Tokenizer(num_words=10000, lower=True, filters=None, char_level=True)
-        tweet = [i[0] for i in dbobj.db_load_tweet()]
-        tweet = tweet[:1000]
-        hate = [i[0] for i in dbobj.db_load_hate()]
-        hate = hate[:1000]
-
-        model = construct_lstm_les(tweet, hate, tokenizer, modelname)
+        tweet = [i[0] for i in dbobj.db_load_extra_tweet()]
+        hate = [i[0] for i in dbobj.db_load_extra_hate()]
         hate = np.asarray(hate)
-        preprocessedData = np.asarray([text_precessing_char(text) for text in tweet])
+        preprocessedData = [text_precessing_char(text) for text in tweet]
+        print("done")
         x = tokenizer.texts_to_sequences(preprocessedData)
         x = pad_sequences(x, maxlen=300)
-
-        predictions = model.predict(x)
-        rounded_predictions = np.argmax(predictions, axis=-1)
-        for i in range(20):
-            print(predictions[i])
-            print(rounded_predictions[i])
-        cm = confusion_matrix(y_true=hate, y_pred=rounded_predictions)
+        model = load_model("lstm_les.hdf5")
+        predictions = model.predict_classes(x)
+        print(predictions)
+        accuracy = model.evaluate(x, hate)
+        print(accuracy)
+        cm = confusion_matrix(y_true=hate, y_pred=predictions)
         print(cm)
-        with open(modelname+"_matrix.txt", 'w') as f:
+        with open(modelname + "_matrix.txt", 'w') as f:
             f.write(str(cm))
 
 
@@ -137,6 +134,34 @@ def analyse_ad():
     with open(name, 'w') as f:
         f.write(str(matrix))
 
+    # naive_bayes
+
+    model = pickle.loads(dbobj.get_model_in_db("naive_bayes")[0][0])
+    name = "naive_bayes_vect"
+    vectorizer = pickle.loads(dbobj.get_model_in_db(name)[0][0])
+
+    print("normal data with naive bayes")
+    tweet = [i[0] for i in dbobj.db_load_extra_tweet()]
+    predictions = model.predict(vectorizer.transform(tweet))
+    hate = [i[0] for i in dbobj.db_load_extra_hate()]
+    print("confusion matrix")
+    matrix = confusion_matrix(predictions, hate)
+    name = "extra_naive_bayes_confusion_matrix"
+    print(accuracy_score(predictions, hate, normalize=True))
+    with open(name, 'w') as f:
+        f.write(str(matrix))
+
+    print("ad data with naive bayes")
+    tweet = [i[0] for i in dbobj.db_load_ad_tweet()]
+    predictions = model.predict(vectorizer.transform(tweet))
+    hate = [i[0] for i in dbobj.db_load_ad_hate()]
+    print("confusion matrix")
+    matrix = confusion_matrix(predictions, hate)
+    name = "ad_naive_bayes_confusion_matrix"
+    print(accuracy_score(predictions, hate, normalize=True))
+    with open(name, 'w') as f:
+        f.write(str(matrix))
+
 
 def process_text(text):
     return str(text_precessing(text.lower()))
@@ -171,6 +196,8 @@ def construct_model(data, hate, modelname="logistic_regression"):
     elif modelname == "lstm_les":
         tokenizer = Tokenizer(num_words=10000, lower=True, filters="", char_level=False)
         construct_lstm_les(data, hate, tokenizer, modelname)
+    elif modelname == "lstm_tibo":
+        construct_lstm_tibo(data, hate, modelname)
     elif modelname == "log_basic":
         vectorizer = TfidfVectorizer(preprocessor=basic_precessing, tokenizer=return_token,
                                      max_df=0.75, min_df=5, use_idf=True, smooth_idf=False, ngram_range=(1, 3),
@@ -187,6 +214,7 @@ def construct_model(data, hate, modelname="logistic_regression"):
                                      max_df=0.75, min_df=5, use_idf=True, smooth_idf=False, ngram_range=(1, 3),
                                      norm=None, decode_error="replace")
         naive_bayes(vectorizer, data, hate, modelname)
+
 
 def logistic(vectorizer, data, hate, modelname):
     dbobj = db.DB()
@@ -309,18 +337,81 @@ def construct_lstm(data, hate, tokenizer, modelname, maxlen=500):
     return model
 
 
+def construct_lstm_tibo(data, hate, modelname):
+    # code gebasseerd op https://www.youtube.com/watch?v=j7EB7yeySDw
+    dbobj = db.DB()
+    hate = np.asarray(hate)
+    dbobj.constructing_model_in_db("lstm_tibo")
+    print("constructing tibo lstm")
+    data = [text_precessing_char(t) for t in data]
+    print("Data done")
+    print("split")
+    x_train, x_test, y_train, y_test = train_test_split(data, hate, train_size=0.7, random_state=42)
+    print("count")
+    counter = Counter()
+    for i in data:
+        for word in i.split():
+            counter[word] += 1
+    num_words = len(counter)
+    max_words = 25
+    print("tokenizing")
+    tokenizer = Tokenizer(num_words=num_words)
+    tokenizer.fit_on_texts(x_train)
+    seq_train = tokenizer.texts_to_sequences(x_train)
+    seq_test = tokenizer.texts_to_sequences(x_test)
+    print("padding")
+    padded = pad_sequences(seq_train, maxlen=max_words, padding='post', truncating='post')
+    test_padded = pad_sequences(seq_test, maxlen=max_words, padding='post', truncating='post')
+    model = Sequential()
+    model.add(Embedding(num_words, 32, input_length=max_words))
+    model.add(LSTM(64, dropout=0.1))
+    model.add(Dense(1, activation='sigmoid'))
+    optimizer = Adam(learning_rate=3e-4)
+    model.compile(loss="binary_crossentropy", optimizer=optimizer, metrics=["accuracy"])
+    mcp = ModelCheckpoint(modelname + ".hdf5", monitor="val_accuracy", save_best_only=True, save_weights_only=False)
+    model.fit(padded, y_train, epochs=20, validation_data=(test_padded, y_test), callbacks=[mcp])
+
+    model.load(modelname + ".hdf5")
+
+    # testing, predicting
+    print("loading new dataset")
+    tweet = [i[0] for i in dbobj.db_load_extra_tweet()]
+    hate = [i[0] for i in dbobj.db_load_extra_hate()]
+    preprocessedData = [text_precessing_char(text) for text in tweet]
+    print("done")
+    x = tokenizer.texts_to_sequences(preprocessedData)
+    x = pad_sequences(x, maxlen=max_words, padding='post', truncating='post')
+    predictions = model.predict_classes(x)
+    cm = confusion_matrix(y_true=hate, y_pred=predictions)
+    print(cm)
+    name = "extra_" + modelname + "_confusion_matrix"
+    with open(name, 'w') as f:
+        f.write(str(cm))
+
+    # testing, predicting
+    print("loading new dataset")
+    tweet = [text_precessing_char(i[0]) for i in dbobj.db_load_ad_tweet()]
+    hate = [i[0] for i in dbobj.db_load_ad_hate()]
+    print("done")
+    x = tokenizer.texts_to_sequences(tweet)
+    x = pad_sequences(x, maxlen=max_words, padding='post', truncating='post')
+    predictions = model.predict_classes(x)
+    cm = confusion_matrix(y_true=hate, y_pred=predictions)
+    print(cm)
+    name = "ad_" + modelname + "_confusion_matrix"
+    with open(name, 'w') as f:
+        f.write(str(cm))
+
+
 def construct_lstm_les(data, hate, tokenizer, modelname, maxlen=500):
     dbobj = db.DB()
     # Preprocess text (& join on space again :§
     # max features: top most frequently used words.
     # maxlen, how long can an inputtext be (will be truncated if longer)
-    data = [i[0] for i in dbobj.db_load_extra_tweet()]
-    hate = [i[0] for i in dbobj.db_load_extra_hate()]
 
     dbobj.constructing_model_in_db("lstm")
-    hate = np.asarray(hate)
     # KERAS tokenizer (SETS INTO INTEGERS/ VECTORS INSTEAD OF WORDS)
-    preprocessedData = np.asarray([text_precessing_char(text) for text in data])
+    preprocessedData = [text_precessing_char(text) for text in data]
 
     print("tokenize + word embeddings")
 
@@ -341,11 +432,12 @@ def construct_lstm_les(data, hate, tokenizer, modelname, maxlen=500):
     epochs = 20  # Zal waarschijnlijk hoger moeten, is het aantal keren dat het traint kinda
     batch_size = 64
     x_train, x_test, y_train, y_test = train_test_split(x, hate, train_size=0.7, random_state=42)
-    #mcp = ModelCheckpoint(modelname + ".hdf5", monitor="val_accuracy", save_best_only=True, save_weights_only=False)
+    # mcp = ModelCheckpoint(modelname + ".hdf5", monitor="val_accuracy", save_best_only=True, save_weights_only=False)
     model.fit(x_train, y_train, epochs=epochs, batch_size=batch_size, validation_data=(x_test, y_test),
               callbacks=[EarlyStopping(monitor='val_loss', patience=3, min_delta=0.0001)])
 
     accuracy = model.evaluate(x_test, y_test)
+    model.save("lstm_les.hdf5")
     print(accuracy)
     return model
 
@@ -366,6 +458,7 @@ def make_lstm_les_model(x):
     embed_layer = Embedding(x, 64, input_length=300)
     model.add(embed_layer)
     model.add(LSTM(32))
+    model.add(BatchNormalization())
     model.add(Dense(16, activation='relu'))
     model.add(Dense(1, activation='sigmoid'))  # Dit zorgt voor output in het juiste format van ons NN
     return model
