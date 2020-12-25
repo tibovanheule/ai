@@ -25,23 +25,16 @@
 <body>
 <script src="script.js" async></script>
 <div id="mainholder">
-        <h2>NLTK</h2>
+        <h2>Install</h2>
     <h3>Prerequisites</h3>
-    <h3>Install on linux</h3>
-    First create a virtual environments
-    Then run
-    <h3>Install on windows</h3>
-
-    <img src="libnlppop.png" alt="nlp libs popularity" style="width: 90%;display: block;margin: auto;"/>
-    <h2>Bibliography</h2>
-      <ol>
-         <li>
-            <p>E.Balagurusamy, <cite>Programming with JAVA: A Primer</cite>, 3rd edition, (2007)</p>
-         </li>
-         <li>
-            <p>Reto Meier, <cite>Professional Android 4 Application Development</cite>, 3rd edition, (2012)</p>
-         </li>
-      </ol>
+    <h2>Step 1: venv</h2>
+    <p>Create a venv using <strong>python 3.7</strong>, a higher version is not supported at the time by the keras and tenserflow package. </p>
+    <h2>step 2: install</h2>
+    <p>Use 'pip install -r requirements' </p>
+    <p><strong>Warning:</strong><br/>If you are on windows then use a wheel to intall numpy and sci-py before using pip install. </p>
+   
+    <h2>After install</h2>
+    <p>After install run 'flask run'<br/>Then using a browser surf to localhost:5000/api/init and rerun 'flask run'<br/> This will download every needed corpus file.</p>
 </div>
 <div id="footer">
 
